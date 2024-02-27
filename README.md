@@ -1,19 +1,19 @@
 # Auditory Cheesecake
 
+## Product Description
+
+### Product Vision Statement
+Auditory Cheesecake is a mobile-first web application that allows music enthusiasts to understand their personality traits based on their music taste, which is analyzed using NYU psychology research metrics.
+
+
+Auditory Cheesecake is primarily aimed for use by college students who are looking to gain insights about their personalities based on their music tastes. By taking our personality assessment, the user will answer a series of questions abou their song preferences and will be presented with their personality analysis at the end of the assessment. They will be able to engage with their profile and learn more about their assessment results, along with having the opportunity to share their profiles across different social media platforms.
+
 ## Team Members:
 + Sam Chen - 
 + Francisco Cunningham - fctico11 on [Github](https://github.com/fctico11)
 + James Li - 
 + Suha Memon - suhamemon1 on [Github](https://github.com/suhamemon1)
 + Ibrahim Sheikh - 
-
-
-## Product Description
-
-Auditory Cheesecake is primarily aimed for use by college students who are looking to gain insights about their personalities based on their music tastes. By taking our personality assessment, the user will answer a series of questions abou their song preferences and will be presented with their personality analysis at the end of the assessment. They will be able to engage with their profile and learn more about their assessment results, along with having the opportunity to share their profiles across different social media platforms.
-
-### Product Vision Statement
-Auditory Cheesecake is a mobile-first web application that allows music enthusiasts to understand their personality traits based on their music taste, which is analyzed using NYU psychology research metrics.
 
 ## History of Auditory Cheesecake
 
