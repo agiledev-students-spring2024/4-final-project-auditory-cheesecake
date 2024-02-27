@@ -13,7 +13,7 @@ Auditory Cheesecake is primarily aimed for use by college students who are looki
 + Francisco Cunningham - fctico11 on [Github](https://github.com/fctico11)
 + James Li - 
 + Suha Memon - suhamemon1 on [Github](https://github.com/suhamemon1)
-+ Ibrahim Sheikh - 
++ Ibrahim Sheikh - Ibrahimsheikh02 on [Github](https://github.com/Ibrahimsheikh02)
 
 ## History of Auditory Cheesecake
 
