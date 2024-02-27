@@ -4,11 +4,12 @@
 + Sam Chen - 
 + Francisco Cunningham - fctico11 on [Github](https://github.com/fctico11)
 + James Li - 
-+ Suha Memon - 
++ Suha Memon - suhamemon1 on [Github](https://github.com/suhamemon1)
 + Ibrahim Sheikh - 
 
 
 ## Product Vision Statement
+Auditory Cheesecake is a mobile-first web application that allows music enthusiasts to understand their personality traits based on their music taste, which is analyzed using NYU psychology research metrics.
 
 ## History of Auditory Cheesecake
 
