@@ -1,8 +1,11 @@
 # User Experience Design
+# Auditory Cheesecake
 
-This repository contains instructions and files for two assignments that together comprise the user experience design phase of a web app.
+## App Map
+![App Map](/Auditory%20Cheesecake%20App%20Map.png)
 
-Replace the contents of this file with the completed assignments, as described in:
 
-- [app map & wireframe instructions](instructions-0a-app-map-wireframes.md).
-- [prototype instructions](instructions-0b-prototyping.md)
+## Wireframe
+<!-- ![Wireframe](/Assessment%20&%20Results.png) -->
+![Wireframe](/PrototypeDiagrams.png)
+[Link to wireframe](https://www.figma.com/file/1fBfuMT814LlhMGs9xnKog/Assessment-%26-Results?type=design&node-id=0%3A1&mode=design&t=TUm0UnACvzQIFTM6-1)
