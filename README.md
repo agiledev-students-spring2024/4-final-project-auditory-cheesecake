@@ -1,5 +1,23 @@
-# Project Repository
+# Auditory Cheesecake
 
+## Team Members:
+Sam Chen - 
+Francisco Cunningham - fctico11 on [Github](https://github.com/fctico11)
+James Li - 
+Suha Memon - 
+Ibrahim Sheikh - 
+
+
+## Product Vision Statement
+
+## History of Auditory Cheesecake
+
+Info on how to contribute: [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+## Instructions for building and testing
+
+### Additional links
+<!-- >
 This repository will be used for team projects.
 
 Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
