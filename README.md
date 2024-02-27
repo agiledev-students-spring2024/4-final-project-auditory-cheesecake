@@ -1,11 +1,11 @@
 # Auditory Cheesecake
 
 ## Team Members:
-Sam Chen - 
-Francisco Cunningham - fctico11 on [Github](https://github.com/fctico11)
-James Li - 
-Suha Memon - 
-Ibrahim Sheikh - 
++ Sam Chen - 
++ Francisco Cunningham - fctico11 on [Github](https://github.com/fctico11)
++ James Li - 
++ Suha Memon - 
++ Ibrahim Sheikh - 
 
 
 ## Product Vision Statement
