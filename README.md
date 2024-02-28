@@ -11,7 +11,7 @@ Auditory Cheesecake is primarily aimed for use by college students who are looki
 ## Team Members:
 + Sam Chen - samchensd on [Github] (https://github.com/samchensd)
 + Francisco Cunningham - fctico11 on [Github](https://github.com/fctico11)
-+ James Li - 
++ James Li - j4mesli on [Github](https://github.com/j4mesli)
 + Suha Memon - suhamemon1 on [Github](https://github.com/suhamemon1)
 + Ibrahim Sheikh - Ibrahimsheikh02 on [Github](https://github.com/Ibrahimsheikh02)
 
