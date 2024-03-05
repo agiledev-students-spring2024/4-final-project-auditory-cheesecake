@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './views/HomePage/HomePage';
 import Profile from './views/Profile/Profile';
 import Results from './views/Results/Results';
-import NavBar from './components/NavBar/NavBar';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import NavBar from './views/components/NavBar/NavBar';
+import ProtectedRoute from './views/components/ProtectedRoute/ProtectedRoute';
 
 function App() {
   return (
