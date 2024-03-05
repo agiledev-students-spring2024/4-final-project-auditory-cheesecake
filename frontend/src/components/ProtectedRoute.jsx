@@ -9,7 +9,7 @@ const checkAuth = () => {
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = checkAuth();
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
+  return isAuthenticated ? children : <Navigate to="/" />;
 };
 
 export default ProtectedRoute;

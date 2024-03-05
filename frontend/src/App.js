@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Results from './views/Results/Results';
 import NavBar from './components/NavBar';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <NavBar />
         
         <Routes>
-          {/* Route for Home Page */}
+          {/* Route for Landing Page */}
           {/* <Route path="/" element={<HomePage />} /> */}
           
           {/* Route for Test Page */}
@@ -21,8 +22,15 @@ function App() {
           {/* <Route path="/contact" element={<Profile />} /> */}
           
           {/* Route for Results Page */}
-          {/* !!!!! GUARD THIS ROUTE LATER SO THAT IT CAN ONLY BE ACCESSED THROUGH CERTAIN PAGES !!!!! */}
-          <Route path="/Results" element={<Results />} />
+          {/* !!!!! GUARD THIS ROUTE SO THAT IT CAN ONLY BE ACCESSED W/ CERTAIN CONDITIONS !!!!! */}
+          <Route 
+            path="/results" 
+            element={
+              <ProtectedRoute>
+                <Results />
+              </ProtectedRoute>
+            }
+          />
           
           {/* Add more route placeholders as needed */}
           
