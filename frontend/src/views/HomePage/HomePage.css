@@ -1,31 +1,56 @@
 .home-container {
-    font-family: 'Arial', sans-serif;
-  }
-  
-  
-  .home-content {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 20px;
-    border: 2px solid #000;
-    background: none;
-    cursor: pointer;
-    text-decoration: none;
-    color: #000;
-  }
-  
-  .btn.get-started {
-    background: #000;
-    color: #fff;
-  }
-  
-  .features {
-    margin-top: 30px;
-  }
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.home-content {
+  text-align: center;
+}
+
+.home-content > h2 {
+  margin-bottom: 100px;
+}
+
+.home-content > .btn {
+  margin-top: 50px;
+}
+
+
+.how-it-works ul {
+  text-align: left; 
+  display: inline-block; 
+  list-style-position: inside; 
+  padding-left: 0; 
+  margin-left: 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 20px;
+  border: 2px solid #000;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 0.3s ease; 
+}
+
+.btn.get-started {
+  background: #fff;
+  color: #000;
+}
+
+.btn.get-started:hover {
+  background-color: #000; 
+  color: #fff; 
+}
+
+.features {
+  margin-top: 30px;
+}
   
