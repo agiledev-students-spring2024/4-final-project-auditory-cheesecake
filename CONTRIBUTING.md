@@ -19,7 +19,11 @@ Each member of our team will be following the steps below to contribute to our p
 ## 3) Work on your branch:
 1. Make the necessary changes, additions, or modifications to the codebase in your branch.
 2. Use git add to stage your changes, and git commit to commit them with a descriptive message.
-3. Issue pull requests when you need to commit:
+- `git add .`
+- `git commit -m "Git message"`
+3. Merge with the latest code from your repository trunk:
+- `git fetch origin`
+- `git merge origin/main`
 4. Push your branch to the remote repository: `git push origin <branch_name>`
 5. Navigate to the main repository on GitHub. You should see a prompt to create a new pull request for your branch.
 6. Click on the "Create Pull Request" button.
