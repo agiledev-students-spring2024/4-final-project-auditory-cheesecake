@@ -1,0 +1,31 @@
+.home-container {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  
+  .home-content {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 20px;
+    border: 2px solid #000;
+    background: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .btn.get-started {
+    background: #000;
+    color: #fff;
+  }
+  
+  .features {
+    margin-top: 30px;
+  }
+  
