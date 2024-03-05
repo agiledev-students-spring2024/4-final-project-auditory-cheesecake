@@ -1,0 +1,21 @@
+.profile-container {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .profile-info {
+    text-align: center;
+  }
+  
+  .profile-pic {
+    border-radius: 50%;
+  }
+  
+  .profile-actions button {
+    display: block;
+    margin: 10px auto;
+  }
+  
+  .profile-footer {
+    text-align: center;
+  }
+  
