@@ -2,8 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './views/HomePage/HomePage';
 import Results from './views/Results/Results';
-import NavBar from './views/components/NavBar/NavBar';
-import ProtectedRoute from './views/components/ProtectedRoute/ProtectedRoute';
+import NavBar from '.views/components/NavBar/NavBar';
+import ProtectedRoute from '.views/components/ProtectedRoute/ProtectedRoute';
+import SurveyPage from './SurveyPage';
+
 
 function App() {
   return (
@@ -16,7 +18,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           
           {/* Route for Test Page */}
-          {/* <Route path="/about" element={<Test />} /> */}
+          <Route path="/survey" element={<SurveyPage />} />
+
           
           {/* Route for Profile Page */}
           {/* <Route path="/contact" element={<Profile />} /> */}
