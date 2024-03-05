@@ -21,7 +21,6 @@ Each member of our team will be following the steps below to contribute to our p
 2. Use git add to stage your changes, and git commit to commit them with a descriptive message.
 - `git add .`
 - `git commit -m "Git message"`
-
 3. Merge with the latest code from your repository trunk:
 - `git fetch origin`
 - `git merge origin/main`
