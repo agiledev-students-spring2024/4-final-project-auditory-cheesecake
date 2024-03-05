@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './HomePage';
-import SurveyPage from './SurveyPage'
-
-import NavBar from './components/NavBar';
+import HomePage from './views/HomePage/HomePage';
+import Results from './views/Results/Results';
+import NavBar from './components/NavBar/NavBar';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import SurveyPage from './SurveyPage';
 
 function App() {
   return (
@@ -18,15 +19,25 @@ function App() {
           {/* Route for Test Page */}
           <Route path="/survey" element={<SurveyPage />} />
 
-          <Route path="/results" element={<HomePage />} />
           
           {/* Route for Profile Page */}
           {/* <Route path="/contact" element={<Profile />} /> */}
           
+          {/* Route for Results Page */}
+          {/* !!!!! GUARD THIS ROUTE SO THAT IT CAN ONLY BE ACCESSED W/ CERTAIN CONDITIONS !!!!! */}
+          <Route 
+            path="/Results" 
+            element={
+              <ProtectedRoute>
+                <Results />
+              </ProtectedRoute>
+            }
+          />
+          
           {/* Add more route placeholders as needed */}
           
-          {/* Fallback route for 404 Not Found */}
-          {/* <Route path="*" element={<Home />} /> */}
+          {/* Fallback route for any invalid routes */}
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </div>
     </Router>

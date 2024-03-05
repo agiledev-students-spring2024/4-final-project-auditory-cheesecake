@@ -57,7 +57,7 @@ const SurveyPage = () => {
       setCurrentQuestion(nextQuestion);
     } else {
       console.log('Survey responses:', updatedResponses);
-      navigate('/results', { state: { responses: updatedResponses } });
+      navigate('/Results', { state: { responses: updatedResponses } });
     }
   };
 
