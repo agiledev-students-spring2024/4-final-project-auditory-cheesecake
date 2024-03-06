@@ -16,7 +16,11 @@ const NavBar = () => {
                 <li><a href="/">Home</a></li>
                 <li><a href="/">Quiz</a></li>
                 <li><a href="/Profile">Profile</a></li>
-                <li><a href="/">Login</a></li>
+                <li><a href="/Login">
+                    <span class="material-symbols-outlined">
+                        login
+                    </span>
+                </a></li>
             </ul>
         </nav>
     );
