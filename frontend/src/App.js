@@ -5,6 +5,8 @@ import Profile from './views/Profile/Profile';
 import Results from './views/Results/Results';
 import NavBar from './views/components/NavBar/NavBar';
 import ProtectedRoute from './views/components/ProtectedRoute/ProtectedRoute';
+import Login from './views/Login/Login';
+import Register from './views/Register/Register';
 import SurveyPage from './SurveyPage';
 
 
@@ -32,6 +34,26 @@ function App() {
             element={
               <ProtectedRoute>
                 <Results />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Route Guard for Login */}
+          <Route 
+            path="/Login" 
+            element={
+              <ProtectedRoute>
+                <Login />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Route Guard for Register */}
+          <Route 
+            path="/Register" 
+            element={
+              <ProtectedRoute>
+                <Register />
               </ProtectedRoute>
             }
           />
