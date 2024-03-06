@@ -14,9 +14,9 @@ const NavBar = () => {
                 }}>
                 {/* change as needed (we need the actual links below, nothing out of the ordinary) */}
                 <li><a href="/">Home</a></li>
-                <li><a href="">Quiz</a></li>
-                <li><a href="">Profile</a></li>
-                <li><a href="">Login</a></li>
+                <li><a href="/">Quiz</a></li>
+                <li><a href="/Profile">Profile</a></li>
+                <li><a href="/">Login</a></li>
             </ul>
         </nav>
     );
