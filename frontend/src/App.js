@@ -26,14 +26,25 @@ function App() {
 
 
           {/* Route for Profile Page */}
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/Profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
 
-          {/* Route for EditProfile Page */}
-          <Route path="/edit-profile" element={<EditProfile />} />
-
-          {/* Route for EditProfile Page */}
-          <Route path="/change-password" element={<ChangePassword />} />
-
+          {/* Route for Edit Profile Page */}
+          <Route
+            path="/EditProfile"
+            element={
+              <ProtectedRoute>
+                <EditProfile />
+              </ProtectedRoute>
+            }
+          />
+          
           {/* Route for Results Page */}
           {/* !!!!! GUARD THIS ROUTE SO THAT IT CAN ONLY BE ACCESSED W/ CERTAIN CONDITIONS !!!!! */}
           <Route
@@ -60,6 +71,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <Register />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/ChangePassword"
+            element={
+              <ProtectedRoute>
+                <ChangePassword />
               </ProtectedRoute>
             }
           />
