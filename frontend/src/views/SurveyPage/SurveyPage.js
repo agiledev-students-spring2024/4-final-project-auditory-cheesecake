@@ -96,7 +96,13 @@ const SurveyPage = () => {
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div className="options-section">
         {questions[currentQuestion].options.map((option, index) => (
-          <button key={index} onClick={() => handleOptionSelect(option)} className="option" disabled={!isOptionClickable}>
+          <button 
+            key={index} 
+            onClick={() => handleOptionSelect(option)} 
+            // dynamically disable the button if the audio is playing, enable if it is not
+            className={`${!isOptionClickable ? 'disabled ' : ''}option`}
+            disabled={!isOptionClickable}
+          >
             {option}
           </button>
         ))}

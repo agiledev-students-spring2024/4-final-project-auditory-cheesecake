@@ -7,7 +7,7 @@ import NavBar from './views/components/NavBar/NavBar';
 import ProtectedRoute from './views/components/ProtectedRoute/ProtectedRoute';
 import Login from './views/Login/Login';
 import Register from './views/Register/Register';
-import SurveyPage from './SurveyPage';
+import SurveyPage from './views/SurveyPage/SurveyPage';
 
 
 function App() {
