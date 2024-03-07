@@ -1,3 +1,12 @@
+.page-background {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  padding: 40px 0; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .survey-container {
     font-family: 'Arial', sans-serif;
     max-width: 700px;
