@@ -60,7 +60,7 @@
   margin: 13;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
+  /* overflow: hidden; */
   font-family: 'Poppins', sans-serif;
 }
 
