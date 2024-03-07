@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // Make sure to import useEffect
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SurveyPage.css';
 
@@ -6,6 +6,8 @@ const SurveyPage = () => {
   const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [responses, setResponses] = useState([]);
+  const [isOptionClickable, setIsOptionClickable] = useState(true); // To manage option clickability
+  const [errorMessage, setErrorMessage] = useState(''); // To show error messages
 
   const [questions, setQuestions] = useState([
     {
@@ -13,7 +15,7 @@ const SurveyPage = () => {
       options: ['Yes', 'No'],
     },
     {
-      questionText: "How are you feeling?",
+      questionText: "How are you feeling today?",
       options: ['Not Good', 'Average', 'Better than average', 'Amazing!'],
     },
     {
@@ -33,22 +35,44 @@ const SurveyPage = () => {
   ]);
 
   useEffect(() => {
+    setIsOptionClickable(true); // Enable options by default
+    setErrorMessage(''); // Clear error message
     if (questions[currentQuestion]?.audio) {
+      setIsOptionClickable(false); // Disable options for audio questions
       const audio = new Audio(questions[currentQuestion].audio);
       const playPromise = audio.play();
 
       if (playPromise !== undefined) {
         playPromise.then(_ => {
+          audio.onended = () => {
+            setIsOptionClickable(true);
+          };
         }).catch(error => {
           console.error("Error playing the audio. User interaction might be required.", error);
+          setIsOptionClickable(true); // Enable options in case of error
         });
       }
 
-      return () => audio.pause(); 
+      return () => {
+        audio.pause();
+        audio.onended = null; // Clean up the event listener
+      };
     }
   }, [currentQuestion, questions]);
 
   const handleOptionSelect = (option) => {
+    if (!isOptionClickable) {
+      setErrorMessage('Please wait for the song to finish.');
+      return;
+    }
+
+    // Check if the user is confirming age and selects 'No'
+    if (currentQuestion === 0 && option === 'No') {
+      alert('You cannot proceed in the study.');
+      navigate('/survey'); // Navigate back to home or another appropriate route
+      return;
+    }
+
     const updatedResponses = [...responses, { question: questions[currentQuestion].questionText, answer: option }];
     setResponses(updatedResponses);
 
@@ -69,9 +93,10 @@ const SurveyPage = () => {
         </div>
         <div className="question-text">{questions[currentQuestion].questionText}</div>
       </div>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div className="options-section">
         {questions[currentQuestion].options.map((option, index) => (
-          <button key={index} onClick={() => handleOptionSelect(option)} className="option">
+          <button key={index} onClick={() => handleOptionSelect(option)} className="option" disabled={!isOptionClickable}>
             {option}
           </button>
         ))}
