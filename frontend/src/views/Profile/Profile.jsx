@@ -31,6 +31,8 @@ const Profile = () => {
       
       <footer className="profile-footer">
         <a href="#terms">Terms and Conditions</a>
+        <br></br>
+        <br></br>
         <button className="delete-btn">Delete Account</button>
       </footer>
     </div>
