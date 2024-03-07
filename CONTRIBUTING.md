@@ -34,8 +34,9 @@ Each member of our team will be following the steps below to contribute to our p
 
 ## 4)After your changes have been merged into the main branch, or if the main branch has been updated by others, you'll need to update your local branch.
 
-1. First, switch to the main branch: git checkout main
+1. First, switch to the main branch: `git checkout main`
 2. Pull the latest changes from the remote repository: `git pull`
 3. Switch back to your branch: `git checkout <branch_name>`
 4. Merge the latest changes from main into your branch: `git merge main`
 5. Resolve any conflicts that may arise during the merge process.
+- Note: Depending on your git version, you may need to use `master` instead of `main`.

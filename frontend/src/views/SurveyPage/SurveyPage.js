@@ -6,8 +6,8 @@ const SurveyPage = () => {
   const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [responses, setResponses] = useState([]);
-  const [isOptionClickable, setIsOptionClickable] = useState(true); // To manage option clickability
-  const [errorMessage, setErrorMessage] = useState(''); // To show error messages
+  const [isOptionClickable, setIsOptionClickable] = useState(true); 
+  const [errorMessage, setErrorMessage] = useState(''); 
 
   const [questions, setQuestions] = useState([
     {
@@ -66,10 +66,9 @@ const SurveyPage = () => {
       return;
     }
 
-    // Check if the user is confirming age and selects 'No'
     if (currentQuestion === 0 && option === 'No') {
       alert('You cannot proceed in the study.');
-      navigate('/survey'); // Navigate back to home or another appropriate route
+      navigate('/survey'); 
       return;
     }
 
@@ -86,6 +85,7 @@ const SurveyPage = () => {
   };
 
   return (
+    <div className="page-background">
     <div className="survey-container">
       <div className="question-section">
         <div className="question-count">
@@ -96,11 +96,18 @@ const SurveyPage = () => {
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div className="options-section">
         {questions[currentQuestion].options.map((option, index) => (
-          <button key={index} onClick={() => handleOptionSelect(option)} className="option" disabled={!isOptionClickable}>
+          <button 
+            key={index} 
+            onClick={() => handleOptionSelect(option)} 
+            // dynamically disable the button if the audio is playing, enable if it is not
+            className={`${!isOptionClickable ? 'disabled ' : ''}option`}
+            disabled={!isOptionClickable}
+          >
             {option}
           </button>
         ))}
       </div>
+    </div>
     </div>
   );
 };
