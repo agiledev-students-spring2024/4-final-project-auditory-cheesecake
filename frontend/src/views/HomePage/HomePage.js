@@ -15,7 +15,7 @@ const HomePage = () => {
             <li>Discover Your Personality</li>
           </ul>
         </section>
-        <Link to="/signup" className="btn get-started">Get Started</Link>
+        <Link to="/Register" className="btn get-started">Get Started</Link>
         <section className="features">
           <h3>Features</h3>
           <p>Enim sit amet venenatis urna cursus. Adipiscing elit ut aliquam purus sit.</p>
