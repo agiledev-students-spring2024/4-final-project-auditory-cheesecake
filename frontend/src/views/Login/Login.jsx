@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './Login.css';
 
 const Login = () => {
+    const navigate = useNavigate();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -34,7 +37,7 @@ const Login = () => {
                     required
                 />
                 <button type="submit">Login</button>
-                <p>Don't have an account? Create an account <a href="/Register">here</a>!</p>
+                <p>Don't have an account? Create an account <button className="button-link" onClick={() => navigate("/Register")}>here</button>!</p>
             </form>
         </div>
         </div>
