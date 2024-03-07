@@ -76,9 +76,11 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
   min-height: 100vh;
   padding: 20px;
   background: linear-gradient(135deg, #6e8efb, #a777e3);
+  padding-bottom:150px;
 }
 
 .home-content {
