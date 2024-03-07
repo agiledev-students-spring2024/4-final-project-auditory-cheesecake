@@ -27,7 +27,24 @@ function App() {
 
 
           {/* Route for Profile Page */}
-          {/* <Route path="/contact" element={<Profile />} /> */}
+          <Route
+            path="/Profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Route for Edit Profile Page */}
+          <Route
+            path="/EditProfile"
+            element={
+              <ProtectedRoute>
+                <EditProfile />
+              </ProtectedRoute>
+            }
+          />
           
           {/* Route for Results Page */}
           {/* !!!!! GUARD THIS ROUTE SO THAT IT CAN ONLY BE ACCESSED W/ CERTAIN CONDITIONS !!!!! */}
