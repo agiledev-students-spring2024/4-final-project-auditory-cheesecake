@@ -24,9 +24,9 @@ const Profile = () => {
       </div>
       
       <div className="profile-actions">
-        <button>View Your Results</button>
+      <Link to="/Results" className="button">View your results</Link>
         <button>Settings</button>
-        <button>Change Password</button>
+        <Link to="/ChangePassword" className="button">Change Password</Link>
       </div>
       
       <footer className="profile-footer">

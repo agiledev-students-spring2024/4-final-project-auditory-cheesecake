@@ -77,6 +77,15 @@ function App() {
             }
           />
 
+          <Route
+            path="/ChangePassword"
+            element={
+              <ProtectedRoute>
+                <ChangePassword />
+              </ProtectedRoute>
+            }
+          />
+
           {/* Add more route placeholders as needed */}
 
           {/* Fallback route for any invalid routes */}
