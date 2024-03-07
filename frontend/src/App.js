@@ -17,7 +17,6 @@ function App() {
     <Router>
       <div>
         <NavBar />
-
         <Routes>
           {/* Route for Home Page */}
           <Route path="/" element={<HomePage />} />
@@ -45,7 +44,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           {/* Route Guard for Login */}
           <Route
             path="/Login"
