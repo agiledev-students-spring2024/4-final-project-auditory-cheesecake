@@ -55,7 +55,7 @@ The back-end code will integrate with this database.
 
 ### Build and launch the front end
 
-1. Navigate into the `front-end` directory
+1. Navigate into the `frontend` directory
 2. Run `npm install` to install all dependencies listed in the `package.json` file.
 3. Run `npm start` to launch the React.js server
 
