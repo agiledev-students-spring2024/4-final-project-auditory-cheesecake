@@ -1,5 +1,6 @@
 import React from "react";
 import './Profile.css'
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     const username = 'myUserName';
@@ -9,7 +10,6 @@ const Profile = () => {
         <div className="profile-container">
       <header className="profile-header">
         <h1>View User Profile</h1>
-        {/* Add your navigation icon and close icon here */}
       </header>
       
       <div className="profile-info">
@@ -20,7 +20,7 @@ const Profile = () => {
         />
         <h2>{username}</h2>
         <p>{userHandle}</p>
-        <button className="edit-btn">Edit Profile</button>
+        <Link to="/EditProfile" className="button">Edit Profile</Link>
       </div>
       
       <div className="profile-actions">

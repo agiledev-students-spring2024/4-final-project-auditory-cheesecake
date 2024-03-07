@@ -1,26 +1,3 @@
-/* .profile-container {
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-  }
-  
-  .profile-info {
-    text-align: center;
-  }
-  
-  .profile-pic {
-    border-radius: 50%;
-  }
-  
-  .profile-actions button {
-    display: block;
-    margin: 10px auto;
-  }
-  
-  .profile-footer {
-    text-align: center;
-  }
-   */
-
    .profile-container {
     font-family: 'Arial', sans-serif;
     max-width: 600px;
