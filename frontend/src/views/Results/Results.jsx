@@ -6,7 +6,9 @@ const Results = () => {
   return (
     <div className="Results">
       <h1>Results</h1>
-      <h2>image per result type goes here</h2>
+      <div className="ResultsImage">
+        <img src="/yippee.gif" alt="cat" />
+      </div>
       <ul>
         <li><b>Result 1</b></li>
         <li><b>Result 2</b></li>
