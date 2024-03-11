@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './EditProfile.css';
 
 const EditProfile = () => {
@@ -7,6 +8,8 @@ const EditProfile = () => {
     const [firstName, setFirstName] = useState('First');
     const [lastName, setLastName] = useState('Last');
     const [phoneNumber, setPhoneNumber] = useState('1234567890');
+
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         return email.search(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
@@ -101,7 +104,7 @@ const EditProfile = () => {
                     required
                 />
                 <button type="submit">Update Profile</button>
-                <p><a href="/Profile">View Profile</a></p>
+                <p><button onClick={() => navigate("/Profile")} className="button-link">View Profile</button></p>
             </form>
         </div>
         </div>
