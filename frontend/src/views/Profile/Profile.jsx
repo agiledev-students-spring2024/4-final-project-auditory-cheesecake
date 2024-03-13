@@ -17,7 +17,8 @@ const Profile = () => {
   };
 
     return (
-    <div className="profile-container">
+      <div className="profile">
+        <div className="profile-container">
       <header className="profile-header">
         <h1>View User Profile</h1>
         </header>
@@ -34,6 +35,7 @@ const Profile = () => {
       </div>
       
       <div className="profile-actions">
+        
         <Link to="/Results" className="btn">View your results</Link>
         <Link to="/Settings" className="btn">Settings</Link>
         <Link to="/ChangePassword" className="btn">Change Password</Link>
@@ -61,6 +63,8 @@ const Profile = () => {
           </div>
             )}
     </div>
+      </div>
+    
     );
 };
 

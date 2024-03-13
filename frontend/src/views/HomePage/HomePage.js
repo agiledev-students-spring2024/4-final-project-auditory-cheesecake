@@ -7,8 +7,13 @@ const HomePage = () => {
     <div className="home-container">
       <main className="home-content">
         <h2>Discover Your Soul's Melody</h2>
+        <div className="landing-img">
+          <img src="/singleListening.png" alt="personality" />
+        </div>
         <section className="how-it-works">
           <h3>How it works</h3>
+          
+          
           <ul>
             <li>Create Profile</li>
             <li>Listen & Respond</li>
