@@ -11,8 +11,8 @@ const NavBar = () => {
             <ul>
                 {/* change as needed (we need the actual links below, nothing out of the ordinary) */}
                 <li>
-                    <div className="logo-container">
-                        <img class='logo' src={logo} alt="Logo"/> {/* Adjust styling as needed */}
+                    <div className="logo" >
+                        <img src={logo} alt="Logo"/> {/* Adjust styling as needed */}
                     </div>
                 </li>
                 
