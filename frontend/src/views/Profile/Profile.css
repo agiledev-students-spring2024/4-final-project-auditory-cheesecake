@@ -3,11 +3,22 @@
     max-width: 600px;
     margin: auto;
     padding: 20px;
-    background: #f0f2f5;
+    background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
+  body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    background: linear-gradient(135deg, #6e8efb, #a777e3); /* Gradient background */
+    color: #333; /* Text color */
+    font-family: 'Poppins', sans-serif; /* Font family from the homepage */
+  }
+
   .profile-header {
     text-align: center;
     margin-bottom: 30px;
@@ -46,28 +57,37 @@
     font-size: 16px;
   }
   
-  .profile-container button {
-    background-color: #6e8efb;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s, transform 0.2s;
+  .edit-btn {
+    background-color: #6e8efb; /* Blue background */
+    color: #ffffff; /* White text */
+    border: none; /* No border */
+    padding: 10px 20px; /* Consistent padding */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 14px; /* Consistent font size */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover effects */
   }
-  
-  .profile-container button:hover {
-    background-color: #5d7cfa;
-    transform: translateY(-2px);
+
+  .profile-container button:hover,
+  .btn:hover,
+  .edit-btn:hover{
+    background-color: #5d7cfa; /* Slightly darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
   }
-  
-  .edit-btn, .delete-btn {
+
+  .delete-btn {
     background-color: #ff686b;
+    color: #ffffff; /* White text */
+    border: none; /* No border */
+    padding: 10px 20px; /* Consistent padding */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 14px; /* Consistent font size */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for hover effects */
   }
-  
+
   .delete-btn:hover {
-    background-color: #ff5c5f;
+    background-color: #ff5c5f; /* Slightly darker red on hover */
   }
   
   .profile-actions {
@@ -81,7 +101,6 @@
   }
   
   .profile-container a {
-    color: #6e8efb;
     text-decoration: none;
   }
   
