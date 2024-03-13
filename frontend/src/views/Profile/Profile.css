@@ -3,6 +3,7 @@
     max-width: 600px;
     margin: auto;
     padding: 20px;
+    padding-top:80px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -10,11 +11,11 @@
   
   body, html {
     width: 100%;
-    height: 100%;
+    height: 100pv;
     margin: 0;
     padding: 0;
     overflow-x: hidden; /* Prevent horizontal scroll */
-    background: linear-gradient(135deg, #6e8efb, #a777e3); /* Gradient background */
+    background: linear-gradient(135deg, #230A7D, #5d0bb0);
     color: #333; /* Text color */
     font-family: 'Poppins', sans-serif; /* Font family from the homepage */
   }

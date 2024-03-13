@@ -1,10 +1,12 @@
 .register {
   display: flex;
   flex-direction: column;
+  align-content: center;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  padding: 20px;
+  padding-top: 80px;
 }
 
 .register-form-wrapper {
