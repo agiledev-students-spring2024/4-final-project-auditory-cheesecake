@@ -17,26 +17,26 @@ const Profile = () => {
   };
 
     return (
-        <div className="profile-container">
+    <div className="profile-container">
       <header className="profile-header">
         <h1>View User Profile</h1>
-      </header>
-      
-      <div className="profile-info">
-        <img 
+        </header>
+        
+        <div className="profile-info">
+          <img 
           src="https://picsum.photos/200" 
           alt="Profile" 
           className="profile-pic" 
         />
         <h2>{username}</h2>
         <p>{userHandle}</p>
-        <Link to="/EditProfile" className="button">Edit Profile</Link>
+        <Link to="/EditProfile" className="edit-btn">Edit Profile</Link>
       </div>
       
       <div className="profile-actions">
-      <Link to="/Results" className="button">View your results</Link>
-        <button>Settings</button>
-        <Link to="/ChangePassword" className="button">Change Password</Link>
+        <Link to="/Results" className="btn">View your results</Link>
+        <Link to="/Settings" className="btn">Settings</Link>
+        <Link to="/ChangePassword" className="btn">Change Password</Link>
       </div>
       
       <footer className="profile-footer">

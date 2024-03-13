@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './ChangePassword.css';
 
 const ChangePassword = () => {
+    const navigate = useNavigate();
+
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -73,7 +76,7 @@ const ChangePassword = () => {
                         required
                     />
                     <button type="submit">Change Password</button>
-                    <p><a href="/Profile">View Profile</a></p>
+                    <p><button className="button-link" onClick={() => navigate("/Profile")}>View Profile</button></p>
                 </form>
             </div>
         </div>
