@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* padding: 10px; */
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
     height: 100vh;
     /* background-color: #f5f5f5;
     display: flex;
@@ -11,8 +13,7 @@
     align-items: center;
     height: 100vh;
     padding  : 20px; */
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
-    padding-bottom:100px;
+    
   }
   .edit-profile-form-wrapper {
     display: flex;
@@ -23,7 +24,7 @@
     max-width: 400px;
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
@@ -38,7 +39,7 @@
     width: 90%;
     max-width: 400px;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 20px;
   }
   
   .edit-profile form label {
@@ -50,7 +51,7 @@
     padding: 10px;
     margin-bottom: 1.5rem;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     box-sizing: border-box;
   }
   
@@ -59,8 +60,9 @@
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
+    font-size: medium;
     transition: background-color 0.3s ease;
   }
   
