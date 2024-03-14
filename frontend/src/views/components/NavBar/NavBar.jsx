@@ -1,31 +1,40 @@
 import React from 'react';
+// import { useNavigate } from 'react-router-dom';
 import './NavBar.css';
 import logo from '../../../fullLogo.png'; // Adjust the path as necessary
+import { slide as Menu } from 'react-burger-menu';
 
 
 const NavBar = () => {
     return (
-        <nav>
-            {/* change styling below w/ tailwind later */}
-            <ul style={{ 
-                  "display": "flex", 
-                  "flexDirection": "row", 
-                  "justifyContent": "space-evenly", 
-                  "alignItems": "center", 
-                  "listStyleType": "none" 
-                }}>
+        <nav className="NavBar">
+            <ul>
                 {/* change as needed (we need the actual links below, nothing out of the ordinary) */}
-                <div className="logo-container">
-                    <img src={logo} alt="Logo" style={{ height: '50px' }} /> {/* Adjust styling as needed */}
-                </div>
-                <li><a href="/">Home</a></li>
-                <li><a href="/survey">Quiz</a></li>
-                <li><a href="/Profile">Profile</a></li>
-                <li><a href="/Login">
-                    <span class="material-symbols-outlined">
-                        login
-                    </span>
-                </a></li>
+                <li>
+                    <div className="logo" >
+                        <img src={logo} alt="Logo"/> {/* Adjust styling as needed */}
+                    </div>
+                </li>
+                
+                <li>
+                    <Menu right>
+                    <a className="menu-item" href="/">
+                        Home
+                    </a>
+                    <a className="menu-item" href="/Survey">
+                        Quiz
+                    </a>
+                    <a className="menu-item" href="/Profile">
+                        Profile
+                    </a>
+                    <a className="menu-item" href="/Login">
+                        Login
+                        <span className="material-symbols-outlined">
+                            login
+                        </span>   
+                    </a>
+                    </Menu>
+                </li>
             </ul>
         </nav>
     );
