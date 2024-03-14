@@ -23,6 +23,22 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.profile-container .btn {
+  width: 60%;
+  margin: 10px 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 body,
 html {
   width: 100%;
@@ -30,12 +46,9 @@ html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  /* Prevent horizontal scroll */
   background: linear-gradient(135deg, #230A7D, #5d0bb0);
   color: #333;
-  /* Text color */
   font-family: 'Poppins', sans-serif;
-  /* Font family from the homepage */
 }
 
 .profile-header {
@@ -63,39 +76,6 @@ p {
   margin: 0 0 10px;
 }
 
-.profile-container h1 {
-  color: #333;
-  font-size: 24px;
-}
-
-.profile-container h2 {
-  color: #555;
-  font-size: 20px;
-}
-
-.profile-container p {
-  color: #777;
-  font-size: 16px;
-}
-
-.edit-btn {
-  background-color: #6e8efb;
-  /* Blue background */
-  color: #ffffff;
-  /* White text */
-  border: none;
-  /* No border */
-  padding: 10px 20px;
-  /* Consistent padding */
-  border-radius: 20px;
-  /* Rounded corners */
-  cursor: pointer;
-  /* Pointer cursor on hover */
-  font-size: 14px;
-  /* Consistent font size */
-  transition: background-color 0.3s, transform 0.2s;
-  /* Smooth transition for hover effects */
-}
 
 .profile-container button:hover,
 .btn:hover,

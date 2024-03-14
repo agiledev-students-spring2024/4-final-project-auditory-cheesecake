@@ -20,7 +20,7 @@ const Profile = () => {
       <div className="profile">
         <div className="profile-container">
       <header className="profile-header">
-        <h1>View User Profile</h1>
+        <h2>View User Profile</h2>
         </header>
         
         <div className="profile-info">
@@ -31,7 +31,7 @@ const Profile = () => {
         />
         <h2>{username}</h2>
         <p>{userHandle}</p>
-        <Link to="/EditProfile" className="edit-btn">Edit Profile</Link>
+        <Link to="/EditProfile" className="btn">Edit Profile</Link>
       </div>
       
       <div className="profile-actions">
