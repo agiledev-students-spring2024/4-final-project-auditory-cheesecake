@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 1337;
 
 app.use(express.json()); 
 app.use(cors()); 
@@ -13,7 +13,7 @@ const surveyRoutes = require('./routes/survey');
 app.use('/api', surveyRoutes);
 
 const authRoutes = require('./routes/auth');
-app.use('/api/auth', authRoutes);
+app.use('/api', authRoutes);
 
 
 //connect to MongoDB

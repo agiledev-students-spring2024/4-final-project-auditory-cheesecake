@@ -1,4 +1,5 @@
 const express = require('express');
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
@@ -14,6 +15,9 @@ if (process.env.USE_MOCK_DATA !== 'true') {
 const filePath = path.join(__dirname, '../data/mock-users.json'); //filepath for mock data
 
 const router = express.Router();
+const { findUser } = require('../controllers/auth');
+
+router.get('/findUser', findUser);
 
 //func to load mock data
 const loadMockData = () => {
@@ -72,3 +76,4 @@ router.post('/login', async (req, res) => {
 });
 
 module.exports = router;
+
