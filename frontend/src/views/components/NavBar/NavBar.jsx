@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './NavBar.css';
 import logo from '../../../fullLogo.png'; // Adjust the path as necessary
 import { slide as Menu } from 'react-burger-menu';
@@ -12,7 +12,9 @@ const NavBar = () => {
                 {/* change as needed (we need the actual links below, nothing out of the ordinary) */}
                 <li>
                     <div className="logo" >
-                        <img src={logo} alt="Logo"/> {/* Adjust styling as needed */}
+                        <Link to="/">
+                            <img src={logo} alt="Logo" style={{ cursor: 'pointer' }}/> {/* Adjust styling as needed */}
+                        </Link>
                     </div>
                 </li>
                 
