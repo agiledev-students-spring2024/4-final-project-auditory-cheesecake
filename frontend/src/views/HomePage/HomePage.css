@@ -62,6 +62,7 @@
   box-sizing: border-box;
   /* overflow: hidden; */
   font-family: 'Poppins', sans-serif;
+  
 }
 
 body, html {
@@ -79,8 +80,8 @@ body, html {
   align-content: center;
   min-height: 100vh;
   padding: 20px;
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
-  padding-bottom:150px;
+  padding-top:80px;
+  background: linear-gradient(135deg, #230A7d, #5D0BB0);
 }
 
 .home-content {
@@ -98,16 +99,19 @@ h2, h3 {
 
 h2 {
   font-size: 2.5rem;
+  align-content: center;
+  justify-content: center;
 }
 
 h3 {
+  
   font-size: 1.8rem;
 }
 
 .how-it-works ul, .features p {
-  margin-left: 20px;
+  margin: 20px;
   line-height: 1.6;
-  position: center; 
+  position: center;
 }
 
 ul {
@@ -135,4 +139,12 @@ ul {
   padding: 20px;
   margin-top: 20px;
   border-radius: 15px;
+}
+
+.landing-img img {
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  max-height: 200px;
 }

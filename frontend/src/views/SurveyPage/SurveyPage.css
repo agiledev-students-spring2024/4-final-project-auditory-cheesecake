@@ -1,11 +1,11 @@
 .page-background {
   min-height: 100vh;
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
-  padding: 40px 0; 
+  background: linear-gradient(135deg, #230A7d, #5D0BB0);
+  padding: 20px;
+  padding-top:80px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom:150px;
 }
 
 .disabled {

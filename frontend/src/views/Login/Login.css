@@ -1,11 +1,14 @@
 .login {
   display: flex;
   flex-direction: column;
+  align-content: center;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  padding: 20px;
+  padding-top: 80px;
 }
+
 .login-form-wrapper {
   display: flex;
   flex-direction: column;
@@ -21,7 +24,6 @@
 
 .login h1 {
   color: #333;
-  margin: 0 0 2rem 0;
 }
 
 .login form {
@@ -65,12 +67,16 @@
   text-align: center;
 }
 
-.login form a {
+.login form .button-link {
   color: #007bff;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: 0.3s ease;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
 }
 
-.login form a:hover {
+.login form .button-link:hover {
   color: #0056b3;
+  background-color: transparent;
 }
