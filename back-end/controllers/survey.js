@@ -31,5 +31,3 @@ exports.getQuestions = (req, res) => {
     console.log(req.body); // For demonstration, log the received responses.
     res.status(200).send({ message: 'Responses received successfully!' });
   };
-
-  
