@@ -81,45 +81,46 @@ const Register = () => {
         console.error('Error:', error);
         alert(`Error during registration: ${error.message}`);
     });
+
     };
 
     return (
         <div className="register">
-        <div className="register-form-wrapper">
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="Email">Email</label>
-                <input 
-                    id="Email" 
-                    type="email" 
-                    placeholder="Email" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <label htmlFor="Username">Username</label>
-                <input 
-                    id="Username" 
-                    type="text" 
-                    placeholder="Username" 
-                    value={username} 
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <label htmlFor="Password">Password</label>
-                <input 
-                    id="Password" 
-                    type="password" 
-                    placeholder="Password" 
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Register</button>
-        
-            </form>
-            <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
-        </div>
+            <div className="register-form-wrapper">
+                <h1>Register</h1>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="Email">Email</label>
+                    <input
+                        id="Email"
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <label htmlFor="Username">Username</label>
+                    <input
+                        id="Username"
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                    <label htmlFor="Password">Password</label>
+                    <input
+                        id="Password"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <button type="submit">Register</button>
+
+                </form>
+                <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
+            </div>
         </div>
     );
 };

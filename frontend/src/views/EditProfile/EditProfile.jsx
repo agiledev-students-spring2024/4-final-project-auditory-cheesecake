@@ -27,7 +27,9 @@ const EditProfile = () => {
     //     return regex.test(phoneNumber);
     // };
     const handleSubmit = (e) => {
+        console.log("Form submit initiated");
         e.preventDefault();
+        alert('Edit Profile form is submitting');
         if (username.length < 4) {
             alert("Username must be at least 4 characters long!");
             return;
@@ -48,7 +50,36 @@ const EditProfile = () => {
         //     alert("Please enter your phone number.");
         //     return;
         // }
-    
+        //API call to the backend registration endpoint
+        fetch('http://localhost:1337/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                username: username,
+                firstName: firstName,
+                lastName: lastName,
+                phoneNumber: phoneNumber
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                alert('Edit Profile successful');
+                // Maybe re-request current user data
+                // Update the page
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error while editing user profile');
+            });
         console.log(email, username);
     }
 
