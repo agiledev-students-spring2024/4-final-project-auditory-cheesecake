@@ -16,5 +16,11 @@
     "username": "random",
     "email": "random@email.com",
     "password": "$2a$08$eJm6pq5m5Y1XwGYgONhzLujPgJQyLUPBX3jtacbeIdLBuqIhJO0A2"
+  },
+  {
+    "id": 4,
+    "username": "test4",
+    "email": "test4@gmail.com",
+    "password": "$2a$08$pRg65kUnguX36wjiJrhHT.k/EAcYJRa5bDeaKC7u/PVi.jMV3qPEm"
   }
 ]

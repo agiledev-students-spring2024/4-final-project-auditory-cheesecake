@@ -53,7 +53,7 @@ const Register = () => {
         //console.log(email, username, password);
 
     //API call to the backend registration endpoint
-    fetch('http://localhost:1337/api/auth/register', {
+    fetch('http://localhost:1337/api/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
