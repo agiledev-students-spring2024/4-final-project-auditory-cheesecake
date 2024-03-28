@@ -52,72 +52,72 @@ const Register = () => {
         }
         //console.log(email, username, password);
 
-    //API call to the backend registration endpoint
-    fetch('http://localhost:1337/api/auth/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email: email,
-            username: username,
-            password: password
+        //API call to the backend registration endpoint
+        fetch('http://localhost:1337/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                username: username,
+                password: password
+            })
         })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Success:', data);
-        alert('Registration successful');
-        navigate('/Login'); //redirect to login page
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        alert('Error during registration');
-    });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                alert('Registration successful');
+                navigate('/Login'); //redirect to login page
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error during registration');
+            });
     };
 
     return (
         <div className="register">
-        <div className="register-form-wrapper">
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="Email">Email</label>
-                <input 
-                    id="Email" 
-                    type="email" 
-                    placeholder="Email" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <label htmlFor="Username">Username</label>
-                <input 
-                    id="Username" 
-                    type="text" 
-                    placeholder="Username" 
-                    value={username} 
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <label htmlFor="Password">Password</label>
-                <input 
-                    id="Password" 
-                    type="password" 
-                    placeholder="Password" 
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Register</button>
-        
-            </form>
-            <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
-        </div>
+            <div className="register-form-wrapper">
+                <h1>Register</h1>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="Email">Email</label>
+                    <input
+                        id="Email"
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <label htmlFor="Username">Username</label>
+                    <input
+                        id="Username"
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                    <label htmlFor="Password">Password</label>
+                    <input
+                        id="Password"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <button type="submit">Register</button>
+
+                </form>
+                <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
+            </div>
         </div>
     );
 };
