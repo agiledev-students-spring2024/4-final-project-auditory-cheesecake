@@ -22,5 +22,17 @@
     "username": "test4",
     "email": "test4@gmail.com",
     "password": "$2a$08$pRg65kUnguX36wjiJrhHT.k/EAcYJRa5bDeaKC7u/PVi.jMV3qPEm"
+  },
+  {
+    "id": 5,
+    "username": "test5",
+    "email": "test5@gmail.com",
+    "password": "$2a$08$5t43nXEaNf5gIjDiHuikiupo7J3wfaix0qesTdupAru.A6NUPkEhS"
+  },
+  {
+    "id": 6,
+    "username": "test6",
+    "email": "test6@gmail.com",
+    "password": "$2a$08$Ga040vfzdTO0p8bUnR/Fi.RAIYUymClncxA42rXNABNWCgksve442"
   }
 ]

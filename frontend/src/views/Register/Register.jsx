@@ -35,7 +35,6 @@ const Register = () => {
     const handleSubmit = (e) => {
         console.log("Form submit initiated");
         e.preventDefault();
-        alert('Form is submitting');
 
         const validPassword = validatePassword(password);
         if (username.length < 4) {
@@ -65,10 +64,13 @@ const Register = () => {
         })
     })
     .then(response => {
-        if (!response.ok) {
+        if (response.ok) {
+            return response.json();
+        } else if (response.status === 409) {
+            throw new Error('A user with this email already exists.');
+        } else {
             throw new Error('Network response was not ok');
         }
-        return response.json();
     })
     .then(data => {
         console.log('Success:', data);
@@ -77,7 +79,7 @@ const Register = () => {
     })
     .catch((error) => {
         console.error('Error:', error);
-        alert('Error during registration');
+        alert(`Error during registration: ${error.message}`);
     });
     };
 
