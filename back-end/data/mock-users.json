@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "username": "user1",
+    "email": "user1@example.com",
+    "password": "$2a$08$fCVHBOuQtD.TkScB1kvk2uDuHpicWWFgPrGCJe7Qql728q1ly/GHi"
+  },
+  {
+    "id": 2,
+    "username": "user2",
+    "email": "user2@example.com",
+    "password": "hashedpassword2"
+  },
+  {
+    "id": 3,
+    "username": "random",
+    "email": "random@email.com",
+    "password": "$2a$08$eJm6pq5m5Y1XwGYgONhzLujPgJQyLUPBX3jtacbeIdLBuqIhJO0A2"
+  }
+]

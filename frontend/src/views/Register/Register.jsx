@@ -33,7 +33,10 @@ const Register = () => {
     }
 
     const handleSubmit = (e) => {
+        console.log("Form submit initiated");
         e.preventDefault();
+        alert('Form is submitting');
+
         const validPassword = validatePassword(password);
         if (username.length < 4) {
             alert("Username must be at least 4 characters long!");
@@ -47,8 +50,36 @@ const Register = () => {
             alert("Invalid email!");
             return;
         }
-        console.log(email, username, password);
-    }
+        //console.log(email, username, password);
+
+    //API call to the backend registration endpoint
+    fetch('http://localhost:1337/api/auth/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: email,
+            username: username,
+            password: password
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+        alert('Registration successful');
+        navigate('/Login'); //redirect to login page
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('Error during registration');
+    });
+    };
 
     return (
         <div className="register">
@@ -83,8 +114,9 @@ const Register = () => {
                     required
                 />
                 <button type="submit">Register</button>
-                <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
+        
             </form>
+            <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
         </div>
         </div>
     );
