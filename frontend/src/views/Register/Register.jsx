@@ -114,9 +114,9 @@ const Register = () => {
                         required
                     />
                     <button type="submit">Register</button>
+                    <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
 
                 </form>
-                <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
             </div>
         </div>
     );
