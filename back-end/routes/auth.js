@@ -30,10 +30,24 @@ const loadMockData = () => {
 //register user
 router.post('/register', async (req, res) => {
     console.log("Received registration request");
-    console.log("Request body", req.body);
+    //console.log("Request body", req.body); for error handling
     try {
         const { username, email, password } = req.body;
 
+        // Check if the user already exists
+        let existingUser = null;
+        if (process.env.USE_MOCK_DATA === 'true') {
+            const mockUsers = loadMockData();
+            existingUser = mockUsers.find(user => user.email === email);
+        } else {
+            existingUser = await User.findOne({ email: email });
+        }
+
+        if (existingUser) {
+            return res.status(409).json({ message: 'User already exists' });
+        }
+
+        //proceed with registration if user doesnt exist
         if (process.env.USE_MOCK_DATA === 'true') {
             const mockUsers = loadMockData();
             const hashedPassword = await bcrypt.hash(password, 8);

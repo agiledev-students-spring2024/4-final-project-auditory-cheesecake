@@ -14,12 +14,12 @@ const questions = [
   {
     questionText: 'Rate this song out of 5 (1 is worst, 5 is best)',
     options: ['1', '2', '3', '4', '5'],
-    audio: '/mondayMonday.mp4', // Ensure this file exists in your public directory
+    audio: '/mondayMonday.mp4', 
   },
   {
     questionText: 'Rate this song out of 5 (1 is worst, 5 is best)',
     options: ['1', '2', '3', '4', '5'],
-    audio: '/symphonyNo3.mp4', // Ensure this file exists in your public directory
+    audio: '/symphonyNo3.mp4', 
   },
 ];
 

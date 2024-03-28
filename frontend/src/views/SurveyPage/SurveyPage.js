@@ -134,7 +134,7 @@ const SurveyPage = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/questions');
+        const response = await axios.get('http://localhost:1337/api/questions');
         setQuestions(response.data);
       } catch (error) {
         console.error('Error fetching questions:', error);
@@ -197,7 +197,7 @@ const SurveyPage = () => {
 
   const submitResponses = async (surveyResponses) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/responses', { responses: surveyResponses });
+      const response = await axios.post('http://localhost:1337/api/responses', { responses: surveyResponses });
       console.log(response.data.message); // Optional: handle the response from the server
     } catch (error) {
       console.error('Error submitting responses:', error);
