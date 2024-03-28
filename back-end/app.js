@@ -15,6 +15,12 @@ app.use('/api', surveyRoutes);
 const authRoutes = require('./routes/auth');
 app.use('/api', authRoutes);
 
+/* Test Route
+app.get('/', (req, res) => {
+    res.send('Backend is running');
+  });
+  */
+  
 
 //connect to MongoDB
 //mongoose.connect('url',;
