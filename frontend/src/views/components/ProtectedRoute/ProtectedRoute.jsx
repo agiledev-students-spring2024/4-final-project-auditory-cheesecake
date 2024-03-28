@@ -36,7 +36,7 @@ const checkAuth = async (children) => {
   // user must be logged in to access these pages
   else if (mustBeLoggedIn.includes(desiredPage)) {
     if (!user) {
-      return false;
+      return true;
     }
     const userObj = JSON.parse(user);
     const data = await pingEndpoint(userObj);
