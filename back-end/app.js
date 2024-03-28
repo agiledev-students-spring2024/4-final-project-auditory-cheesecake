@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 1337;
+
+//const PORT = process.env.PORT || 1337;
 
 app.use(express.json()); 
 app.use(cors()); 
@@ -26,5 +27,5 @@ app.get('/', (req, res) => {
 //mongoose.connect('url',;
 
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 module.exports = app; 
