@@ -30,7 +30,7 @@ const loadMockData = () => {
 //register user
 router.post('/register', async (req, res) => {
     console.log("Received registration request");
-    console.log("Request body", req.body);
+    //console.log("Request body", req.body); for error handling
     try {
         const { username, email, password } = req.body;
 

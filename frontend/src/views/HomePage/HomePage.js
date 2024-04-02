@@ -12,8 +12,6 @@ const HomePage = () => {
         </div>
         <section className="how-it-works">
           <h3>How it works</h3>
-          
-          
           <ul>
             <li>Create Profile</li>
             <li>Listen & Respond</li>
