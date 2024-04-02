@@ -40,5 +40,17 @@
     "username": "test7",
     "email": "test7@gmail.com",
     "password": "$2a$08$uIjRSAOMct8Bd3EAKKIKPu4i8VTDTcu1.lkTzkuPExiFEwRYl7Ei."
+  },
+  {
+    "id": 8,
+    "username": "test11",
+    "email": "test11@gmail.com",
+    "password": "$2a$08$hLJjKaEozRRAZPm4zJjQZexFAl.7n1Pt/wG0CWp92QWbTc1GNjLDW"
+  },
+  {
+    "id": 9,
+    "username": "test12",
+    "email": "test12@gmail.com",
+    "password": "$2a$08$p2pvmzh54tUNDcGBdMAIF.9v9CInZ.KWEZ5uzOaf4Xfzlh8wjEqK6"
   }
 ]
