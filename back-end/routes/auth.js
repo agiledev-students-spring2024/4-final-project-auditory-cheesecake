@@ -150,9 +150,7 @@ router.post('/changePassword', async (req, res) => {
 
         if (process.env.USE_MOCK_DATA === 'true') {
             let mockUsers = loadMockData();
-            console.log("Mock Users:", mockUsers);
             const userIndex = mockUsers.findIndex(u => String(u.id) === String(id));
-            console.log("User Index:", userIndex);
 
             if (userIndex === -1){
                 return res.status(404).send({ message: 'User not found in mock data' });
