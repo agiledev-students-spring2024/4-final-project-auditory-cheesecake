@@ -32,7 +32,7 @@ router.post('/register', async (req, res) => {
     console.log("Received registration request");
     //console.log("Request body", req.body); for error handling
     try {
-        const { username, email, password } = req.body;
+        const { firstName, lastName, email, phoneNumber, username, password } = req.body;
 
         // Check if the user already exists
         let existingUser = null;
@@ -51,12 +51,12 @@ router.post('/register', async (req, res) => {
         if (process.env.USE_MOCK_DATA === 'true') {
             const mockUsers = loadMockData();
             const hashedPassword = await bcrypt.hash(password, 8);
-            const newUser = { id: mockUsers.length + 1, username, email, password: hashedPassword };
+            const newUser = { id: mockUsers.length + 1, username, email, password: hashedPassword, firstName, lastName, phoneNumber  };
             mockUsers.push(newUser);
             fs.writeFileSync(filePath, JSON.stringify(mockUsers, null, 2)); //write to the mock data file
             res.status(201).send({ message: 'User registered successfully in mock data' });
         } else {
-            const user = new User({ username, email, password });
+            const user = new User({ username, email, password: hashedPassword, firstName, lastName, phoneNumber });
             await user.save();
             res.status(201).send({ message: 'User registered successfully' });
         }

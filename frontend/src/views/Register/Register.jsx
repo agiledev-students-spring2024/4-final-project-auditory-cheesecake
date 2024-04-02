@@ -5,7 +5,10 @@ import './Register.css';
 const Register = () => {
     const navigate = useNavigate();
 
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -53,13 +56,16 @@ const Register = () => {
         //console.log(email, username, password);
 
         //API call to the backend registration endpoint
-        fetch('http://localhost:1337/api/auth/register', {
+        fetch('http://localhost:1337/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
                 email: email,
+                phoneNumber: phoneNumber,
                 username: username,
                 password: password
             })
@@ -86,6 +92,24 @@ const Register = () => {
             <div className="register-form-wrapper">
                 <h1>Register</h1>
                 <form onSubmit={handleSubmit}>
+                <label htmlFor="FirstName">First Name</label>
+                    <input
+                        id="FirstName"
+                        type="text"
+                        placeholder="First Name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required
+                    />
+                    <label htmlFor="LastName">Last Name</label>
+                    <input
+                        id="LastName"
+                        type="text"
+                        placeholder="Last Name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        required
+                    />
                     <label htmlFor="Email">Email</label>
                     <input
                         id="Email"
@@ -93,6 +117,15 @@ const Register = () => {
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <label htmlFor="PhoneNumber">Phone Number</label>
+                    <input
+                        id="PhoneNumber"
+                        type="tel"
+                        placeholder="Phone Number"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
                         required
                     />
                     <label htmlFor="Username">Username</label>
