@@ -72,11 +72,11 @@ router.post('/editUserProfile', async (req, res) => {
     console.log("Received edit user request");
     console.log("Edit user Request body", req.body);
     try {
-        const {username, email, firstName, lastName, phoneNumber} = req.query;
+        const {id, username, email, firstName, lastName, phoneNumber} = req.body;
 
-        if (!username || !email || !firstName || !lastName || !phoneNumber) {
+        if (username=='' || email=='' || firstName=='' || lastName=='' || phoneNumber=='') {
             return res.status(400).json({ error: 'Missing parameters' });
-          }
+        }
 
         if (process.env.USE_MOCK_DATA === 'true') {
             const mockUsers = loadMockData();
@@ -88,8 +88,6 @@ router.post('/editUserProfile', async (req, res) => {
             if (userIndex === -1){
                 return res.status(404).send({ message: 'User not found in mock data' });
             }
-
-            mockUsers[userIndex]
 
             // need to check to make sure username isn't already taken in data
             mockUsers[userIndex].username = username;

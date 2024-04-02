@@ -2,7 +2,9 @@
 
 const verifyUser = (user, username, sessionIdHash, lastLogin) => {
   // if any of the parameters are missing, return false
-
+  if (!username || !sessionIdHash || !lastLogin) {
+    return false;
+  }
   // if the user's username does not match the username provided, return false
   // if the user's sessionIdHash does not match the sessionIdHash provided, return false
   // if the user's lastLogin does not match the lastLogin provided, return false
@@ -14,7 +16,7 @@ const findUser = (req, res) => {
   const { username, sessionIdHash, lastLogin } = req.query;
   // if any of the parameters are missing, return false
   if (!username || !sessionIdHash || !lastLogin) {
-    return res.status(400).json({ error: 'Missing parameters' });
+    return res.status(400).json({ message: 'Missing parameters' });
   }
   // search mongoDB for user with username
   // if found, verify user
