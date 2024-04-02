@@ -61,41 +61,5 @@
     "firstName": "Test",
     "lastName": "Testing",
     "phoneNumber": "9089089080"
-  },
-  {
-    "id": 11,
-    "username": "testUser1712073774943",
-    "email": "testuser1712073774943@example.com",
-    "password": "$2a$08$ykjJHHX.kg7ldn8Ea/32D.r8dcb5EqGJtKlnDHptuDEyE3BQJERGW",
-    "firstName": "Test",
-    "lastName": "User",
-    "phoneNumber": "1234561712073774943"
-  },
-  {
-    "id": 12,
-    "username": "testUser2",
-    "email": "testuser@example.com",
-    "password": "$2a$08$jh71o.exKb2SciIqRRpGgetC/s7A1gIYhKp093YPnquiUiNVklwcO",
-    "firstName": "Test",
-    "lastName": "User2",
-    "phoneNumber": "0987654321"
-  },
-  {
-    "id": 13,
-    "username": "testUser1712073877257",
-    "email": "testuser1712073877257@example.com",
-    "password": "$2a$08$ZqdUvYto9wJ5JHxeFDwffOdFDdzDqRpwqWwykYFl5MlugQkWZ/JXm",
-    "firstName": "Test",
-    "lastName": "User",
-    "phoneNumber": "1234561712073877257"
-  },
-  {
-    "id": 14,
-    "username": "testUser1712073891587",
-    "email": "testuser1712073891587@example.com",
-    "password": "$2a$08$3FKPLptdNak87EMNRzw5BO92POlnOpcJaUa7hoTvbj6kEWRauvjOC",
-    "firstName": "Test",
-    "lastName": "User",
-    "phoneNumber": "1234561712073891587"
   }
 ]
