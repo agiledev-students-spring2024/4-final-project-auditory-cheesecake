@@ -52,5 +52,14 @@
     "username": "test12",
     "email": "test12@gmail.com",
     "password": "$2a$08$p2pvmzh54tUNDcGBdMAIF.9v9CInZ.KWEZ5uzOaf4Xfzlh8wjEqK6"
+  },
+  {
+    "id": 10,
+    "username": "test123",
+    "email": "testing123@gmail.com",
+    "password": "$2a$08$1zj7uxMSk93kR5.bgnzt6.jnVyFZ8M2dKKDxHR5N.P3AgnVqPFTWW",
+    "firstName": "Test",
+    "lastName": "Testing",
+    "phoneNumber": "9089089080"
   }
 ]
