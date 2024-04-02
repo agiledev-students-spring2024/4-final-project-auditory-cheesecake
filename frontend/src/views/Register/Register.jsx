@@ -35,6 +35,7 @@ const Register = () => {
     const handleSubmit = (e) => {
         console.log("Form submit initiated");
         e.preventDefault();
+        alert('Form is submitting');
 
         const validPassword = validatePassword(password);
         if (username.length < 4) {
@@ -51,37 +52,33 @@ const Register = () => {
         }
         //console.log(email, username, password);
 
-    //API call to the backend registration endpoint
-    fetch('http://localhost:1337/api/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email: email,
-            username: username,
-            password: password
+        //API call to the backend registration endpoint
+        fetch('http://localhost:1337/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                username: username,
+                password: password
+            })
         })
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else if (response.status === 409) {
-            throw new Error('A user with this email already exists.');
-        } else {
-            throw new Error('Network response was not ok');
-        }
-    })
-    .then(data => {
-        console.log('Success:', data);
-        alert('Registration successful');
-        navigate('/Login'); //redirect to login page
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        alert(`Error during registration: ${error.message}`);
-    });
-
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                alert('Registration successful');
+                navigate('/Login'); //redirect to login page
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error during registration');
+            });
     };
 
     return (
@@ -117,9 +114,8 @@ const Register = () => {
                         required
                     />
                     <button type="submit">Register</button>
-
+                    <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
                 </form>
-                <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
             </div>
         </div>
     );
