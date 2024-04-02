@@ -13,11 +13,11 @@ describe('POST /editUserProfile', () => {
   
     it('should update the user profile data successfully', (done) => {
       
-      const userId = '10';
-      const username = 'test10';
-      const email = 'test10@gmail.com';
-      const firstName = 'First10';
-      const lastName = 'Last10';
+      const userId = '11';
+      const username = 'test11';
+      const email = 'test11@gmail.com';
+      const firstName = 'First11';
+      const lastName = 'Last11';
       const phoneNumber = '1234567891';
   
       chai.request(server)
@@ -31,11 +31,11 @@ describe('POST /editUserProfile', () => {
     });
 
     it('should return an error if any of the fields are missing', (done) => {
-        const userId = '10';
-        const username = 'test10';
-        const email = 'test10@gmail.com';
+        const userId = '11';
+        const username = 'test11';
+        const email = 'test11@gmail.com';
         const firstName = '';
-        const lastName = 'Last10';
+        const lastName = 'Last11';
         const phoneNumber = '1234567891';
 
         chai.request(server)
@@ -50,10 +50,10 @@ describe('POST /editUserProfile', () => {
   
     it('should return an error if the user is not found', (done) => {
       const userId = 'nonExistingId';
-      const username = 'test10';
-      const email = 'test10@gmail.com';
-      const firstName = 'First10';
-      const lastName = 'Last10';
+      const username = 'test11';
+      const email = 'test11@gmail.com';
+      const firstName = 'First11';
+      const lastName = 'Last11';
       const phoneNumber = '1234567891';
   
       chai.request(server)

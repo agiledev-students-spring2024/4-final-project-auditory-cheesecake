@@ -3,7 +3,7 @@
     "id": 1,
     "username": "user1",
     "email": "user1@example.com",
-    "password": "$2a$08$68lOdYBrkN0oaKkLCF9Bi.g0eicuiAAXyPFrl7rbVDqs2QxUco7E6"
+    "password": "$2a$08$/o0N61Mj183CwbGNon2gRu65pa0TKg2j0Aumuz7ovUKjm9l4Jru1K"
   },
   {
     "id": 2,
@@ -55,10 +55,19 @@
   },
   {
     "id": 10,
-    "username": "test10",
-    "email": "test10@gmail.com",
-    "firstName": "First10",
-    "lastName": "Last10",
+    "username": "test123",
+    "email": "testing123@gmail.com",
+    "password": "$2a$08$1zj7uxMSk93kR5.bgnzt6.jnVyFZ8M2dKKDxHR5N.P3AgnVqPFTWW",
+    "firstName": "Test",
+    "lastName": "Testing",
+    "phoneNumber": "9089089080"
+  },
+  {
+    "id": 11,
+    "username": "test11",
+    "email": "test11@gmail.com",
+    "firstName": "First11",
+    "lastName": "Last11",
     "phoneNumber": "1234567891",
     "password": "$2a$08$p2pvmzh54tUNDcGBdMAIF.9v9CInZ.KWEZ5uzOaf4Xfzlh8wjEqK6"
   }
