@@ -9,7 +9,7 @@ console.log('Using mock data:', process.env.USE_MOCK_DATA);
 
 let User;
 if (process.env.USE_MOCK_DATA !== 'true') {
-    User = require('../models/User');
+    User = require('../models/user');
 }
 
 const filePath = path.join(__dirname, '../data/mock-users.json'); //filepath for mock data
@@ -133,6 +133,8 @@ router.post('/login', async (req, res) => {
                 return res.status(401).send({ message: 'Invalid login credentials' });
             }
             const token = jwt.sign({ id: user._id }, 'secretKey');
+            // change this to only required fields for JWT
+            const jwtToken = { ...user };
             res.send({ user, token });
         }
     } catch (error) {
