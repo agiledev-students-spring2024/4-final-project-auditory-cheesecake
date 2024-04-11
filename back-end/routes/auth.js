@@ -47,10 +47,11 @@ router.post('/register', async (req, res) => {
             return res.status(409).json({ message: 'User already exists' });
         }
 
+        const hashedPassword = await bcrypt.hash(password, 8);
+
         //proceed with registration if user doesnt exist
         if (process.env.USE_MOCK_DATA === 'true') {
             const mockUsers = loadMockData();
-            const hashedPassword = await bcrypt.hash(password, 8);
             const newUser = { id: mockUsers.length + 1, username, email, password: hashedPassword, firstName, lastName, phoneNumber  };
             mockUsers.push(newUser);
             fs.writeFileSync(filePath, JSON.stringify(mockUsers, null, 2)); //write to the mock data file
