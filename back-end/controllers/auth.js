@@ -1,4 +1,4 @@
-let User = require('../models/user');
+let User = require('../models/User');
 
 const verifyUser = (user, username, sessionIdHash, lastLogin) => {
   // if any of the parameters are missing, return false

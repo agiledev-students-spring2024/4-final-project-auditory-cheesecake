@@ -9,7 +9,7 @@ console.log('Using mock data:', process.env.USE_MOCK_DATA);
 
 let User;
 if (process.env.USE_MOCK_DATA !== 'true') {
-    User = require('../models/user');
+    User = require('../models/User');
 }
 
 const filePath = path.join(__dirname, '../data/mock-users.json'); //filepath for mock data
@@ -58,12 +58,13 @@ router.post('/register', async (req, res) => {
             res.status(201).send({ message: 'User registered successfully in mock data' });
         } else {
             const user = new User({ username, email, password: hashedPassword, firstName, lastName, phoneNumber });
+            console.log(user)
             await user.save();
             res.status(201).send({ message: 'User registered successfully' });
         }
     } catch (error) {
         console.error(error); // Log the error to the console
-        res.status(400).json({ message: 'Registration failed', error: error.message });
+        res.status(400).json({ message: 'Registration failed: ' + error.message });
     }
 });
 
