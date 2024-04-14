@@ -44,7 +44,12 @@ In order to build and test this project, you will need to first get the code, bu
 
 -Install and run [docker desktop](https://www.docker.com/get-started)
 -Create a [dockerhub](https://hub.docker.com/signup) account
--Run command, `docker run --name mongodb_dockerhub -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=secret -d mongo:latest`
+-Run command, `docker run --name mongodb_dockerhub -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=cheese1 -e MONGO_INITDB_ROOT_PASSWORD=AuditoryCheesecake -d mongo:latest`
+    - cheese1, password: AuditoryCheesecake
+    - You now have a MongoDB database running on localhost port 27017, with an admin user account with password, password
+
+- `docker run --name mongodb_dockerhub -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=secret -d mongo:latest`
+You now have a MongoDB database running on localhost port 27017, with an admin user account with password, password
 
 The back-end code will integrate with this database.
 
