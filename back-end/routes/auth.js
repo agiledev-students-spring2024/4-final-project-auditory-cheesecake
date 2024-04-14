@@ -30,7 +30,6 @@ const loadMockData = () => {
 //register user
 router.post('/register', async (req, res) => {
     console.log("Received registration request");
-    //console.log("Request body", req.body); for error handling
     try {
         const { firstName, lastName, email, phoneNumber, username, password } = req.body;
 
@@ -47,13 +46,15 @@ router.post('/register', async (req, res) => {
             return res.status(409).json({ message: 'User already exists' });
         }
 
-        //proceed with registration if user doesnt exist
+        // Hash password outside of the condition to ensure it's available in both branches
+        const hashedPassword = await bcrypt.hash(password, 8);
+
+        // Proceed with registration if user doesn't exist
         if (process.env.USE_MOCK_DATA === 'true') {
             const mockUsers = loadMockData();
-            const hashedPassword = await bcrypt.hash(password, 8);
-            const newUser = { id: mockUsers.length + 1, username, email, password: hashedPassword, firstName, lastName, phoneNumber  };
+            const newUser = { id: mockUsers.length + 1, username, email, password: hashedPassword, firstName, lastName, phoneNumber };
             mockUsers.push(newUser);
-            fs.writeFileSync(filePath, JSON.stringify(mockUsers, null, 2)); //write to the mock data file
+            fs.writeFileSync(filePath, JSON.stringify(mockUsers, null, 2)); // Write to the mock data file
             res.status(201).send({ message: 'User registered successfully in mock data' });
         } else {
             const user = new User({ username, email, password: hashedPassword, firstName, lastName, phoneNumber });
@@ -61,10 +62,11 @@ router.post('/register', async (req, res) => {
             res.status(201).send({ message: 'User registered successfully' });
         }
     } catch (error) {
-        console.error(error); //log the error to the console
+        console.error(error); // Log the error to the console
         res.status(400).json({ message: 'Registration failed', error: error.message });
     }
 });
+
 
 
 // Edit user profile user
