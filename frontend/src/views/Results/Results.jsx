@@ -50,6 +50,14 @@ const ProgressBar = ({ trait, score }) => (
   </div>
 );
 
+const ProgressCircle = ({ score }) => (
+  <div className="progress-circle-container"> {/* Additional class for specificity */}
+    <div className="progress-circle-bar">
+      <div className="progress" style={{ width: `${score}%` }}>{score}%</div>
+    </div>
+  </div>
+);
+
 const Results = () => {
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(true);
