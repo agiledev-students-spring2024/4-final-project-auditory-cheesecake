@@ -81,3 +81,12 @@
   color: #5d0bb0;
   background-color: transparent;
 }
+
+.error-message {
+  color: white;
+  background-color: red;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align: center;
+}

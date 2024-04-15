@@ -11,6 +11,7 @@ const Register = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const validateEmail = (email) => {
         return email.search(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
@@ -38,18 +39,19 @@ const Register = () => {
     const handleSubmit = async (e) => {
         console.log("Form submit initiated");
         e.preventDefault();
+        setErrorMessage('');
 
         const validPassword = validatePassword(password);
         if (username.length < 4) {
-            alert("Username must be at least 4 characters long!");
+            setErrorMessage("Username must be at least 4 characters long!");
             return;
         }
         else if (validPassword[0] === false) {
-            alert("Invalid password: " + validPassword[1]);
+            setErrorMessage("Invalid password: " + validPassword[1]);
             return;
         }
         else if (validateEmail(email)) {
-            alert("Invalid email!");
+            setErrorMessage("Invalid email!");
             return;
         }
         //console.log(email, username, password);
@@ -71,11 +73,11 @@ const Register = () => {
         });
         const data = await res.json();
         if (res.status === 201) {
-            alert('Registration successful');
+            console.log('Registration successful');
             navigate('/Login'); //redirect to login page
         } else if (res.status >= 400) {
             console.error('Error:', data.message);
-            alert('Error during registration: ' + data.message);
+            setErrorMessage('Error during registration: ' + data.message);
         }
     };
 
@@ -83,6 +85,7 @@ const Register = () => {
         <div className="register">
             <div className="register-form-wrapper">
                 <h1>Register</h1>
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <form onSubmit={handleSubmit}>
                 <label htmlFor="FirstName">First Name</label>
                     <input
