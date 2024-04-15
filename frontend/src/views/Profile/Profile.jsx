@@ -9,11 +9,13 @@ const Profile = () => {
   const [showTerms, setShowTerms] = useState(false);
 
   useEffect(() => {
-    const userId = sessionStorage.getItem('userId');
+    const user = JSON.parse (sessionStorage.getItem('user')); 
+    const userId = user.id;
+    console.log ('User ID:', userId)
     if (userId) {
       const fetchUserData = async () => {
         try {
-            const response = await axios.get(`/user/${userId}`); // Change to your actual API endpoint
+            const response = await axios.get(`http://localhost:1337/api/user/${userId}`);
             setUser(response.data);
         } catch (error) {
             console.error('Failed to fetch user data:', error);

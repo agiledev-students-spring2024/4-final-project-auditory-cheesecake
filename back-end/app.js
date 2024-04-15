@@ -17,6 +17,9 @@ app.use('/api', surveyRoutes);
 const authRoutes = require('./routes/auth');
 app.use('/api', authRoutes);
 
+const userRoutes = require('./routes/user');
+app.use('/api', userRoutes);
+
 app.get('/api/survey/responses', surveyController.getSurveyResponses);
 /* Test Route
 app.get('/', (req, res) => {
