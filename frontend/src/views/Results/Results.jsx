@@ -50,13 +50,13 @@ const ProgressBar = ({ trait, score }) => (
   </div>
 );
 
-// const ProgressCircle = ({ score }) => (
-//   <div className="progress-circle-container"> {/* Additional class for specificity */}
-//     <div className="progress-circle-bar">
-//       <div className="progress" style={{ width: `${score}%` }}>{score}%</div>
-//     </div>
-//   </div>
-// );
+const ProgressCircle = ({ score }) => (
+  <div className="progress-circle-container"> {/* Additional class for specificity */}
+    <div className="progress-circle-bar">
+      <div className="progress" style={{ width: `${score}%` }}>{score}%</div>
+    </div>
+  </div>
+);
 
 const Results = () => {
   const [responses, setResponses] = useState([]);
@@ -99,20 +99,8 @@ const Results = () => {
         <div className="results-description">
           <p>Each progress bar represents your score in one of the Big Five personality traits: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism. A higher score indicates a stronger presence of that trait in your personality.  Keep reading below to learn more about your personality.</p>
         </div>
-        {loading ? <p>Loading responses...</p> : (
-          <div>
-            <h2>Your Survey Responses</h2>
-            {responses.map((resp, index) => (
-              <div key={index}>
-                <h3>Response #{index + 1}</h3>
-                {resp.responses.map((r, idx) => (
-                  <p key={idx}>{r.question}: {r.answer}</p>
-                ))}
-              </div>
-            ))}
-          </div>
-        )}
-        {/* <div className="all-traits">
+        
+        <div className="all-traits">
           <div className="individual-trait">
             <h3 className="trait-title">Openness</h3>
             <div className="ocean-img">
@@ -164,7 +152,7 @@ const Results = () => {
             </div>
           </div>
 
-        </div> */}
+        </div>
       </div>
     </div>
   );
