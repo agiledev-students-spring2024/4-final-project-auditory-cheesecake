@@ -1,11 +1,12 @@
 const express = require('express');
-
+const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
 
 console.log('Using mock data:', process.env.USE_MOCK_DATA);
+console.log('Using secret key:', process.env.JWT_SECRET_KEY);
 
 let User;
 if (process.env.USE_MOCK_DATA !== 'true') {
@@ -18,19 +19,21 @@ const router = express.Router();
 const { findUser } = require('../controllers/auth');
 
 
-router.get('/findUser', findUser);
-
+router.post('/findUser', findUser);
 
 //func to load mock data
 const loadMockData = () => {
     return JSON.parse(fs.readFileSync(filePath, 'utf8')); 
 };
 
+// generate a random session id
+const generateSessionId = () => {
+    return crypto.randomBytes(32).toString('hex');
+};
 
 //register user
 router.post('/register', async (req, res) => {
     console.log("Received registration request");
-    //console.log("Request body", req.body); for error handling
     try {
         const { firstName, lastName, email, phoneNumber, username, password } = req.body;
 
@@ -47,70 +50,22 @@ router.post('/register', async (req, res) => {
             return res.status(409).json({ message: 'User already exists' });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 8);
-
-        //proceed with registration if user doesnt exist
+        // Proceed with registration if user doesn't exist
         if (process.env.USE_MOCK_DATA === 'true') {
             const mockUsers = loadMockData();
-            const newUser = { id: mockUsers.length + 1, username, email, password: hashedPassword, firstName, lastName, phoneNumber  };
+            const newUser = { id: mockUsers.length + 1, username, email, password: password, firstName, lastName, phoneNumber };
             mockUsers.push(newUser);
-            fs.writeFileSync(filePath, JSON.stringify(mockUsers, null, 2)); //write to the mock data file
+            fs.writeFileSync(filePath, JSON.stringify(mockUsers, null, 2)); // Write to the mock data file
             res.status(201).send({ message: 'User registered successfully in mock data' });
         } else {
-            const user = new User({ username, email, password: hashedPassword, firstName, lastName, phoneNumber });
+            const user = new User({ username, email, password: password, firstName, lastName, phoneNumber });
+            console.log(user)
             await user.save();
             res.status(201).send({ message: 'User registered successfully' });
         }
     } catch (error) {
-        console.error(error); //log the error to the console
-        res.status(400).json({ message: 'Registration failed', error: error.message });
-    }
-});
-
-
-// Edit user profile user
-router.post('/editUserProfile', async (req, res) => {
-    console.log("Received edit user request");
-    console.log("Edit user Request body", req.body);
-    try {
-        const {id, username, email, firstName, lastName, phoneNumber} = req.body;
-
-        if (username=='' || email=='' || firstName=='' || lastName=='' || phoneNumber=='') {
-            return res.status(400).json({ error: 'Missing parameters' });
-        }
-
-        if (process.env.USE_MOCK_DATA === 'true') {
-            const mockUsers = loadMockData();
-
-            // Get current user
-            const userIndex = mockUsers.findIndex(u => String(u.id) === String(id));
-            console.log("User Index:", userIndex);
-
-            if (userIndex === -1){
-                return res.status(404).send({ message: 'User not found in mock data' });
-            }
-
-            // need to check to make sure username isn't already taken in data
-            mockUsers[userIndex].username = username;
-            // need to check to make sure email doesn't already exist in data
-            mockUsers[userIndex].email = email;
-            
-            mockUsers[userIndex].firstName = firstName;
-            mockUsers[userIndex].lastName = lastName;
-
-            // need to check to make sure phone number doesn't already exist in data
-            mockUsers[userIndex].phoneNumber = phoneNumber;
-            fs.writeFileSync(filePath, JSON.stringify(mockUsers, null, 2));
-            res.status(200).send({ message: 'User profile updated successfully in mock data' });
-        } else {
-            // if the username already exists
-            // if the email is already in the system
-            // if the phone number is already in the system
-            res.status(501).send({ message: 'Not implemented for real data yet' });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send({ message: 'Failed to edit user profile', error: error.message });
+        console.error(error); // Log the error to the console
+        res.status(400).json({ message: 'Registration failed: ' + error.message });
     }
 });
 
@@ -118,61 +73,61 @@ router.post('/editUserProfile', async (req, res) => {
 //login user
 router.post('/login', async (req, res) => {
     try {
-        const { email, password } = req.body;
-
+        const { username, password } = req.body;
+        if (!username || !password) {
+            return res.status(400).send({ message: 'Missing parameters' });
+        }
         if (process.env.USE_MOCK_DATA === 'true') {
             const mockUsers = loadMockData();
-            const user = mockUsers.find(u => u.email === email);
+            const user = mockUsers.find(u => u.username === username);
             if (!user || !(await bcrypt.compare(password, user.password))) {
                 return res.status(401).send({ message: 'Invalid login credentials in mock data' });
             }
             const token = jwt.sign({ id: user.id }, 'secretKey');
             res.send({ user, token });
         } else {
-            const user = await User.findOne({ email });
+            const user = await User.findOne({ username });
+            const sessionId = user.sessionId;
+            let newSessionId = generateSessionId();
+            if (sessionId) {
+                while (newSessionId === sessionId) {
+                    newSessionId = generateSessionId();
+                }
+            }
+            const lastLogin = user.lastLogin;
+            const newLastLogin = Date.now();
+            const test = await bcrypt.compare(password, user.password);
             if (!user || !(await bcrypt.compare(password, user.password))) {
                 return res.status(401).send({ message: 'Invalid login credentials' });
             }
-            const token = jwt.sign({ id: user._id }, 'secretKey');
-            res.send({ user, token });
+            await User.updateOne({ username }, {
+                $set: {
+                    sessionId: newSessionId,
+                    lastLogin: newLastLogin
+                }
+            });
+            // change this to only required fields for JWT
+            const tokenPayload = { 
+                username: user.username,
+                sessionId: newSessionId,
+                lastLogin: newLastLogin,
+                id: user._id,
+            };
+            const frontendAccessiblePayload = {
+                username: user.username,
+                id: user._id,
+            }
+            const options = { expiresIn: '7d' };
+            const secretKey = process.env.JWT_SECRET_KEY;
+            const token = jwt.sign(tokenPayload, secretKey, options);
+            res.status(201).send({ message: 'User logged in, redirecting...', token, frontendAccessiblePayload });
         }
     } catch (error) {
+        console.error(error);
         res.status(500).send(error);
     }
 });
 
-
-//Change user password
-router.post('/changePassword', async (req, res) => {
-    try{
-        const { id, oldPassword, newPassword } = req.body;
-
-        if (process.env.USE_MOCK_DATA === 'true') {
-            let mockUsers = loadMockData();
-            const userIndex = mockUsers.findIndex(u => String(u.id) === String(id));
-
-            if (userIndex === -1){
-                return res.status(404).send({ message: 'User not found in mock data' });
-            }
-
-            const user = mockUsers[userIndex];
-            const isMatch = await bcrypt.compare(oldPassword, user.password);
-            if (!isMatch){
-                return res.status(401).send({ message: 'Old password is incorrect' });
-            }
-
-            const hashedNewPassword = await bcrypt.hash(newPassword, 8);
-            mockUsers[userIndex].password = hashedNewPassword;
-            fs.writeFileSync(filePath, JSON.stringify(mockUsers, null, 2));
-            res.status(200).send({ message: 'Password updated successfully in mock data' });
-        }else{
-            res.status(501).send({ message: 'Not implemented for real data yet' });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send({ message: 'Failed to change password', error: error.message });
-    }
-});
 
 
 module.exports = router;

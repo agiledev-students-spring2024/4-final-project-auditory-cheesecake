@@ -1,33 +1,30 @@
+let User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
+const secretKey = process.env.JWT_SECRET_KEY;
 
-const verifyUser = (user, username, sessionIdHash, lastLogin) => {
-  // if any of the parameters are missing, return false
-  if (!username || !sessionIdHash || !lastLogin) {
-    return false;
-  }
-  // if the user's username does not match the username provided, return false
-  // if the user's sessionIdHash does not match the sessionIdHash provided, return false
-  // if the user's lastLogin does not match the lastLogin provided, return false
-  // if all checks pass, return true
-  return true;
-}
-
-const findUser = (req, res) => {
-  const { username, sessionIdHash, lastLogin } = req.query;
-  // if any of the parameters are missing, return false
-  if (!username || !sessionIdHash || !lastLogin) {
+const findUser = async (req, res) => {
+  const { token } = req.body;
+  if (!token) {
     return res.status(400).json({ message: 'Missing parameters' });
   }
-  // search mongoDB for user with username
-  // if found, verify user
-    // if verified, return true
-    // else return false
-  // else return false
-
-  // placeholder for now
-  console.log(username, sessionIdHash, lastLogin);
-  return res.status(200).json({ message: 'User found and validated' });
-}
+  try {
+    // Decode the token to get the username, sessionId, and lastLogin
+    const decoded = jwt.verify(token, secretKey);
+    const { username, sessionId, lastLogin } = decoded;
+    const user = await User.findOne({ username, sessionId, lastLogin });
+    // If no user is found with the username
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    return res.status(200).json({ message: 'User found and validated' });
+  }
+  catch (error) {
+    console.error('Token invalid:', error);
+    return res.status(401).json({ message: 'Invalid token' });
+  }
+};
 
 module.exports = {
   findUser

@@ -4,7 +4,8 @@
   "description": "The back-end of your project will live in this directory.",
   "main": "index.js",
   "scripts": {
-    "test": "c8 mocha"
+    "test": "c8 mocha",
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "bcryptjs": "^2.4.3",
     "chai": "^4.3.4",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
