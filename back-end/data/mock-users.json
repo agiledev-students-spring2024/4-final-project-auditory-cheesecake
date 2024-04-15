@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "username": "user1",
+    "email": "user1@example.com",
+    "password": "$2a$08$QmjqUQiyRxY.F0gOiU/RseN0nddnqmigliGUuPNuK59z6KRtUv8/i"
+  },
+  {
+    "id": 2,
+    "username": "user2",
+    "email": "user2@example.com",
+    "password": "hashedpassword2"
+  },
+  {
+    "id": 3,
+    "username": "random",
+    "email": "random@email.com",
+    "password": "$2a$08$eJm6pq5m5Y1XwGYgONhzLujPgJQyLUPBX3jtacbeIdLBuqIhJO0A2"
+  },
+  {
+    "id": 4,
+    "username": "test4",
+    "email": "test4@gmail.com",
+    "password": "$2a$08$pRg65kUnguX36wjiJrhHT.k/EAcYJRa5bDeaKC7u/PVi.jMV3qPEm"
+  },
+  {
+    "id": 5,
+    "username": "test5",
+    "email": "test5@gmail.com",
+    "password": "$2a$08$5t43nXEaNf5gIjDiHuikiupo7J3wfaix0qesTdupAru.A6NUPkEhS"
+  },
+  {
+    "id": 6,
+    "username": "test6",
+    "email": "test6@gmail.com",
+    "password": "$2a$08$Ga040vfzdTO0p8bUnR/Fi.RAIYUymClncxA42rXNABNWCgksve442"
+  },
+  {
+    "id": 7,
+    "username": "test7",
+    "email": "test7@gmail.com",
+    "password": "$2a$08$uIjRSAOMct8Bd3EAKKIKPu4i8VTDTcu1.lkTzkuPExiFEwRYl7Ei."
+  },
+  {
+    "id": 8,
+    "username": "test11",
+    "email": "test11@gmail.com",
+    "password": "$2a$08$hLJjKaEozRRAZPm4zJjQZexFAl.7n1Pt/wG0CWp92QWbTc1GNjLDW"
+  },
+  {
+    "id": 9,
+    "username": "test12",
+    "email": "test12@gmail.com",
+    "password": "$2a$08$p2pvmzh54tUNDcGBdMAIF.9v9CInZ.KWEZ5uzOaf4Xfzlh8wjEqK6"
+  },
+  {
+    "id": 10,
+    "username": "test123",
+    "email": "testing123@gmail.com",
+    "password": "$2a$08$1zj7uxMSk93kR5.bgnzt6.jnVyFZ8M2dKKDxHR5N.P3AgnVqPFTWW",
+    "firstName": "Test",
+    "lastName": "Testing",
+    "phoneNumber": "9089089080"
+  },
+  {
+    "id": 11,
+    "username": "test11",
+    "email": "test11@gmail.com",
+    "firstName": "First11",
+    "lastName": "Last11",
+    "phoneNumber": "1234567891",
+    "password": "$2a$08$p2pvmzh54tUNDcGBdMAIF.9v9CInZ.KWEZ5uzOaf4Xfzlh8wjEqK6"
+  },
+  {
+    "id": 12,
+    "username": "testUser1712074251482",
+    "email": "testuser1712074251482@example.com",
+    "password": "$2a$08$bPwYO59zgkzby9WXLknOu.XeIFqlKuYHVfQInsdHNc/QemtU9F10C",
+    "firstName": "Test",
+    "lastName": "User",
+    "phoneNumber": "1234561712074251482"
+  },
+  {
+    "id": 13,
+    "username": "testUser2",
+    "email": "testuser@example.com",
+    "password": "$2a$08$zKeB6F8rmOWxWL8G.i9aieO86UXF68vSC90uMtv3pku5QX5x/zLZq",
+    "firstName": "Test",
+    "lastName": "User2",
+    "phoneNumber": "0987654321"
+  },
+  {
+    "id": 14,
+    "username": "testUser1712074258415",
+    "email": "testuser1712074258415@example.com",
+    "password": "$2a$08$2gHbufj29eQz8M/SUsC/eeWcV5tFQ.hWXEll7jIGGdFvjkDl1.qyy",
+    "firstName": "Test",
+    "lastName": "User",
+    "phoneNumber": "1234561712074258415"
+  }
+]
