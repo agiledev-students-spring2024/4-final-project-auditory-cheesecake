@@ -8,9 +8,28 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(username, password);
+        const res = await fetch('http://localhost:1337/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
+        const data = await res.json();
+        if (res.status === 201) {
+            alert('Login successful');
+            sessionStorage.setItem('authToken', data.token);
+            sessionStorage.setItem('user', JSON.stringify(data.frontendAccessiblePayload));
+            navigate('/');
+        } else if (res.status >= 400) {
+            console.error('Error:', data.message);
+            alert('Error during login: ' + data.message);
+        }
     }
 
     return (

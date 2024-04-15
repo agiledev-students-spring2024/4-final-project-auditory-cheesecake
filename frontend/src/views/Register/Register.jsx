@@ -71,9 +71,8 @@ const Register = () => {
         });
         const data = await res.json();
         if (res.status === 201) {
-            console.log('Success:', data);
-                alert('Registration successful');
-                navigate('/Login'); //redirect to login page
+            alert('Registration successful');
+            navigate('/Login'); //redirect to login page
         } else if (res.status >= 400) {
             console.error('Error:', data.message);
             alert('Error during registration: ' + data.message);
