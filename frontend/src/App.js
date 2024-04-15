@@ -22,8 +22,14 @@ function App() {
           <Route path="/" element={<HomePage />} />
 
           {/* Route for Test Page */}
-          <Route path="/survey" element={<SurveyPage />} />
-
+          <Route
+            path="/Survey"
+            element={
+              <ProtectedRoute>
+                <SurveyPage />
+              </ProtectedRoute>
+            }
+          />
 
           {/* Route for Profile Page */}
           <Route
