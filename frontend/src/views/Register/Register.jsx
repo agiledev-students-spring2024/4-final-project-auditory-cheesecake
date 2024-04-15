@@ -35,10 +35,9 @@ const Register = () => {
         return [true, ""];
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         console.log("Form submit initiated");
         e.preventDefault();
-        alert('Form is submitting');
 
         const validPassword = validatePassword(password);
         if (username.length < 4) {
@@ -56,7 +55,7 @@ const Register = () => {
         //console.log(email, username, password);
 
         //API call to the backend registration endpoint
-        fetch('http://localhost:1337/api/register', {
+        const res = await fetch('http://localhost:1337/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,22 +68,15 @@ const Register = () => {
                 username: username,
                 password: password
             })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Success:', data);
-                alert('Registration successful');
-                navigate('/Login'); //redirect to login page
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('Error during registration');
-            });
+        });
+        const data = await res.json();
+        if (res.status === 201) {
+            alert('Registration successful');
+            navigate('/Login'); //redirect to login page
+        } else if (res.status >= 400) {
+            console.error('Error:', data.message);
+            alert('Error during registration: ' + data.message);
+        }
     };
 
     return (

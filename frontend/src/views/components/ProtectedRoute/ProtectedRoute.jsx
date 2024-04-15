@@ -7,47 +7,54 @@ const mustBeLoggedOut = ['register', 'login',];
 const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword',];
 const mustCompleteQuiz = ['results'];
 
-const pingEndpoint = async (userObj) => {
+const pingEndpoint = async (token) => {
   const endpoint = 'http://localhost:1337/api/findUser';
-  const params = `?username=${userObj.username}&sessionIdHash=${userObj.sessionIdHash}&lastLogin=${userObj.lastLogin}`;
-  const response = await fetch(endpoint + params);
+  const body = {
+    token: token,
+  }
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
   const data = await response.json();
-  return data;
+  console.log(data);
+  return response;
 };
 
 const checkAuth = async (children) => {
   // sample function, just return true always for now
   const desiredPage = children.type.name.toLowerCase(); 
   console.log(desiredPage);
-  const user = sessionStorage.getItem('user');
+  const authToken = sessionStorage.getItem('authToken');
   // user must be logged out to access these pages
   if (mustBeLoggedOut.includes(desiredPage)) {
-    if (!user) {
+    if (!authToken) {
       return true;
     }
-    const userObj = JSON.parse(user);
-    const data = await pingEndpoint(userObj);
-    console.log(data);
-
-    // placeholder to always allow access (further logic of what to do if user object is
-    // invalid/timed out, user doesn't match what was retrieved etc. still needed)
+    const res = await pingEndpoint(authToken);
+    console.log(res);
+    if (res.status === 200) {
+      return false;
+    }
     return true;
   }
   // user must be logged in to access these pages
   else if (mustBeLoggedIn.includes(desiredPage)) {
-    if (!user) {
+    if (!authToken) {
       return false;
     }
-    const userObj = JSON.parse(user);
-    const data = await pingEndpoint(userObj);
-    console.log(data);
-
-    // placeholder still (further logic of what to do if user object is
-    // invalid/timed out etc. still needed)
-    return true;
+    const res = await pingEndpoint(authToken);
+    if (res.status === 200) {
+      return true;
+    }
+    return false;
   }
   // user must have completed the quiz to access these pages
   else if (mustCompleteQuiz.includes(desiredPage)) {
+    // placeholder
     return true;
   }
   // user can access these pages regardless of authentication status
