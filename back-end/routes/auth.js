@@ -1,11 +1,12 @@
 const express = require('express');
-
+const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
 
 console.log('Using mock data:', process.env.USE_MOCK_DATA);
+console.log('Using secret key:', process.env.JWT_SECRET_KEY);
 
 let User;
 if (process.env.USE_MOCK_DATA !== 'true') {
@@ -18,14 +19,17 @@ const router = express.Router();
 const { findUser } = require('../controllers/auth');
 
 
-router.get('/findUser', findUser);
-
+router.post('/findUser', findUser);
 
 //func to load mock data
 const loadMockData = () => {
     return JSON.parse(fs.readFileSync(filePath, 'utf8')); 
 };
 
+// generate a random session id
+const generateSessionId = () => {
+    return crypto.randomBytes(32).toString('hex');
+};
 
 //register user
 router.post('/register', async (req, res) => {
@@ -46,24 +50,22 @@ router.post('/register', async (req, res) => {
             return res.status(409).json({ message: 'User already exists' });
         }
 
-        // Hash password outside of the condition to ensure it's available in both branches
-        const hashedPassword = await bcrypt.hash(password, 8);
-
         // Proceed with registration if user doesn't exist
         if (process.env.USE_MOCK_DATA === 'true') {
             const mockUsers = loadMockData();
-            const newUser = { id: mockUsers.length + 1, username, email, password: hashedPassword, firstName, lastName, phoneNumber };
+            const newUser = { id: mockUsers.length + 1, username, email, password: password, firstName, lastName, phoneNumber };
             mockUsers.push(newUser);
             fs.writeFileSync(filePath, JSON.stringify(mockUsers, null, 2)); // Write to the mock data file
             res.status(201).send({ message: 'User registered successfully in mock data' });
         } else {
-            const user = new User({ username, email, password: hashedPassword, firstName, lastName, phoneNumber });
+            const user = new User({ username, email, password: password, firstName, lastName, phoneNumber });
+            console.log(user)
             await user.save();
             res.status(201).send({ message: 'User registered successfully' });
         }
     } catch (error) {
         console.error(error); // Log the error to the console
-        res.status(400).json({ message: 'Registration failed', error: error.message });
+        res.status(400).json({ message: 'Registration failed: ' + error.message });
     }
 });
 
@@ -119,25 +121,57 @@ router.post('/editUserProfile', async (req, res) => {
 //login user
 router.post('/login', async (req, res) => {
     try {
-        const { email, password } = req.body;
-
+        const { username, password } = req.body;
+        if (!username || !password) {
+            return res.status(400).send({ message: 'Missing parameters' });
+        }
         if (process.env.USE_MOCK_DATA === 'true') {
             const mockUsers = loadMockData();
-            const user = mockUsers.find(u => u.email === email);
+            const user = mockUsers.find(u => u.username === username);
             if (!user || !(await bcrypt.compare(password, user.password))) {
                 return res.status(401).send({ message: 'Invalid login credentials in mock data' });
             }
             const token = jwt.sign({ id: user.id }, 'secretKey');
             res.send({ user, token });
         } else {
-            const user = await User.findOne({ email });
+            const user = await User.findOne({ username });
+            const sessionId = user.sessionId;
+            let newSessionId = generateSessionId();
+            if (sessionId) {
+                while (newSessionId === sessionId) {
+                    newSessionId = generateSessionId();
+                }
+            }
+            const lastLogin = user.lastLogin;
+            const newLastLogin = Date.now();
+            const test = await bcrypt.compare(password, user.password);
             if (!user || !(await bcrypt.compare(password, user.password))) {
                 return res.status(401).send({ message: 'Invalid login credentials' });
             }
-            const token = jwt.sign({ id: user._id }, 'secretKey');
-            res.send({ user, token });
+            await User.updateOne({ username }, {
+                $set: {
+                    sessionId: newSessionId,
+                    lastLogin: newLastLogin
+                }
+            });
+            // change this to only required fields for JWT
+            const tokenPayload = { 
+                username: user.username,
+                sessionId: newSessionId,
+                lastLogin: newLastLogin,
+                id: user._id,
+            };
+            const frontendAccessiblePayload = {
+                username: user.username,
+                id: user._id,
+            }
+            const options = { expiresIn: '7d' };
+            const secretKey = process.env.JWT_SECRET_KEY;
+            const token = jwt.sign(tokenPayload, secretKey, options);
+            res.status(201).send({ message: 'User logged in, redirecting...', token, frontendAccessiblePayload });
         }
     } catch (error) {
+        console.error(error);
         res.status(500).send(error);
     }
 });

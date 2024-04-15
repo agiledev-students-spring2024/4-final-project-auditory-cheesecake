@@ -7,7 +7,11 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   phoneNumber: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  sessionId: { type: String, required: false },
+  lastLogin: { type: Date, required: false },
+  start_time: { type: Date, required: false },
+  end_time: { type: Date, required: false },
 });
 
 //hash pw before saving
