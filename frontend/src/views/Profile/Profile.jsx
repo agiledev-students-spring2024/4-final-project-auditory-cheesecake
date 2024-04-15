@@ -1,19 +1,32 @@
 import React, { useState } from "react";
 import './Profile.css'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Profile = () => {
-    const [showTerms, setShowTerms] = useState(false);
 
-    const username = 'myUserName';
-    const userHandle = '@username';
+  const [user, setUser] = useState(null);
+  const [showTerms, setShowTerms] = useState(false);
 
-    const handleTermsToggle = () => setShowTerms(!showTerms);
-    //handle clicks outisde overlay to close the overlay
-    const closeOverlay = (e) => {
-      if (e.target.id === "overlay-background") {
-          setShowTerms(false);
-      }
+  useEffect(() => {
+    const fetchUserData = async () => {
+        try {
+            const response = await axios.get('/user/email/user@example.com'); // Change to your actual API endpoint
+            setUser(response.data);
+        } catch (error) {
+            console.error('Failed to fetch user data:', error);
+        }
+    };
+
+    fetchUserData();
+}, []);
+
+  const handleTermsToggle = () => setShowTerms(!showTerms);
+  //handle clicks outisde overlay to close the overlay
+  const closeOverlay = (e) => {
+    if (e.target.id === "overlay-background") {
+        setShowTerms(false);
+    }
   };
 
     return (
@@ -23,16 +36,20 @@ const Profile = () => {
         <h2>View User Profile</h2>
         </header>
         
-        <div className="profile-info">
-          <img 
-          src="https://picsum.photos/200" 
-          alt="Profile" 
-          className="profile-pic" 
-        />
-        <h2>{username}</h2>
-        <p>{userHandle}</p>
-        <Link to="/EditProfile" className="btn">Edit Profile</Link>
-      </div>
+        {user ? (
+          <div className="profile-info">
+            <img 
+                src="https://picsum.photos/200" 
+                alt="Profile" 
+                className="profile-pic" 
+            />
+            <h2>{user.firstName} {user.lastName}</h2>
+            <p>@{user.username}</p>
+            <Link to="/EditProfile" className="btn">Edit Profile</Link>
+          </div>
+          ) : (
+              <p>Loading user data...</p>
+          )}
       
       <div className="profile-actions">
         
