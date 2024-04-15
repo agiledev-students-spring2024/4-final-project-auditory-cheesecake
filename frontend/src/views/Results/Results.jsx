@@ -65,7 +65,10 @@ const Results = () => {
   useEffect(() => {
     const fetchResponses = async () => {
       try {
-        const res = await fetch('http://localhost:1337/api/survey/responses');
+        const user = JSON.parse (sessionStorage.getItem('user')); 
+        console.log ('User:', user)
+        const userId = user.id;
+        const res = await fetch(`http://localhost:1337/api/survey/responses?userId=${userId}`);
         const data = await res.json();
         setResponses(data);
         setLoading(false);
@@ -74,7 +77,7 @@ const Results = () => {
         setLoading(false);
       }
     };
-
+  
     fetchResponses();
   }, []);
 
