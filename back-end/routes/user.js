@@ -14,7 +14,7 @@ const loadMockData = () => {
 };
 
 //View User Profile Info
-router.get('/email/:email', userController.getUserByEmail);
+router.get('/user/:id', userController.getUserById);
 
 // Edit user profile user
 router.post('/editUserProfile', async (req, res) => {

@@ -1,9 +1,9 @@
 const User = require('../models/User');
 
-const getUserByEmail = async (req, res) => {
+const getUserById = async (req, res) => {
     try {
-        const email = decodeURIComponent(req.params.email);
-        const user = await User.findOne({ email: email });
+        const id = req.params.id;
+        const user = await User.findById(id);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -16,5 +16,5 @@ const getUserByEmail = async (req, res) => {
 };
 
 module.exports = {
-    getUserByEmail
+    getUserById
 };

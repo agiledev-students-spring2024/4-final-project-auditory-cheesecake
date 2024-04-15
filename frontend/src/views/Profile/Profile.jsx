@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Profile.css'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -9,16 +9,18 @@ const Profile = () => {
   const [showTerms, setShowTerms] = useState(false);
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const userId = sessionStorage.getItem('userId');
+    if (userId) {
+      const fetchUserData = async () => {
         try {
-            const response = await axios.get('/user/email/user@example.com'); // Change to your actual API endpoint
+            const response = await axios.get(`/user/${userId}`); // Change to your actual API endpoint
             setUser(response.data);
         } catch (error) {
             console.error('Failed to fetch user data:', error);
         }
     };
-
     fetchUserData();
+    }
 }, []);
 
   const handleTermsToggle = () => setShowTerms(!showTerms);
