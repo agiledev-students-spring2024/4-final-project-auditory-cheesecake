@@ -40,7 +40,41 @@ const changeUserPassword = async (req, res) => {
     }
 };
 
+const editUserProfile = async (req, res) => {
+    console.log("Received edit user request");
+    console.log("Edit user Request body", req.body);
+    try {
+        const {id, firstName, lastName, email, username, phoneNumber} = req.body;
+        
+        if (username=='' || email=='' || firstName=='' || lastName=='' || phoneNumber=='') {
+            return res.status(400).json({ error: 'Missing parameters' });
+        }
+        
+        // load user
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).send({ message: 'User not found' });
+        }
+
+        // need to check if email, username, or phone number already exist for that person
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.email = email;
+        user.phoneNumber = phoneNumber;
+        user.username = username;
+
+        await user.save();
+
+        res.status(200).send({ message: 'User profile updated successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: 'Failed to edit user profile', error: error.message });
+    }
+};
+
+
 module.exports = {
     getUserById,
-    changeUserPassword
+    changeUserPassword,
+    editUserProfile
 };

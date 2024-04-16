@@ -86,6 +86,32 @@
   padding-bottom: 5px;
 }
 
+.edit-profile .edit-profile-form-wrapper .success-message {
+  color: green;
+  background-color: rgb(221, 255, 221);
+  font-size: smaller;
+  text-align: left;
+  font-weight: bolder;
+  width:80%;
+  margin: 0px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.edit-profile .edit-profile-form-wrapper .failure-message {
+  color: red;
+  background-color: #ffdddd;
+  font-size: smaller;
+  text-align: left;
+  font-weight: bolder;
+  width:80%;
+  margin: 0px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .edit-profile form .button-link {
   color: #446ff2;
   text-decoration: none;

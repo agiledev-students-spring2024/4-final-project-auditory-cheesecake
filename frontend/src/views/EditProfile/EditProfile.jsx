@@ -1,46 +1,82 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import './EditProfile.css';
 import axios from 'axios';
 
 
 const EditProfile = () => {
+    const [userID, setuserID] = useState("");
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [emailValid, setEmailValid] = useState(true); // State to track if the email is valid
-    const [firstNameValid, setFirstNameValid] = useState(true);
-    const [lastNameValid, setLastNameValid] = useState(true);
-    const [usernameValid, setUsernameValid] = useState(true);
-    const [phoneNumberValid, setPhoneNumberValid] = useState(true);
-
+    const [emailValid, setEmailValid] = useState(false); // State to track if the email is valid
+    const [firstNameValid, setFirstNameValid] = useState(false);
+    const [lastNameValid, setLastNameValid] = useState(false);
+    const [usernameValid, setUsernameValid] = useState(false);
+    const [phoneNumberValid, setPhoneNumberValid] = useState(false);
+    const [error, setError] = useState(false);
+    const [message, setMessage] = useState(""); // State to handle messages
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchUserData = async () => {
+        const user = JSON.parse (sessionStorage.getItem('user')); 
+        if (user && user.id) {
+            setuserID(user.id);
+            console.log('User ID:', user.id);
+        }
+    }, []);
+    const fetchUserData = useCallback(async () => {
+        if (userID) {
             try {
-                const user = JSON.parse(sessionStorage.getItem('user'));
-                console.log('User:', user)
-                const userId = user.id;
-                if (userId) {
-                    const response = await axios.get(`http://localhost:1337/api/user/${userId}`);
-                    const userData = response.data;
-                    console.log('userData: ', userData);
-                    setFirstName(userData.firstName);
-                    setLastName(userData.lastName);
-                    setUsername(userData.username);
-                    setEmail(userData.email);
-                    setPhoneNumber(userData.phoneNumber);
-                }
+                const response = await axios.get(`http://localhost:1337/api/user/${userID}`);
+                const userData = response.data;
+                console.log('loaded userData: ', userData);
+                setFirstName(userData.firstName);
+                setLastName(userData.lastName);
+                setUsername(userData.username);
+                setEmail(userData.email);
+                setPhoneNumber(formatPhoneNumber(userData.phoneNumber)); // Format and set phone number
             } catch (error) {
                 console.error('Failed to fetch user data:', error);
             }
-        };
+        }
+    }, [userID]);
+    useEffect(() => {
         fetchUserData();
-    }, []);
+    }, [fetchUserData]);
+
+    useEffect(() => {
+        if (firstName !== "") { // Ensures validation runs only after data is fetched
+            setFirstNameValid(validateFirstName(firstName));
+        }
+    }, [firstName]);
+    
+    useEffect(() => {
+        if (lastName !== "") {
+            setLastNameValid(validateLastName(lastName));
+        }
+    }, [lastName]);
+    
+    useEffect(() => {
+        if (username !== "") {
+            setUsernameValid(validateUsername(username));
+        }
+    }, [username]);
+    
+    useEffect(() => {
+        if (email !== "") {
+            setEmailValid(validateEmail(email));
+        }
+    }, [email]);
+    
+    useEffect(() => {
+        if (phoneNumber !== "") {
+            setPhoneNumberValid(validatePhoneNumber(phoneNumber));
+        }
+    }, [phoneNumber]);
 
     const validateEmail = (email) => {
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -86,40 +122,26 @@ const EditProfile = () => {
         if (phoneNumberLength < 7) return `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(3)}`;
         return `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
     };
-
-    // const validateFirstName = (firstName) => {
-    //     // Check if firstName is not null, undefined, and not an empty string
-    //     return firstName !== null && firstName !== undefined && firstName.trim() !== '';
-    // }
-    // const validateLastName = (lastName) => {
-    //     return lastName !== null && lastName !== undefined && lastName.trim() !== '';
-    // }
-    // const validatePhoneNumber = (phoneNumber) => {
-    //     // Notice the escaped + character and the use of .test() instead of .search()
-    //     const regex = /^(\+1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s.-]?[0-9]{3}[\s.-]?[0-9]{4}$/;
-    //     return regex.test(phoneNumber);
-    // };
-
-
+ 
     const handleSubmit = (e) => {
         console.log("Form submit initiated");
         e.preventDefault();
-        alert('Edit Profile form is submitting');
         if (!emailValid || !firstNameValid || !lastNameValid || !usernameValid || !phoneNumberValid) {
-            alert("Please correct the errors in the form.");
+            setMessage("Please correct the errors in the form.");
             return;
         }
         //API call to the backend registration endpoint
-        fetch('http://localhost:1337/api/auth/register', {
+        fetch('http://localhost:1337/api/editUserProfile', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                email: email,
-                username: username,
+                id: userID,
                 firstName: firstName,
                 lastName: lastName,
+                email: email,
+                username: username,
                 phoneNumber: phoneNumber
             })
         })
@@ -131,13 +153,14 @@ const EditProfile = () => {
             })
             .then(data => {
                 console.log('Success:', data);
-                alert('Edit Profile successful');
-                // Maybe re-request current user data
-                // Update the page
+                setMessage("Edit Profile successful");
+                setError(false);
+                fetchUserData(); // Refresh user data
             })
             .catch((error) => {
                 console.error('Error:', error);
-                alert('Error while editing user profile');
+                setError(true);
+                setMessage("Error while editing user profile: " + error.message);
             });
         console.log(email, username);
     }
@@ -146,6 +169,11 @@ const EditProfile = () => {
         <div className="edit-profile">
             <div className="edit-profile-form-wrapper">
                 <h1>Edit Profile</h1>
+                {message && (
+                    <div className={`message ${error ? "failure-message" : "success-message"}`}>
+                        {message}
+                    </div>
+                )}
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="FirstName">First Name</label>
                     <input
