@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './ChangePassword.css';
+import axios from 'axios';
 
 const ChangePassword = () => {
     const navigate = useNavigate();
@@ -8,6 +9,7 @@ const ChangePassword = () => {
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const [userId, setUserId] = useState('');
 
     const validatePassword = (password) => {
         if (password.length < 6) {
@@ -28,7 +30,15 @@ const ChangePassword = () => {
         return [true, ""];
     }
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+        const user = JSON.parse (sessionStorage.getItem('user')); 
+        if (user && user.id) {
+            setUserId(user.id);
+            console.log('User ID:', user.id);
+        }
+    }, []);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const validOldPassword = validatePassword(oldPassword);
         const validNewPassword = validatePassword(newPassword);
@@ -43,7 +53,22 @@ const ChangePassword = () => {
             alert("Invalid password: " + validOldPassword[1]);
             return;
         }
-    }
+
+        try {
+            const response = await axios.post('http://localhost:1337/api/changePassword', {
+                id: userId,
+                oldPassword,
+                newPassword
+            });
+            alert(response.data.message);
+            if (response.status === 200) {
+                navigate('/profile');
+            }
+        } catch (error) {
+            console.error('Failed to change password:', error);
+            alert('Failed to change password: ' + (error.response ? error.response.data.message : error.message));
+        }
+    };
 
     return (
         <div className="change-password">
