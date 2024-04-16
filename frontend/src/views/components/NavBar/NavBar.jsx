@@ -1,11 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './NavBar.css';
 import logo from '../../../fullLogo.png'; // Adjust the path as necessary
 import { slide as Menu } from 'react-burger-menu';
 
 
 const NavBar = () => {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        sessionStorage.clear();
+        navigate('/');
+    };
+
     return (
         <nav className="NavBar">
             <ul>
@@ -34,6 +41,12 @@ const NavBar = () => {
                         <span className="material-symbols-outlined">
                             login
                         </span>   
+                    </a>
+                    <a className="menu-item" href="#" onClick={handleLogout}>
+                        Logout
+                        <span className="material-symbols-outlined">
+                            logout
+                        </span>
                     </a>
                     </Menu>
                 </li>
