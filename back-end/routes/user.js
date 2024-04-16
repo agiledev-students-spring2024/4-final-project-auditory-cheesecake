@@ -63,35 +63,6 @@ router.post('/editUserProfile', async (req, res) => {
 });
 
 //Change user password
-router.post('/changePassword', async (req, res) => {
-    try{
-        const { id, oldPassword, newPassword } = req.body;
-
-        if (process.env.USE_MOCK_DATA === 'true') {
-            let mockUsers = loadMockData();
-            const userIndex = mockUsers.findIndex(u => String(u.id) === String(id));
-
-            if (userIndex === -1){
-                return res.status(404).send({ message: 'User not found in mock data' });
-            }
-
-            const user = mockUsers[userIndex];
-            const isMatch = await bcrypt.compare(oldPassword, user.password);
-            if (!isMatch){
-                return res.status(401).send({ message: 'Old password is incorrect' });
-            }
-
-            const hashedNewPassword = await bcrypt.hash(newPassword, 8);
-            mockUsers[userIndex].password = hashedNewPassword;
-            fs.writeFileSync(filePath, JSON.stringify(mockUsers, null, 2));
-            res.status(200).send({ message: 'Password updated successfully in mock data' });
-        }else{
-            res.status(501).send({ message: 'Not implemented for real data yet' });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send({ message: 'Failed to change password', error: error.message });
-    }
-});
+router.post('/changePassword', userController.changeUserPassword);
 
 module.exports = router;
