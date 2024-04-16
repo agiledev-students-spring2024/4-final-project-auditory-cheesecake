@@ -50,6 +50,8 @@ const Profile = () => {
             />
             <h2>{user.firstName} {user.lastName}</h2>
             <p>@{user.username}</p>
+            <p>Email: {user.email}</p>
+            <p>Phone: {user.phoneNumber}</p>
             <Link to="/EditProfile" className="btn">Edit Profile</Link>
           </div>
         ) : (
