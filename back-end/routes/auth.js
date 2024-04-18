@@ -59,7 +59,7 @@ router.post('/register', async (req, res) => {
             res.status(201).send({ message: 'User registered successfully in mock data' });
         } else {
             const user = new User({ username, email, password: password, firstName, lastName, phoneNumber });
-            console.log(user)
+            // console.log(user) For testing purposes only
             await user.save();
             res.status(201).send({ message: 'User registered successfully' });
         }
