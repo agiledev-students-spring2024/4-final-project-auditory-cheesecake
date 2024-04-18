@@ -1,12 +1,16 @@
 class SessionCache {
     constructor() {
+        // use map because O(1) lookup time
         this.cache = new Map();
+        console.log('SessionCache initialized');
     }
 
-    addSession(sessionId, sessionData) {
-        // 7 days
-        const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000;
-        this.cache.set(sessionId, { ...sessionData, expiresAt });
+    addSession(sessionId, username) {
+        if (!this.getSession(sessionId)) {
+            // 7 days
+            const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000;
+            this.cache.set(sessionId, { username, expiresAt });
+        }
     }
 
     getSession(sessionId) {
@@ -21,6 +25,16 @@ class SessionCache {
 
     removeSession(sessionId) {
         this.cache.delete(sessionId);
+    }
+
+    print() {
+        for (let [sessionId, data] of this.cache.entries()) {
+            console.log(sessionId, data);
+        }
+    }
+
+    length() {
+        return this.cache.size;
     }
 
     clearExpiredSessions() {

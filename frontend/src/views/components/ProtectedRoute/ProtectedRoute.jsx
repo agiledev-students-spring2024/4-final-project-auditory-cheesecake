@@ -104,7 +104,7 @@ const ProtectedRoute = ({ children }) => {
     else {
       alert('You must complete the quiz to access this page.');
     }
-    <Navigate to="/" />;
+    return <Navigate to="/" />;
   }
 };
 

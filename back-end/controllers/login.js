@@ -1,15 +1,16 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Session = require('../models/Session');
 const SessionCache = require('../classes/SessionCache');
+const fs = require('fs');
 
 const secretKey = process.env.JWT_SECRET_KEY;
 const useMockData = process.env.USE_MOCK_DATA === 'true';
 
 //func to load mock data
 const loadMockData = () => {
-    return JSON.parse(fs.readFileSync('../data/mock-users.json', 'utf8')); 
+    return JSON.parse(fs.readFileSync('./data/mock-users.json', 'utf8')); 
 };
 
 const login = async (req, res) => {
@@ -32,7 +33,7 @@ const login = async (req, res) => {
                 return res.status(401).send({ message: 'Invalid login credentials' });
             }
             const sessionId = await Session.createSession(username);
-            SessionCache.addSession(sessionId);
+            SessionCache.addSession(sessionId, username);
             const lastLogin = new Date();
             await User.updateOne({ username }, {
                 $set: {

@@ -39,8 +39,8 @@ sessionSchema.statics.createSession = async function(username) {
     expiresAt
   });
 
-  SessionCache.addSession(sessionId, session);
   await session.save();
+  SessionCache.addSession(sessionId, username);
   return sessionId;
 };
 
@@ -49,7 +49,7 @@ sessionSchema.statics.createSession = async function(username) {
 sessionSchema.statics.getSession = async function(sessionId) {
   const session = await this.findOne({ sessionId: sessionId });
   if (session && session.expiresAt > new Date()) {
-    SessionCache.addSession(sessionId, session);
+    SessionCache.addSession(sessionId, session.username);
     return session;
   } else {
     if (session) {
