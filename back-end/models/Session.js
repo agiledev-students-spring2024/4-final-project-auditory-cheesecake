@@ -29,6 +29,9 @@ sessionSchema.statics.generateSessionId = async function() {
 // equivalent to:
 // public static void createSession(String username) {
 sessionSchema.statics.createSession = async function(username) {
+  if (!username) {
+    throw new Error('Username is required');
+  }
   const sessionId = await this.generateSessionId();
   // 7 days from now
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);

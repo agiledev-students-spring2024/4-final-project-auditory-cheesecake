@@ -6,6 +6,9 @@ class SessionCache {
     }
 
     addSession(sessionId, username) {
+        if (!sessionId || !username) {
+            throw new Error('Session ID and username are required');
+        }
         if (!this.getSession(sessionId)) {
             // 7 days
             const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000;
@@ -25,6 +28,10 @@ class SessionCache {
 
     removeSession(sessionId) {
         this.cache.delete(sessionId);
+    }
+
+    toString() {
+        return JSON.stringify([...this.cache]);
     }
 
     print() {

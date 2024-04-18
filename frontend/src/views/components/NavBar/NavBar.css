@@ -71,6 +71,10 @@
   left: 20px;
 }
 
+.bm-menu-wrap, .bm-menu {
+  transition: transform 0.2s ease;
+}
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
@@ -138,7 +142,7 @@
 }
 
 /* Individual item */
-.bm-item {
+.bm-item, .NavBar button.bm-item.menu-item {
   display: inline-block;
   color: #ffffff;
   margin-bottom: 10px;
@@ -147,6 +151,10 @@
   transition: color 0.2s;
 }
 
-.bm-item:hover {
+.bm-item:hover, .NavBar button.bm-item.menu-item:hover {
   color: #230a7d;
+}
+
+.NavBar button.bm-item.menu-item {
+  font-size: 1.25rem;
 }
