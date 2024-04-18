@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
   lastLogin: { type: Date, required: false },
   start_time: { type: Date, required: false },
   end_time: { type: Date, required: false },
+  profilePicture: { type: String, required: false },
 });
 
 //hash pw before saving

@@ -11,6 +11,7 @@ const Register = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
     const validateEmail = (email) => {
@@ -135,12 +136,20 @@ const Register = () => {
                     <label htmlFor="Password">Password</label>
                     <input
                         id="Password"
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
+                     <label className="show-password-checkbox">
+                        <input
+                            type="checkbox"
+                            checked={showPassword}
+                            onChange={() => setShowPassword(!showPassword)}
+                        />
+                        Show Password
+                    </label>
                     <button type="submit">Register</button>
                     <p>Already have an account? Login <button className="button-link" onClick={() => navigate("/Login")}>here</button>!</p>
                 </form>
