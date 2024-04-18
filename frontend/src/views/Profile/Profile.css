@@ -68,6 +68,8 @@ html {
   border: 4px solid #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  display: block; 
+  margin: auto;
 }
 
 .profile-container h1,
@@ -158,4 +160,41 @@ p {
   cursor: pointer;
   font-size: 24px;
   color: #333;
+}
+
+.profile-pic-container {
+  position: relative;
+}
+
+.profile-pic-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px; 
+  height: 120px; 
+  transform: translate(-50%, -50%);
+  border-radius: 50%; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px; 
+  opacity: 0; 
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.profile-pic-container:hover .profile-pic-overlay {
+  opacity: 1; 
+}
+
+
+.profile-pic-overlay div {
+  
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 8px 12px; 
+  border-radius: 20px; 
+  text-align: center; 
+  color: black;
 }

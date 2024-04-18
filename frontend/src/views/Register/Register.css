@@ -90,3 +90,13 @@
   border-radius: 5px;
   text-align: center;
 }
+
+.show-password-checkbox {
+  font-size: 12px; 
+  color: #666; 
+  margin-top: -15px; 
+}
+
+.show-password-checkbox input[type="checkbox"] {
+  margin-right: 5px; 
+}
