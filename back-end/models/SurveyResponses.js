@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 
 const surveyResponseSchema = new mongoose.Schema({
@@ -20,3 +19,6 @@ const surveyResponseSchema = new mongoose.Schema({
 const SurveyResponse = mongoose.model('SurveyResponse', surveyResponseSchema);
 
 module.exports = SurveyResponse;
+
+
+

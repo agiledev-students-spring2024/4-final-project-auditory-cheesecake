@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 import './ProtectedRoute.css';
 
 const mustBeLoggedOut = ['register', 'login',];
-const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword',];
+const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword', 'results', 'survey'];
 const mustCompleteQuiz = ['results'];
 
 const pingEndpoint = async (token) => {
@@ -66,6 +66,7 @@ const checkAuth = async (children) => {
 const ProtectedRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const desiredPage = children.type.name.toLowerCase(); 
 
   useEffect(() => {
     const authenticate = async () => {
@@ -90,7 +91,21 @@ const ProtectedRoute = ({ children }) => {
   }
 
   console.log('Final Authenticated State:', isAuthenticated);
-  return isAuthenticated ? children : <Navigate to="/" />;
+  if (isAuthenticated) {
+    return children;
+  }
+  else {
+    if (mustBeLoggedOut.includes(desiredPage)) {
+      alert('You must be logged out to access this page.');
+    }
+    else if (mustBeLoggedIn.includes(desiredPage)) {
+      alert('You must be logged in to access this page.');
+    }
+    else {
+      alert('You must complete the quiz to access this page.');
+    }
+    <Navigate to="/" />;
+  }
 };
 
 export default ProtectedRoute;
