@@ -4,14 +4,12 @@ import './NavBar.css';
 import logo from '../../../fullLogo.png'; // Adjust the path as necessary
 import { slide as Menu } from 'react-burger-menu';
 
-
 const NavBar = () => {
     const navigate = useNavigate();
 
-    const handleLogout = () => {
-        sessionStorage.clear();
-        navigate('/');
-    };
+    const handleLogout = async () => {
+        navigate('/Logout');
+    }
 
     return (
         <nav className="NavBar">
@@ -42,12 +40,12 @@ const NavBar = () => {
                             login
                         </span>   
                     </a>
-                    <a className="menu-item" href="#" onClick={handleLogout}>
+                    <button className="menu-item" onClick={ handleLogout }>
                         Logout
                         <span className="material-symbols-outlined">
                             logout
                         </span>
-                    </a>
+                    </button>
                     </Menu>
                 </li>
             </ul>

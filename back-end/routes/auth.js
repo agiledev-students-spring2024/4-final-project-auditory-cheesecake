@@ -13,6 +13,7 @@ const filePath = path.join(__dirname, '../data/mock-users.json'); //filepath for
 const router = express.Router();
 const { findUser } = require('../controllers/auth');
 const { login } = require('../controllers/login');
+const { logout } = require('../controllers/logout');
 
 router.post('/findUser', findUser);
 
@@ -62,6 +63,9 @@ router.post('/register', async (req, res) => {
 
 //login user
 router.post('/login', login);
+
+// logout user
+router.post('/logout', logout);
 
 module.exports = router;
 

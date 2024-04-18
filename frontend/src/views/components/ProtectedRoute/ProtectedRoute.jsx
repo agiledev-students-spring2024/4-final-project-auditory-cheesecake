@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 import './ProtectedRoute.css';
 
 const mustBeLoggedOut = ['register', 'login',];
-const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword', 'results', 'survey'];
+const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword', 'results', 'survey', 'logout'];
 const mustCompleteQuiz = ['results'];
 
 const pingEndpoint = async (token) => {
