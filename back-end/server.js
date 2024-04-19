@@ -2,7 +2,7 @@ const cron = require('node-cron');
 const Semaphore = require('semaphore');
 const app = require('./app.js');
 const connectDatabase = require('./database');
-const { sync, flushExpiredSessions } = require('./utility/SessionsUtility');
+const { sync, flushExpiredSessions } = require('./utility/SessionUtility.js');
 
 const PORT = process.env.PORT || 1337;
 

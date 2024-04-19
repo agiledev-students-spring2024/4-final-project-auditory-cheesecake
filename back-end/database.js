@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { sync } = require('./utility/SessionsUtility');
+const { sync } = require('./utility/SessionUtility');
 
 const connectDatabase = () => {
   mongoose.connect('mongodb+srv://cheese1:AuditoryCheesecake@auditorycheesecake.jtoc5ey.mongodb.net/?retryWrites=true&w=majority&appName=AuditoryCheesecake')
