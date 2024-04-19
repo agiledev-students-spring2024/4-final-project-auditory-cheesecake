@@ -10,7 +10,7 @@ import ProtectedRoute from './views/components/ProtectedRoute/ProtectedRoute';
 import Login from './views/Login/Login';
 import Register from './views/Register/Register';
 import SurveyPage from './views/SurveyPage/SurveyPage';
-
+import Logout from './views/components/Logout/Logout';
 
 function App() {
   return (
@@ -77,6 +77,16 @@ function App() {
             element={
               <ProtectedRoute>
                 <Register />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Route Guard for Logout */}
+          <Route
+            path="/Logout"
+            element={
+              <ProtectedRoute>
+                <Logout />
               </ProtectedRoute>
             }
           />
