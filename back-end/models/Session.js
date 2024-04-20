@@ -69,6 +69,13 @@ sessionSchema.statics.deleteSession = async function(sessionId) {
   await this.deleteOne({ sessionId: sessionId });
 };
 
+// equivalent to:
+// public static void flushExpiredSessions() {
+sessionSchema.statics.flushExpiredSessions = async function() {
+  const now = new Date();
+  await this.deleteMany({ expiresAt: { $lte: now } });
+};
+
 const Session = mongoose.model('Session', sessionSchema);
 
 module.exports = Session;
