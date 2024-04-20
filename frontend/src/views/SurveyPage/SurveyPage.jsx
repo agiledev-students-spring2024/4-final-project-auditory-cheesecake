@@ -237,6 +237,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import './SurveyPage.css';
 
@@ -289,7 +290,7 @@ const SurveyPage = () => {
 
   const handleOptionSelect = async (option) => {
     if (currentQuestion === 0 && option === 'No') {
-      alert('You cannot proceed in the study.');
+      toast.error('Error: You cannot proceed in the study.');
       navigate('/survey');
       return;
     }
