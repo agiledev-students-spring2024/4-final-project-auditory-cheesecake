@@ -235,7 +235,7 @@
 
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SurveyPage.css';
@@ -246,6 +246,7 @@ const SurveyPage = () => {
   const [responses, setResponses] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [questions, setQuestions] = useState([]);
+  const audioRef = useRef(new Audio());
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -257,8 +258,34 @@ const SurveyPage = () => {
         setErrorMessage('Failed to load questions. Please refresh the page.');
       }
     };
+
     fetchQuestions();
   }, []);
+
+  useEffect(() => {
+    if (questions[currentQuestion]?.audio) {
+      const audioUrl = `http://localhost:1337${questions[currentQuestion].audio}`;
+      console.log("Attempting to play audio from:", audioUrl);
+      audioRef.current.src = audioUrl;
+      const playPromise = audioRef.current.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log("Playback successful!");
+        }).catch(error => {
+          console.error("Playback failed:", error);
+        });
+      }
+    }
+    
+    return () => audioRef.current.pause(); // Cleanup function to stop audio when component unmounts or before re-running effect
+  }, [currentQuestion, questions]);
+
+  const replayAudio = () => {
+    if (audioRef.current.src) {
+      audioRef.current.play();
+    }
+  };
 
   const handleOptionSelect = async (option) => {
     if (currentQuestion === 0 && option === 'No') {
@@ -282,10 +309,10 @@ const SurveyPage = () => {
 
   const submitResponses = async (surveyResponses) => {
     try {
-      const user = JSON.parse (sessionStorage.getItem('user')); 
-      console.log ('User:', user)
+      const user = JSON.parse(sessionStorage.getItem('user'));
+      console.log('User:', user);
       const userId = user.id;
-      console.log ('User ID:', userId)
+      console.log('User ID:', userId);
       const response = await axios.post('http://localhost:1337/api/responses', {
         userId, // Include the userId
         responses: surveyResponses
@@ -318,6 +345,11 @@ const SurveyPage = () => {
               {option}
             </button>
           ))}
+          {questions[currentQuestion]?.audio && (
+            <button onClick={replayAudio} className="play-again" title="Play Again">
+  &#x21BA;
+</button>
+          )}
         </div>
       </div>
     </div>
@@ -325,3 +357,5 @@ const SurveyPage = () => {
 };
 
 export default SurveyPage;
+
+

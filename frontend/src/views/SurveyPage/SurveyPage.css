@@ -16,6 +16,7 @@
 .survey-container {
     font-family: 'Arial', sans-serif;
     max-width: 700px;
+    min-width: 300px;
     margin: 40px auto;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -74,3 +75,27 @@
     font-weight: bold;
   }
   
+
+
+.play-again {
+  font-size: 16px;
+  background-color: #FFFFFF; /* Light background for the button */
+  color: #4CAF50; /* Green color for the icon to stand out */
+  border: 2px solid #4CAF50; /* Matching border color */
+  padding: 10px;
+  border-radius: 50%; /* Circular button */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.play-again:hover {
+  background-color: #4CAF50;
+  color: #FFFFFF;
+}

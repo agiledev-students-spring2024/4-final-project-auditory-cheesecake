@@ -51,7 +51,7 @@ const ProgressBar = ({ trait, score }) => (
 );
 
 const ProgressCircle = ({ score }) => (
-  <div className="progress-circle-container"> {/* Additional class for specificity */}
+  <div className="progress-circle-container">
     <div className="progress-circle-bar">
       <div className="progress" style={{ width: `${score}%` }}>{score}%</div>
     </div>
@@ -59,25 +59,29 @@ const ProgressCircle = ({ score }) => (
 );
 
 const Results = () => {
-  const [responses, setResponses] = useState([]);
+  const [latestResponses, setLatestResponses] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchResponses = async () => {
       try {
-        const user = JSON.parse (sessionStorage.getItem('user')); 
-        console.log ('User:', user)
+        const user = JSON.parse(sessionStorage.getItem('user')); 
+        console.log('User:', user)
         const userId = user.id;
         const res = await fetch(`http://localhost:1337/api/survey/responses?userId=${userId}`);
         const data = await res.json();
-        setResponses(data);
+        console.log('Responses:', data);
+        if (data.length > 0) {
+          const sortedResponses = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          setLatestResponses(sortedResponses[0].responses); // Assuming the most recent responses are what we want
+        }
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch responses:', error);
         setLoading(false);
       }
     };
-  
+
     fetchResponses();
   }, []);
 
@@ -96,6 +100,14 @@ const Results = () => {
         {Object.entries(bigFiveScores).map(([trait, score]) => (
           <ProgressBar key={trait} trait={trait} score={score} />
         ))}
+        {!loading && latestResponses.length > 0 && (
+          <div className="survey-results">
+            <h1>Your Results:</h1>
+            {latestResponses.map((response, index) => (
+              <p key={index}><strong>{response.question}:</strong> {response.answer}</p>
+            ))}
+          </div>
+        )}
         <div className="results-description">
           <p>Each progress bar represents your score in one of the Big Five personality traits: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism. A higher score indicates a stronger presence of that trait in your personality.  Keep reading below to learn more about your personality.</p>
         </div>

@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
+
 const surveyController = require('./controllers/survey');
 
 const app = express();
@@ -10,6 +12,9 @@ const app = express();
 
 app.use(express.json()); 
 app.use(cors()); 
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 const surveyRoutes = require('./routes/survey');
 app.use('/api', surveyRoutes);
