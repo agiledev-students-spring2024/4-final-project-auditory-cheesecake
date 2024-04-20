@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Logout = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Logout = () => {
                 if (response.status === 200) {
                     sessionStorage.removeItem('authToken');
                     sessionStorage.removeItem('user');
-                    alert('Logout successful, redirecting to homepage.');
+                    toast.success('Logout successful, redirecting to homepage.');
                     // Redirect to the homepage after successful logout
                     navigate('/');
                 } else {
@@ -29,7 +30,7 @@ const Logout = () => {
                 }
             } catch (error) {
                 console.error('Logout error:', error);
-                alert('Logout failed. Please try again.');
+                toast.error('Logout failed. Please try again.');
                 // Redirect to the homepage after successful logout
                 navigate('/');
             }

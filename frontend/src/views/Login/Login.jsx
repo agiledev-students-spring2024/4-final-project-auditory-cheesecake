@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import './Login.css';
 
 const Login = () => {
@@ -22,13 +23,13 @@ const Login = () => {
         });
         const data = await res.json();
         if (res.status === 201) {
-            alert('Login successful');
+            toast.success('Login successful!');
             sessionStorage.setItem('authToken', data.token);
             sessionStorage.setItem('user', JSON.stringify(data.frontendAccessiblePayload));
             navigate('/');
         } else if (res.status >= 400) {
             console.error('Error:', data.message);
-            alert('Error during login: ' + data.message);
+            toast.error('Error during login: ' + data.message);
         }
     }
 
