@@ -21,16 +21,7 @@ const Logout = () => {
                 if (response.status === 200) {
                     sessionStorage.removeItem('authToken');
                     sessionStorage.removeItem('user');
-                    toast.success('Logout successful, redirecting to homepage.', {
-                        position: "top-right",
-                        autoClose: 3500,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: false,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "colored",
-                    });
+                    toast.success('Logout successful, redirecting to homepage.');
                     // Redirect to the homepage after successful logout
                     navigate('/');
                 } else {
@@ -39,16 +30,7 @@ const Logout = () => {
                 }
             } catch (error) {
                 console.error('Logout error:', error);
-                toast.error('Logout failed. Please try again.', {
-                    position: "top-right",
-                    autoClose: 3500,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                });
+                toast.error('Logout failed. Please try again.');
                 // Redirect to the homepage after successful logout
                 navigate('/');
             }

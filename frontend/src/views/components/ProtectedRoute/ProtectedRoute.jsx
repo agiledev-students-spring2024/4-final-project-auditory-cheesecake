@@ -97,40 +97,13 @@ const ProtectedRoute = ({ children }) => {
   }
   else {
     if (mustBeLoggedOut.includes(desiredPage)) {
-      toast.warn('You must be logged out to access this page.', {
-        position: "top-right",
-        autoClose: 3500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.warn('You must be logged out to access this page.');
     }
     else if (mustBeLoggedIn.includes(desiredPage)) {
-      toast.warn('You must be logged in to access this page.', {
-        position: "top-right",
-        autoClose: 3500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.warn('You must be logged in to access this page.');
     }
     else {
-      toast.warn('You must complete the quiz to access this page.', {
-        position: "top-right",
-        autoClose: 3500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.warn('You must complete the quiz to access this page.');
     }
     return <Navigate to="/" />;
   }

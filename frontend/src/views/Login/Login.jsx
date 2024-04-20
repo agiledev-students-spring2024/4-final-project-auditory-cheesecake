@@ -23,31 +23,13 @@ const Login = () => {
         });
         const data = await res.json();
         if (res.status === 201) {
-            toast.success('Login successful!', {
-                position: "top-right",
-                autoClose: 3500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            toast.success('Login successful!');
             sessionStorage.setItem('authToken', data.token);
             sessionStorage.setItem('user', JSON.stringify(data.frontendAccessiblePayload));
             navigate('/');
         } else if (res.status >= 400) {
             console.error('Error:', data.message);
-            toast.error('Error during login: ' + data.message, {
-                position: "top-right",
-                autoClose: 3500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            toast.error('Error during login: ' + data.message);
         }
     }
 

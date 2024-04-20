@@ -263,16 +263,7 @@ const SurveyPage = () => {
 
   const handleOptionSelect = async (option) => {
     if (currentQuestion === 0 && option === 'No') {
-      toast.error('Error: You cannot proceed in the study.', {
-        position: "top-right",
-        autoClose: 3500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      toast.error('Error: You cannot proceed in the study.');
       navigate('/survey');
       return;
     }

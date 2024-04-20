@@ -49,16 +49,7 @@ const ChangePassword = () => {
             validNewPassword[0] === false || 
             validConfirmNewPassword[0] === false
         ) {
-            toast.error("Invalid password: " + validOldPassword[1], {
-                position: "top-right",
-                autoClose: 3500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            toast.error("Invalid password: " + validOldPassword[1]);
             return;
         }
 
@@ -68,31 +59,13 @@ const ChangePassword = () => {
                 oldPassword,
                 newPassword
             });
-            toast.info(response.data.message, {
-                position: "top-right",
-                autoClose: 3500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            toast.info(response.data.message);
             if (response.status === 200) {
                 navigate('/profile');
             }
         } catch (error) {
             console.error('Failed to change password:', error);
-            toast.error('Failed to change password: ' + (error.response ? error.response.data.message : error.message), {
-                position: "top-right",
-                autoClose: 3500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            toast.error('Failed to change password: ' + (error.response ? error.response.data.message : error.message));
         }
     };
 
