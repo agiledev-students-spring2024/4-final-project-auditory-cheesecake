@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import HomePage from './views/HomePage/HomePage';
 import Profile from './views/Profile/Profile';
 import EditProfile from './views/EditProfile/EditProfile';
@@ -105,6 +107,7 @@ function App() {
           {/* Fallback route for any invalid routes */}
           <Route path="*" element={<HomePage />} />
         </Routes>
+        <ToastContainer />
       </div>
     </Router>
   );

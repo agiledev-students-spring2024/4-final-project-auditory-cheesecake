@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import './ChangePassword.css';
 import axios from 'axios';
 
@@ -43,14 +44,21 @@ const ChangePassword = () => {
         const validOldPassword = validatePassword(oldPassword);
         const validNewPassword = validatePassword(newPassword);
         const validConfirmNewPassword = validatePassword(confirmNewPassword);
-        if (validOldPassword[0] === false) {
-            alert("Invalid password: " + validOldPassword[1]);
-            return;
-        } else if (validNewPassword[0] === false) {
-            alert("Invalid password: " + validOldPassword[1]);
-            return;
-        } else if (validConfirmNewPassword[0] === false) {
-            alert("Invalid password: " + validOldPassword[1]);
+        if (
+            validOldPassword[0] === false || 
+            validNewPassword[0] === false || 
+            validConfirmNewPassword[0] === false
+        ) {
+            toast.error("Invalid password: " + validOldPassword[1], {
+                position: "top-right",
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             return;
         }
 
@@ -60,13 +68,31 @@ const ChangePassword = () => {
                 oldPassword,
                 newPassword
             });
-            alert(response.data.message);
+            toast.info(response.data.message, {
+                position: "top-right",
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             if (response.status === 200) {
                 navigate('/profile');
             }
         } catch (error) {
             console.error('Failed to change password:', error);
-            alert('Failed to change password: ' + (error.response ? error.response.data.message : error.message));
+            toast.error('Failed to change password: ' + (error.response ? error.response.data.message : error.message), {
+                position: "top-right",
+                autoClose: 3500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }
     };
 
