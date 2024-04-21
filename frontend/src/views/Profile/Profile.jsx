@@ -101,7 +101,7 @@ const Profile = () => {
         )}
 
         <div className="profile-actions">
-          <Link to="/Results" className="btn">View your results</Link>
+          <Link to="/Results" className="btn">Results</Link>
           <Link to="/Settings" className="btn">Settings</Link>
           <Link to="/ChangePassword" className="btn">Change Password</Link>
         </div>
