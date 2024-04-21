@@ -41,14 +41,6 @@ import React, { useEffect, useState } from 'react';
 import './Results.css';
 import axios from 'axios';
 
-const ProgressBar = ({ trait, score }) => (
-  <div className="progress-container">
-    <label>{trait}</label>
-    <div className="progress-bar">
-      <div className="progress" style={{ width: `${score}%` }}>{score}%</div>
-    </div>
-  </div>
-);
 
 const ProgressCircle = ({ score }) => (
   <div className="progress-circle-container">
@@ -58,21 +50,42 @@ const ProgressCircle = ({ score }) => (
   </div>
 );
 
+const calculateScores = (averageRating) => {
+  let baseScore = 50; // Base score for ratings less than 1
+  if (averageRating < 1) {
+    baseScore = 30;
+  } else if (averageRating < 2) {
+    baseScore = 40;
+  } else if (averageRating < 3) {
+    baseScore = 50;
+  } else if (averageRating < 4) {
+    baseScore = 60;
+  } else if (averageRating < 5) {
+    baseScore = 70;
+  } else {
+    baseScore = 80; // Maximum score for ratings 5 and above
+  }
+  return {
+    Openness: baseScore + 15,
+    Conscientiousness: baseScore + 5, // Incrementally higher or lower based on your trait criteria
+    Extraversion: baseScore + 5,
+    Agreeableness: baseScore + 10,
+    Neuroticism: baseScore - 20
+  };
+};
+
 const Results = () => {
   const [loading, setLoading] = useState(true);
   const [topPicks, setTopPicks] = useState([]);
   const [worstPicks, setWorstPicks] = useState([]);
   const [averageRating, setAverageRating] = useState(null);
-  const [genrePreference, setGenrePreference] = useState('');
-
-  // Predefined Big Five Personality Scores
-  const bigFiveScores = {
-    Openness: 85, 
-    Conscientiousness: 75, 
-    Extraversion: 65, 
-    Agreeableness: 55, 
-    Neuroticism: 45
-  };
+  const [bigFiveScores, setBigFiveScores] = useState({
+    Openness: 0, 
+    Conscientiousness: 0, 
+    Extraversion: 0, 
+    Agreeableness: 0, 
+    Neuroticism: 0
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -98,6 +111,7 @@ const Results = () => {
         const calculateAverage = (data) => data.reduce((sum, item) => sum + parseInt(item.answer, 10), 0) / data.length;
         const overallAverage = calculateAverage(songData);
         setAverageRating(overallAverage.toFixed(1));
+        setBigFiveScores(calculateScores(overallAverage));
 
         songData.sort((a, b) => parseInt(b.answer, 10) - parseInt(a.answer, 10));
         setTopPicks(songData.slice(0, 3));
