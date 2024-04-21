@@ -37,9 +37,9 @@
 
 // export default Results;
 
-
 import React, { useEffect, useState } from 'react';
 import './Results.css';
+import axios from 'axios';
 
 const ProgressBar = ({ trait, score }) => (
   <div className="progress-container">
@@ -59,32 +59,13 @@ const ProgressCircle = ({ score }) => (
 );
 
 const Results = () => {
-  const [latestResponses, setLatestResponses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [topPicks, setTopPicks] = useState([]);
+  const [worstPicks, setWorstPicks] = useState([]);
+  const [averageRating, setAverageRating] = useState(null);
+  const [genrePreference, setGenrePreference] = useState('');
 
-  useEffect(() => {
-    const fetchResponses = async () => {
-      try {
-        const user = JSON.parse(sessionStorage.getItem('user')); 
-        console.log('User:', user)
-        const userId = user.id;
-        const res = await fetch(`http://localhost:1337/api/survey/responses?userId=${userId}`);
-        const data = await res.json();
-        console.log('Responses:', data);
-        if (data.length > 0) {
-          const sortedResponses = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-          setLatestResponses(sortedResponses[0].responses); // Assuming the most recent responses are what we want
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error('Failed to fetch responses:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchResponses();
-  }, []);
-
+  // Predefined Big Five Personality Scores
   const bigFiveScores = {
     Openness: 85, 
     Conscientiousness: 75, 
@@ -93,6 +74,45 @@ const Results = () => {
     Neuroticism: 45
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        const userId = user.id;
+        const [questionsRes, responsesRes] = await Promise.all([
+          axios.get('http://localhost:1337/api/questions'),
+          axios.get(`http://localhost:1337/api/survey/responses?userId=${userId}`)
+        ]);
+
+        const questions = questionsRes.data;
+        const responses = responsesRes.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0].responses;
+
+        const songResponses = responses.slice(4, 17);
+        const songData = songResponses.map((response, index) => ({
+          ...response,
+          spotifyUrl: questions[index + 4].spotifyURL,
+          appleMusicUrl: questions[index + 4].appleMusicURL,
+          youtubeUrl: questions[index + 4].youtubeURL,
+        }));
+
+        const calculateAverage = (data) => data.reduce((sum, item) => sum + parseInt(item.answer, 10), 0) / data.length;
+        const overallAverage = calculateAverage(songData);
+        setAverageRating(overallAverage.toFixed(1));
+
+        songData.sort((a, b) => parseInt(b.answer, 10) - parseInt(a.answer, 10));
+        setTopPicks(songData.slice(0, 3));
+        setWorstPicks(songData.slice(-3));
+
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="results">
       <div className="results-wrapper">
@@ -100,12 +120,28 @@ const Results = () => {
         {Object.entries(bigFiveScores).map(([trait, score]) => (
           <ProgressBar key={trait} trait={trait} score={score} />
         ))}
-        {!loading && latestResponses.length > 0 && (
+        {!loading && (
           <div className="survey-results">
             <h1>Your Results:</h1>
-            {latestResponses.map((response, index) => (
-              <p key={index}><strong>{response.question}:</strong> {response.answer}</p>
-            ))}
+            <p><strong>Your Average Rating: {averageRating}</strong></p>
+            <p><strong>Your Favorite Genre: {genrePreference}</strong></p>
+            <div>
+              <strong>Your Top Picks:</strong>
+              {topPicks.map(pick => (
+                <p key={pick.question}>
+                  {pick.question}:
+                  <a href={pick.spotifyUrl}><img src="/spotify_icon.png" alt="" className="iconSmall" /></a>
+                  <a href={pick.appleMusicUrl}><img src="/Apple_Music_icon.png" alt="" className="iconSmall"/></a>
+                  <a href={pick.youtubeUrl}><img src="/Youtube_logo.png" alt="" className="iconSmall" /></a>
+                </p>
+              ))}
+            </div>
+            <div>
+              <strong>Songs You Want to Avoid:</strong>
+              {worstPicks.map(pick => (
+                <p key={pick.question}>{pick.question}</p>
+              ))}
+            </div>
           </div>
         )}
         <div className="results-description">
@@ -171,3 +207,4 @@ const Results = () => {
 };
 
 export default Results;
+
