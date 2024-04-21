@@ -87,6 +87,7 @@ const Results = () => {
     Neuroticism: 0
   });
 
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
