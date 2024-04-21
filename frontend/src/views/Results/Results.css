@@ -100,3 +100,18 @@
     border-radius: 8px;
     padding: 3px;
   }
+  .iconSmall { 
+    width: 20px;
+    height: 20px;
+    margin-right: 8px; /* Right margin between icons */
+    margin-left: 8px;
+
+  }
+
+  .survey-results { 
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center;
+    align-content: center;
+    text-align: center;
+  }
