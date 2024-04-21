@@ -8,6 +8,8 @@ const NavBar = () => {
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
   const [isAnimating, setAnimating] = useState(false);
+  // Add a state to track if the user is logged in
+  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem('authToken') !== null);
 
   const handleOpen = () => {
     if (!isAnimating) {
@@ -32,6 +34,20 @@ const NavBar = () => {
     navigate(e.target.value);
     handleClose();
   };
+
+  useEffect(() => {
+    const handleAuthChange = () => {
+      setIsLoggedIn(sessionStorage.getItem('authToken') !== null);
+    };
+
+    // Listen for the custom auth change event
+    window.addEventListener('authChange', handleAuthChange);
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener('authChange', handleAuthChange);
+    };
+  }, []);
 
   // handle the end of the animation
   useEffect(() => {
@@ -71,12 +87,15 @@ const NavBar = () => {
             <button className="menu-item" value="/Profile" onClick={handleNavigate}>
               Profile
             </button>
-            <button className="menu-item" value="/Login" onClick={handleNavigate}>
-              Login
-            </button>
-            <button className="menu-item" value='/Logout' onClick={handleNavigate}>
-              Logout
-            </button>
+            {isLoggedIn ? (
+              <button className="menu-item" value='/Logout' onClick={handleNavigate}>
+                Logout
+              </button>
+            ) : (
+              <button className="menu-item" value="/Login" onClick={handleNavigate}>
+                Login
+              </button>
+            )}
           </Menu>
         </li>
       </ul>

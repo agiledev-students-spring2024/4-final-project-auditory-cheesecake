@@ -26,6 +26,7 @@ const Login = () => {
             toast.success('Login successful!');
             sessionStorage.setItem('authToken', data.token);
             sessionStorage.setItem('user', JSON.stringify(data.frontendAccessiblePayload));
+            window.dispatchEvent(new Event('authChange'));
             navigate('/');
         } else if (res.status >= 400) {
             console.error('Error:', data.message);
