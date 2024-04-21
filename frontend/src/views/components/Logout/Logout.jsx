@@ -21,6 +21,7 @@ const Logout = () => {
                 if (response.status === 200) {
                     sessionStorage.removeItem('authToken');
                     sessionStorage.removeItem('user');
+                    window.dispatchEvent(new Event('authChange'));
                     toast.success('Logout successful, redirecting to homepage.');
                     // Redirect to the homepage after successful logout
                     navigate('/');
