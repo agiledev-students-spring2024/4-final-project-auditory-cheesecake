@@ -142,14 +142,14 @@ const findUser = async (req, res) => {
 
     const cachedSession = SessionCache.getSession(sessionId);
     if (cachedSession) {
-      console.log('Cache hit:', cachedSession);
+      // console.log('Cache hit:', cachedSession);
       if (cachedSession.username !== username) {
         return res.status(404).json({ message: 'User session mismatch' });
       }
       return res.status(200).json({ message: 'User found and validated', user: { username } });
     }
 
-    console.log('Cache miss, fetching from db');
+    // console.log('Cache miss, fetching from db');
     const session = await Session.getSession(sessionId);
     if (!session) {
       return res.status(404).json({ message: 'Session not found or expired' });

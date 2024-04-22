@@ -40,7 +40,8 @@
 import React, { useEffect, useState } from 'react';
 import './Results.css';
 import axios from 'axios';
-
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const ProgressCircle = ({ score }) => (
   <div className="progress-circle-container">
@@ -87,6 +88,7 @@ const Results = () => {
     Neuroticism: 0
   });
 
+  const navigate = useNavigate();
   
   useEffect(() => {
     const fetchData = async () => {
@@ -99,6 +101,11 @@ const Results = () => {
         ]);
 
         const questions = questionsRes.data;
+        if (responsesRes.data.length === 0) {
+          setLoading(false);
+          toast.error('You have not taken the survey yet. Please take the survey to view your results.');
+          navigate('/survey');
+        }
         const responses = responsesRes.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0].responses;
 
         const songResponses = responses.slice(4, 17);
@@ -126,7 +133,7 @@ const Results = () => {
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="results">
