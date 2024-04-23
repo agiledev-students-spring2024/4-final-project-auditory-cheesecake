@@ -1,12 +1,13 @@
 .profile {
   display: flex;
-  min-height:100vh;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
   justify-content: center;
+  height: 100vh;
   padding: 20px;
   padding-top: 80px;
-  align-content: center;
 }
-
 
 .profile-container {
   display: flex;
@@ -18,6 +19,7 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 20px;
+  padding-bottom: 40px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -54,7 +56,7 @@ html {
 
 .profile-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .profile-info {
@@ -79,11 +81,16 @@ p {
   margin: 0 0 10px;
 }
 
+.profile-container h3, h4{
+  color: black;
+  margin: 0 10 10px;
+  /* background-color: white; */
+}
 
 .profile-container button:hover,
 .btn:hover,
 .edit-btn:hover {
-  background-color: #5d7cfa;
+  background-color: #5d0bb0;
   transform: translateY(-2px);
 }
 
@@ -156,6 +163,7 @@ p {
 
 .profile-pic-container {
   position: relative;
+  margin-bottom: 20px;
 }
 
 .profile-pic-overlay {
@@ -164,6 +172,7 @@ p {
   left: 50%;
   width: 120px; 
   height: 120px; 
+  padding: 10px;
   transform: translate(-50%, -50%);
   border-radius: 50%; 
   background-color: rgba(0, 0, 0, 0.5); 

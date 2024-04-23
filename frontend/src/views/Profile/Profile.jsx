@@ -68,12 +68,14 @@ const Profile = () => {
   return (
     <div className="profile">
       <div className="profile-container">
-        <header className="profile-header">
-          <h2>View User Profile</h2>
-        </header>
+        {/* <header className="profile-header">
+          <h2>Your Profile</h2>
+        </header> */}
 
         {user ? (
           <div className="profile-info">
+            <h3>{user.firstName} {user.lastName}</h3>
+            
             <div className="profile-pic-container">
               <img
                 src={user?.profilePicture || 'https://picsum.photos/200'}
@@ -90,7 +92,6 @@ const Profile = () => {
                 style={{ display: 'none' }}
               />
             </div>
-            <h2>{user.firstName} {user.lastName}</h2>
             <p>@{user.username}</p>
             <p>Email: {user.email}</p>
             <p>Phone: {user.phoneNumber}</p>
@@ -102,7 +103,7 @@ const Profile = () => {
 
         <div className="profile-actions">
           <Link to="/Results" className="btn">Results</Link>
-          <Link to="/Settings" className="btn">Settings</Link>
+          {/* <Link to="/Settings" className="btn">Settings</Link> */}
           <Link to="/ChangePassword" className="btn">Change Password</Link>
         </div>
 
