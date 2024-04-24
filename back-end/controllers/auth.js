@@ -17,7 +17,8 @@ const loadMockData = () => {
 // login function 
 const login = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const username = req.body.username.toLowerCase();
+    const password = req.body.password;
     if (!username || !password) {
       return res.status(400).send({ message: 'Missing parameters' });
     }
@@ -39,14 +40,14 @@ const login = async (req, res) => {
       const lastLogin = new Date();
       await User.updateOne({ username }, {
         $set: {
-          sessionId: sessionId,
+          sessionId,
           lastLogin: lastLogin,
         }
       });
       // change this to only required fields for JWT
       const tokenPayload = { 
-        username: user.username,
-        sessionId: sessionId,
+        username,
+        sessionId,
         lastLogin: lastLogin.getTime(),
         id: user._id,
       };
@@ -75,7 +76,8 @@ const logout = async (req, res) => {
       return res.status(400).json({ message: 'Missing parameters' });
     }
     const decoded = jwt.verify(token, secretKey);
-    const { username, sessionId } = decoded;
+    const username = decoded.username.toLowerCase();
+    const sessionId = decoded.sessionId;
     const session = await Session.getSession(sessionId);
     if (!session) {
       return res.status(404).json({ message: 'Session not found or expired' });
@@ -97,18 +99,21 @@ const logout = async (req, res) => {
 const register = async (req, res) => {
   console.log("Received registration request");
   try {
-    const { firstName, lastName, email, phoneNumber, username, password } = req.body;
+    const { firstName, lastName, email, phoneNumber, password } = req.body;
+    const username = req.body.username.toLowerCase();
     
     // Check if the user already exists
-    let existingUser = null;
+    let emailExists = null;
+    let usernameExists = null;
     if (process.env.USE_MOCK_DATA === 'true') {
       const mockUsers = loadMockData();
       existingUser = mockUsers.find(user => user.email === email);
     } else {
-      existingUser = await User.findOne({ email: email });
+      emailExists = await User.findOne({ email });
+      usernameExists = await User.findOne({ username });
     }
     
-    if (existingUser) {
+    if (usernameExists || emailExists) {
       return res.status(409).json({ message: 'User already exists' });
     }
     
@@ -121,7 +126,6 @@ const register = async (req, res) => {
       res.status(201).send({ message: 'User registered successfully in mock data' });
     } else {
       const user = new User({ username, email, password: password, firstName, lastName, phoneNumber });
-      // console.log(user) For testing purposes only
       await user.save();
       res.status(201).send({ message: 'User registered successfully' });
     }
@@ -138,7 +142,8 @@ const findUser = async (req, res) => {
   }
   try {
     const decoded = jwt.verify(token, secretKey);
-    const { username, sessionId } = decoded;
+    const username = decoded.username.toLowerCase();
+    const sessionId = decoded.sessionId;
 
     const cachedSession = SessionCache.getSession(sessionId);
     if (cachedSession) {
