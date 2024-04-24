@@ -43,6 +43,10 @@ const Profile = () => {
     }
   
     const file = event.target.files[0];
+    if (!file || !(file instanceof Blob)) {
+      console.error('No file selected or the file is not a Blob');
+      return;
+    }
     const reader = new FileReader();
     
     reader.readAsDataURL(file);
@@ -87,7 +91,7 @@ const Profile = () => {
             
             <div className="profile-pic-container">
               <img
-                src={user?.profilePicture || 'https://picsum.photos/200'}
+                src={user?.profilePicture || '/defaultprofilepic.png'}
                 alt="Profile"
                 className="profile-pic"
               />
