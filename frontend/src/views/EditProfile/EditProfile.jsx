@@ -113,7 +113,9 @@ const EditProfile = () => {
         setUsername(newUsername);
         setUsernameValid(validateUsername(newUsername));
     };
-
+    const cleanPhoneNumber = (phoneNumber) => {
+        return phoneNumber.replace(/[^\d]/g, '');
+    };
     const formatPhoneNumber = (value) => {
         if (!value) return value;
         const phoneNumber = value.replace(/[^\d]/g, '');
@@ -123,46 +125,41 @@ const EditProfile = () => {
         return `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
     };
  
-    const handleSubmit = (e) => {
-        console.log("Form submit initiated");
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!emailValid || !firstNameValid || !lastNameValid || !usernameValid || !phoneNumberValid) {
             setMessage("Please correct the errors in the form.");
             return;
         }
+        const cleanedPhoneNumber = cleanPhoneNumber(phoneNumber);
         //API call to the backend registration endpoint
-        fetch('http://localhost:1337/api/editUserProfile', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: userID,
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                username: username,
-                phoneNumber: phoneNumber
-            })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Success:', data);
-                setMessage("Edit Profile successful");
-                setError(false);
-                fetchUserData(); // Refresh user data
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                setError(true);
-                setMessage("Error while editing user profile: " + error.message);
+        try {
+            const response = await fetch('http://localhost:1337/api/editUserProfile', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id: userID,
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    username: username,
+                    phoneNumber: cleanedPhoneNumber
+                })
             });
-        console.log(email, username);
+
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.error || 'Unknown error');
+            }
+            
+            setMessage("Profile updated successfully.");
+            setError(false);
+            fetchUserData();  // Refresh user data after a successful update
+        } catch (error) {
+            console.error('Error:', error);
+            setError(true);
+            setMessage(error.message);
+        }
     }
 
     return (

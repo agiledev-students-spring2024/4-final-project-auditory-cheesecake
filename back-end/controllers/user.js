@@ -44,19 +44,34 @@ const editUserProfile = async (req, res) => {
     console.log("Received edit user request");
     console.log("Edit user Request body", req.body);
     try {
-        const {id, firstName, lastName, email, username, phoneNumber} = req.body;
+        const { id, firstName, lastName, email, username, phoneNumber } = req.body;
         
-        if (username=='' || email=='' || firstName=='' || lastName=='' || phoneNumber=='') {
+        if (username === '' || email === '' || firstName === '' || lastName === '' || phoneNumber === '') {
             return res.status(400).json({ error: 'Missing parameters' });
         }
         
-        // load user
+        // Load user
         const user = await User.findById(id);
         if (!user) {
             return res.status(404).send({ message: 'User not found' });
         }
 
-        // need to check if email, username, or phone number already exist for that person
+        // Check if the email already exists in another account
+        if (await User.findOne({ email: email, _id: { $ne: id } })) {
+            return res.status(409).json({ error: 'Email already in use by another account.' });
+        }
+
+        // Check if the username already exists in another account
+        if (await User.findOne({ username: username, _id: { $ne: id } })) {
+            return res.status(409).json({ error: 'Username already in use by another account.' });
+        }
+
+        // Check if the phone number already exists in another account
+        if (await User.findOne({ phoneNumber: phoneNumber, _id: { $ne: id } })) {
+            return res.status(409).json({ error: 'Phone number already in use by another account.' });
+        }
+
+        // If all checks pass, update user
         user.firstName = firstName;
         user.lastName = lastName;
         user.email = email;
