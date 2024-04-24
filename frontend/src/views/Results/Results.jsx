@@ -135,6 +135,31 @@ const Results = () => {
     fetchData();
   }, [navigate]);
 
+  const createMailtoLink = () => {
+    const scoresText = Object.entries(bigFiveScores)
+      .map(([trait, score]) => `* ${trait}: ${score}%`)
+      .join('\n');
+
+    const favoriteSongsText = topPicks
+      .map(pick => `* ${pick.question}`)
+      .join('\n');
+
+    const worstSongsText = worstPicks
+      .map(pick => `* ${pick.question}`)
+      .join('\n');
+
+    const subject = encodeURIComponent("Check out my Auditory Cheesecake Test results!");
+    const body = encodeURIComponent(
+      `I completed the auditory cheesecake test!\n\n` +
+      `I scored:\n${scoresText}\n\n` +
+      `My favorite songs are:\n${favoriteSongsText}\n\n` +
+      `Songs I did not enjoy are:\n${worstSongsText}\n\n` +
+      `You should take the quiz as well!`
+    );
+
+    return `mailto:?subject=${subject}&body=${body}`;
+  };
+
   return (
     <div className="results">
       <div className="results-wrapper">
@@ -239,6 +264,9 @@ const Results = () => {
             What do you think? 
 
           </p>
+          <a href={createMailtoLink()} className="email-share-button">
+            Share Results
+          </a>
 
         </div>
       </div>
