@@ -81,3 +81,14 @@
   color: #5d0bb0;
   background-color: transparent;
 }
+
+.show-password-checkbox2 {
+  font-size: 12px; 
+  color: #666; 
+  margin-top: -15px !important; 
+  margin-bottom: 0px;
+}
+
+.show-password-checkbox2 input[type="checkbox"] {
+  margin-right: 5px; 
+}

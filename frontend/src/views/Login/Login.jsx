@@ -8,6 +8,8 @@ const Login = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,12 +53,20 @@ const Login = () => {
                 <label htmlFor="Password">Password</label>
                 <input 
                     id="Password" 
-                    type="password" 
+                    type={showPassword ? "text" : "password"}
                     placeholder="Password" 
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
+                <label className="show-password-checkbox2">
+                        <input 
+                            type="checkbox" 
+                            checked={showPassword} 
+                            onChange={() => setShowPassword(!showPassword)}
+                        />
+                        Show Password
+                    </label>
                 <button type="submit">Login</button>
                 <p>Don't have an account? Create an account <button className="button-link" onClick={() => navigate("/Register")}>here</button>!</p>
             </form>
