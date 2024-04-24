@@ -26,6 +26,15 @@ const Profile = () => {
     } 
   }, []);
 
+  const formatPhoneNumber = (value) => {
+    if (!value) return value;
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    if (phoneNumberLength < 4) return phoneNumber;
+    if (phoneNumberLength < 7) return `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(3)}`;
+    return `${phoneNumber.slice(0, 3)}-${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+  };
+
   const handleFileSelect = async (event) => {
     
     if (!user._id) {
@@ -68,12 +77,14 @@ const Profile = () => {
   return (
     <div className="profile">
       <div className="profile-container">
-        <header className="profile-header">
-          <h2>View User Profile</h2>
-        </header>
+        {/* <header className="profile-header">
+          <h2>Your Profile</h2>
+        </header> */}
 
         {user ? (
           <div className="profile-info">
+            <h3>{user.firstName} {user.lastName}</h3>
+            
             <div className="profile-pic-container">
               <img
                 src={user?.profilePicture || 'https://picsum.photos/200'}
@@ -90,10 +101,9 @@ const Profile = () => {
                 style={{ display: 'none' }}
               />
             </div>
-            <h2>{user.firstName} {user.lastName}</h2>
             <p>@{user.username}</p>
             <p>Email: {user.email}</p>
-            <p>Phone: {user.phoneNumber}</p>
+            <p>Phone: {formatPhoneNumber(user.phoneNumber)}</p>
             <Link to="/EditProfile" className="btn">Edit Profile</Link>
           </div>
         ) : (
@@ -101,8 +111,8 @@ const Profile = () => {
         )}
 
         <div className="profile-actions">
-          <Link to="/Results" className="btn">View your results</Link>
-          <Link to="/Settings" className="btn">Settings</Link>
+          <Link to="/Results" className="btn">Results</Link>
+          {/* <Link to="/Settings" className="btn">Settings</Link> */}
           <Link to="/ChangePassword" className="btn">Change Password</Link>
         </div>
 

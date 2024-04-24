@@ -1,10 +1,11 @@
 // Sample Route Guard component, feel free to change later
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './ProtectedRoute.css';
 
 const mustBeLoggedOut = ['register', 'login',];
-const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword', 'results', 'survey'];
+const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword', 'results', 'survey', 'logout'];
 const mustCompleteQuiz = ['results'];
 
 const pingEndpoint = async (token) => {
@@ -96,15 +97,15 @@ const ProtectedRoute = ({ children }) => {
   }
   else {
     if (mustBeLoggedOut.includes(desiredPage)) {
-      alert('You must be logged out to access this page.');
+      toast.warn('You must be logged out to access this page.');
     }
     else if (mustBeLoggedIn.includes(desiredPage)) {
-      alert('You must be logged in to access this page.');
+      toast.warn('You must be logged in to access this page.');
     }
     else {
-      alert('You must complete the quiz to access this page.');
+      toast.warn('You must complete the quiz to access this page.');
     }
-    <Navigate to="/" />;
+    return <Navigate to="/" />;
   }
 };
 

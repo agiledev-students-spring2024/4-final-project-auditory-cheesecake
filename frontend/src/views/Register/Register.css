@@ -4,9 +4,8 @@
   align-content: center;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  /* height: 100vh; */
   padding: 20px;
-  padding-top: 80px;
 }
 
 .register-form-wrapper {
@@ -19,11 +18,23 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 20px;
+  margin-top:80px;
+  margin-bottom:20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .register h1 {
   color: #333;
+  margin-bottom: 5px;
+}
+
+.register h5 {
+  color: #333;
+  margin-bottom: 0px;
+  padding:0px !important;
+  text-align: left;
+  font-weight: lighter;
+
 }
 
 .register form {
@@ -31,18 +42,22 @@
   flex-direction: column;
   width: 90%;
   max-width: 400px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 20px;
 }
 
 .register form label {
+  margin-top: 1rem;
   margin-bottom: 0.5rem;
   color: #666;
 }
 
+.register form form-field {
+  margin-bottom: 1.5rem;
+}
+
 .register form input {
   padding: 10px;
-  margin-bottom: 1.5rem;
   border: 1px solid #ddd;
   border-radius: 6px;
   box-sizing: border-box;
@@ -50,6 +65,7 @@
 
 .register form button {
   padding: 10px;
+  margin-top: 1.5rem;
   background-color: #446ff2;
   color: white;
   border: none;
@@ -68,6 +84,45 @@
   text-align: center;
 }
 
+.register .register-form-wrapper .error-validation-message {
+  color: red;
+  background-color: #ffdddd;
+  font-size: smaller;
+  text-align: left;
+  font-weight: bolder;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.register .register-form-wrapper .success-message {
+  color: green;
+  background-color: rgb(221, 255, 221);
+  font-size: smaller;
+  text-align: left;
+  font-weight: bolder;
+  width:80%;
+  margin: 0px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.register .register-form-wrapper .failure-message {
+  color: red;
+  background-color: #ffdddd;
+  font-size: smaller;
+  text-align: left;
+  font-weight: bolder;
+  width:80%;
+  margin: 0px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .register form .button-link {
   color: #446ff2;
   text-decoration: none;
@@ -77,26 +132,38 @@
   padding: 0;
 }
 
-.register form .button-link:hover {
-  color: #5d0bb0;
-  background-color: transparent;
-}
-
-.error-message {
+.register .register-form-wrapper .error-message {
   color: white;
-  background-color: red;
-  padding: 10px;
-  margin: 10px 0;
+  background-color: rgb(184, 20, 20);
+  margin-bottom: 0 !important;
+  margin-top:5px;
   border-radius: 5px;
   text-align: center;
+  font-weight: bolder;
+  font-size: small;
+}
+
+.required-field {
+  color: red !important;
 }
 
 .show-password-checkbox {
   font-size: 12px; 
   color: #666; 
-  margin-top: -15px; 
+  margin-top: 5px !important; 
+  margin-bottom: 0px;
 }
 
 .show-password-checkbox input[type="checkbox"] {
   margin-right: 5px; 
+}
+
+.register form .button-link:hover {
+  color: #5d0bb0;
+  background-color: transparent;
+}
+.register form button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }

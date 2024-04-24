@@ -100,3 +100,63 @@
     border-radius: 8px;
     padding: 3px;
   }
+  .iconSmall { 
+    width: 20px;
+    height: 20px;
+    margin-right: 8px; /* Right margin between icons */
+    margin-left: 8px;
+
+  }
+
+
+  .survey-results {
+    background-color: #f8f9fa; /* Light grey background for the section */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding around the content */
+    max-width: 500px; /* Limiting the maximum width */
+    margin: 20px auto; /* Centering the box */
+    text-align: center; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Modern, readable font */
+}
+
+.survey-results h1 {
+    color: #333; /* Dark grey color for contrast */
+    margin-bottom: 16px; /* Space below the heading */
+}
+
+.survey-results p {
+    color: #666; /* Medium grey for text */
+    line-height: 1.6; /* More readable line spacing */
+    font-size: 16px; /* Adequate font size */
+}
+
+.survey-results strong {
+    color: #0056b3; /* A shade of blue for emphasis */
+}
+
+.survey-results .iconSmall {
+    width: 20px; /* Smaller size for icons */
+    height: 20px;
+    margin-left: 5px; /* Space before the icon */
+    vertical-align: middle; /* Align icon with text */
+}
+
+.survey-results a {
+    color: #0056b3; /* Blue color for links for consistency */
+    text-decoration: none; /* No underline */
+    transition: color 0.3s; /* Smooth transition for hover effects */
+}
+
+.survey-results a:hover,
+.survey-results a:focus {
+    color: #002766; /* Darker blue on hover/focus for accessibility */
+}
+
+.survey-results div {
+    margin-top: 12px; /* Space above each new block */
+}
+
+.survey-results div:first-child {
+    margin-top: 0; /* No space above the first block */
+}

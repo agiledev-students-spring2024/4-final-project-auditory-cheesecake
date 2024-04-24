@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import HomePage from './views/HomePage/HomePage';
 import Profile from './views/Profile/Profile';
 import EditProfile from './views/EditProfile/EditProfile';
@@ -10,7 +12,7 @@ import ProtectedRoute from './views/components/ProtectedRoute/ProtectedRoute';
 import Login from './views/Login/Login';
 import Register from './views/Register/Register';
 import SurveyPage from './views/SurveyPage/SurveyPage';
-
+import Logout from './views/components/Logout/Logout';
 
 function App() {
   return (
@@ -81,6 +83,16 @@ function App() {
             }
           />
 
+          {/* Route Guard for Logout */}
+          <Route
+            path="/Logout"
+            element={
+              <ProtectedRoute>
+                <Logout />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/ChangePassword"
             element={
@@ -95,6 +107,18 @@ function App() {
           {/* Fallback route for any invalid routes */}
           <Route path="*" element={<HomePage />} />
         </Routes>
+        <ToastContainer 
+          position="top-right"
+          autoClose={3500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+          theme="colored"
+        />
       </div>
     </Router>
   );
