@@ -99,8 +99,9 @@ const logout = async (req, res) => {
 const register = async (req, res) => {
   console.log("Received registration request");
   try {
-    const { firstName, lastName, email, phoneNumber, password } = req.body;
+    const { firstName, lastName, phoneNumber, password } = req.body;
     const username = req.body.username.toLowerCase();
+    const email = req.body.email.toLowerCase();
     
     // Check if the user already exists
     let emailExists = null;
