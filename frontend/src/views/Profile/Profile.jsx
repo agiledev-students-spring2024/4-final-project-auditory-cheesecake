@@ -87,7 +87,7 @@ const Profile = () => {
             
             <div className="profile-pic-container">
               <img
-                src={user?.profilePicture || 'https://picsum.photos/200'}
+                src={user?.profilePicture || '/defaultprofilepic.png'}
                 alt="Profile"
                 className="profile-pic"
               />
