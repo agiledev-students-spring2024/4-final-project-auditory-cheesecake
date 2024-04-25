@@ -96,7 +96,7 @@ const questions = [
     appleMusicURL: "https://music.apple.com/us/album/live-your-life-feat-rihanna/1258961720?i=1258961894"
   },
   {
-    questionText: 'Miguel',
+    questionText: 'Caramelo Duro',
     options: ['1', '2', '3', '4', '5'],
     audio: '/Miguel_-_Caramelo_Duro_Audio_ft._Kali_Uchis.mp3', 
     spotifyURL: "https://open.spotify.com/track/3LcjZGk0GBlPRe5XhYVGgM",
