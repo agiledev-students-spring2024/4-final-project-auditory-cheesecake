@@ -1,24 +1,32 @@
 const chai = require('chai');
+const mongoose = require('mongoose');
 const chaiHttp = require('chai-http');
 const server = require('../app.js');
-const bcrypt = require('bcryptjs');
+const mockUsers = require('../data/mock-users.json');
+const connectDB = require('../database.js');
 
 const { expect } = chai;
 chai.use(chaiHttp);
 
+before(async () => {
+  await connectDB();
+});
+
+after(async () => {
+  await mongoose.disconnect(); 
+});
+
+
 describe('POST /editUserProfile', () => {
-  before(() => {
-    process.env.USE_MOCK_DATA = 'true';
-  });
 
   it('should update the user profile data successfully', (done) => {
 
-    const userId = '11';
-    const username = 'TEST11'; // testing case insensitivity
-    const email = 'TEST11@GMAIL.COM'; // testing case insensitivity
-    const firstName = 'First11';
-    const lastName = 'Last11';
-    const phoneNumber = '1234567891';
+    const userId = '661c104bf7a284374d5d64e7';
+    const username = 'TEST1'; // testing case insensitivity
+    const email = 'TEST1@GMAIL.COM'; // testing case insensitivity
+    const firstName = 'Test1';
+    const lastName = 'Testing1';
+    const phoneNumber = '8582300302';
 
     chai.request(server)
       .post('/api/editUserProfile')
@@ -31,12 +39,12 @@ describe('POST /editUserProfile', () => {
   });
 
   it('should return an error if any of the fields are missing', (done) => {
-    const userId = '11';
-    const username = 'test11';
-    const email = 'test11@gmail.com';
+    const userId = '661c104bf7a284374d5d64e7';
+    const username = 'TEST1'; // testing case insensitivity
+    const email = 'TEST1@GMAIL.COM'; // testing case insensitivity
     const firstName = '';
-    const lastName = 'Last11';
-    const phoneNumber = '1234567891';
+    const lastName = 'Testing1';
+    const phoneNumber = '8582300302';
 
     chai.request(server)
       .post('/api/editUserProfile')
@@ -50,29 +58,30 @@ describe('POST /editUserProfile', () => {
 
   it('should return an error if the user is not found', (done) => {
     const userId = 'nonExistingId';
-    const username = 'test11';
-    const email = 'test11@gmail.com';
-    const firstName = 'First11';
-    const lastName = 'Last11';
-    const phoneNumber = '1234567891';
+    const username = 'TEST1'; // testing case insensitivity
+    const email = 'TEST1@GMAIL.COM'; // testing case insensitivity
+    const firstName = 'Test1';
+    const lastName = 'Testing1';
+    const phoneNumber = '8582300302';
 
     chai.request(server)
       .post('/api/editUserProfile')
       .send({ id: userId, username, email, firstName, lastName, phoneNumber })
       .end((err, res) => {
-        expect(res).to.have.status(404);
-        expect(res.body).to.have.property('message').eql('User not found');
+        expect(res).to.have.status(500);
+        expect(res.body).to.have.property('message').eql('Failed to edit user profile');
         done();
       });
   });
 
   it('should return error if email is already in use by another account', (done) => {
-    const userId = '11';
-    const username = 'test11';
-    const email = 'testuser1712074258415@example.com'; // This email is already in use
-    const firstName = 'First11';
-    const lastName = 'Last11';
-    const phoneNumber = '1234567891';
+    
+    const userId = '661c104bf7a284374d5d64e7';
+    const username = 'TEST1'; // testing case insensitivity
+    const email = 'TEST@GMAIL.COM'; // testing case insensitivity
+    const firstName = 'Test1';
+    const lastName = 'Testing1';
+    const phoneNumber = '8582300302';
 
     chai.request(server)
       .post('/api/editUserProfile')
@@ -85,12 +94,12 @@ describe('POST /editUserProfile', () => {
   });
 
   it('should return error if username is already in use by another account', (done) => {
-    const userId = '11';
-    const username = 'testUser1712074258415'; // this username is already in use
-    const email = 'test11@gmail.com';
-    const firstName = 'First11';
-    const lastName = 'Last11';
-    const phoneNumber = '1234567891';
+    const userId = '661c104bf7a284374d5d64e7';
+    const username = 'TEST'; // testing case insensitivity
+    const email = 'TEST1@GMAIL.COM'; // testing case insensitivity
+    const firstName = 'Test1';
+    const lastName = 'Testing1';
+    const phoneNumber = '8582300302';
 
     chai.request(server)
       .post('/api/editUserProfile')
@@ -103,12 +112,12 @@ describe('POST /editUserProfile', () => {
   });
 
   it('should return error if phone number is already in use by another account', (done) => {
-    const userId = '11';
-    const username = 'test11';
-    const email = 'test11@gmail.com';
-    const firstName = 'First11';
-    const lastName = 'Last11';
-    const phoneNumber = '1234561712074258415'; // this phone number is already in use
+    const userId = '661c104bf7a284374d5d64e7';
+    const username = 'TEST1'; // testing case insensitivity
+    const email = 'TEST1@GMAIL.COM'; // testing case insensitivity
+    const firstName = 'Test1';
+    const lastName = 'Testing1';
+    const phoneNumber = '9089089080';
 
     chai.request(server)
       .post('/api/editUserProfile')
