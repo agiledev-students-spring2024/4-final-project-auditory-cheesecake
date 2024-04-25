@@ -5,7 +5,10 @@ const connectDatabase = () => {
   mongoose.connect('mongodb+srv://cheese1:AuditoryCheesecake@auditorycheesecake.jtoc5ey.mongodb.net/?retryWrites=true&w=majority&appName=AuditoryCheesecake')
     .then(async () => {
       console.log('MongoDB connected...');
-      await sync();
+      //For tests, remove await sync() 
+      if (process.env.NODE_ENV !== 'test') {
+        await sync();
+      }
     })
     .catch(err => {
       console.error(err);
