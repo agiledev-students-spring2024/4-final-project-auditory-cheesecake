@@ -106,7 +106,7 @@ const questions = [
     recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1DZ06evO2PcoFy"
   },
   {
-    questionText: 'Miguel',
+    questionText: 'Caramelo Duro',
     options: ['1', '2', '3', '4', '5'],
     audio: '/Miguel_-_Caramelo_Duro_Audio_ft._Kali_Uchis.mp3', 
     spotifyURL: "https://open.spotify.com/track/3LcjZGk0GBlPRe5XhYVGgM",
