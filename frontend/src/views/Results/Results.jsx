@@ -135,6 +135,31 @@ const Results = () => {
     fetchData();
   }, [navigate]);
 
+  const createMailtoLink = () => {
+    const scoresText = Object.entries(bigFiveScores)
+      .map(([trait, score]) => `* ${trait}: ${score}%`)
+      .join('\n');
+
+    const favoriteSongsText = topPicks
+      .map(pick => `* ${pick.question}`)
+      .join('\n');
+
+    const worstSongsText = worstPicks
+      .map(pick => `* ${pick.question}`)
+      .join('\n');
+
+    const subject = encodeURIComponent("Check out my Auditory Cheesecake Test results!");
+    const body = encodeURIComponent(
+      `I completed the auditory cheesecake test!\n\n` +
+      `I scored:\n${scoresText}\n\n` +
+      `My favorite songs are:\n${favoriteSongsText}\n\n` +
+      `Songs I did not enjoy are:\n${worstSongsText}\n\n` +
+      `You should take the quiz as well!`
+    );
+
+    return `mailto:?subject=${subject}&body=${body}`;
+  };
+
   return (
     <div className="results">
       <div className="results-wrapper">
@@ -217,9 +242,33 @@ const Results = () => {
               {worstPicks.map(pick => (
                 <p key={pick.question}>{pick.question}</p>
               ))}
+
             </div>
           </div>
         )}
+        <div className="survey-results">
+          <strong>Want to learn more about how music shapes personality?</strong>
+          <p>
+            Checkout this paper published by the New York University Integrative Psychology Review 
+            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:va6c2:016c82c3-36a9-40a2-a261-95559c2714c1?viewer%21megaVerb=group-discover"> here</a>
+      
+          </p>
+          <p>
+            In short, there has been a lot of research on how music can shape personality. This research dates back to ancient Greece. 
+            Plato and Aristotle believed music has the power to destroy a society. 
+            <br></br>
+            They believed that it should be carefully controlled and monitored by the government.
+            On the other hand, contemporary psychologist, Steven Pinker, calls music "auditory cheesecake"
+            <br></br>
+            He believed that music is a byproduct of evolution and does not serve a biological purpose.
+            What do you think? 
+
+          </p>
+          <a href={createMailtoLink()} className="email-share-button">
+            Share Results
+          </a>
+
+        </div>
       </div>
     </div>
   );

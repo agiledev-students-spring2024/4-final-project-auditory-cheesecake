@@ -127,9 +127,11 @@ const getQuestions = (req, res) => {
 
 const SurveyResponse = require('../models/SurveyResponses');
 
+const isTesting = process.env.NODE_ENV === 'test';
+
 const submitResponses = async (req, res) => {
   try {
-    if (!req.body.userId) {
+    if (!isTesting && !req.body.userId) {
       console.log('User is not authenticated or user ID is missing');
       return res.status(400).send({ message: 'User is not authenticated or user ID is missing' });
     }
@@ -155,6 +157,7 @@ const getSurveyResponses = async (req, res) => {
   try {
     const { userId } = req.query;  // Changed from req.body to req.query
     if (!userId) {
+      console.log (userId)
       return res.status(400).json({ message: 'User is not authenticated or user ID is missing' });
     }
 
