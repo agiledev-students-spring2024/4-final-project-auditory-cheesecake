@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import './Register.css';
 
 const Register = () => {
@@ -139,6 +140,7 @@ const Register = () => {
         });
         const data = await res.json();
         if (res.status === 201) {
+            toast.success('Registration successful!');
             console.log('Registration successful');
             navigate('/Login'); //redirect to login page
         } else if (res.status >= 400) {
