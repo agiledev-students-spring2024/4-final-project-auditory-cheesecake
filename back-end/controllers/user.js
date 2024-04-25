@@ -44,8 +44,9 @@ const editUserProfile = async (req, res) => {
     console.log("Received edit user request");
     console.log("Edit user Request body", req.body);
     try {
-        const { id, firstName, lastName, email, phoneNumber } = req.body;
+        const { id, firstName, lastName, phoneNumber } = req.body;
         const username = req.body.username.toLowerCase();
+        const email = req.body.email.toLowerCase();
         
         if (username === '' || email === '' || firstName === '' || lastName === '' || phoneNumber === '') {
             return res.status(400).json({ error: 'Missing parameters' });
