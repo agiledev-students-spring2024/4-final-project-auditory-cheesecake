@@ -5,6 +5,8 @@ const fs = require('fs');
 const SessionCache = require('../classes/SessionCache');
 const User = require('../models/User');
 const Session = require('../models/Session');
+const path = require('path');
+const filePath = path.join(__dirname, '../data/mock-users.json');
 
 const secretKey = process.env.JWT_SECRET_KEY;
 const useMockData = process.env.USE_MOCK_DATA === 'true';
@@ -108,7 +110,7 @@ const register = async (req, res) => {
     let usernameExists = null;
     if (process.env.USE_MOCK_DATA === 'true') {
       const mockUsers = loadMockData();
-      existingUser = mockUsers.find(user => user.email === email);
+      emailExists = mockUsers.find(user => user.email === email);
     } else {
       emailExists = await User.findOne({ email });
       usernameExists = await User.findOne({ username });
