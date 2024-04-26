@@ -151,5 +151,32 @@
     "firstName": "Test",
     "lastName": "User",
     "phoneNumber": "1234561714061012179"
+  },
+  {
+    "id": 21,
+    "username": "testuser1714063577610",
+    "email": "testuser1714063577610@example.com",
+    "password": "TestPass123!",
+    "firstName": "Test",
+    "lastName": "User",
+    "phoneNumber": "1234561714063577610"
+  },
+  {
+    "id": 22,
+    "username": "testuser1714063607959",
+    "email": "testuser1714063607959@example.com",
+    "password": "TestPass123!",
+    "firstName": "Test",
+    "lastName": "User",
+    "phoneNumber": "1234561714063607959"
+  },
+  {
+    "id": 23,
+    "username": "testuser1714065625820",
+    "email": "testuser1714065625820@example.com",
+    "password": "TestPass123!",
+    "firstName": "Test",
+    "lastName": "User",
+    "phoneNumber": "1234561714065625820"
   }
 ]

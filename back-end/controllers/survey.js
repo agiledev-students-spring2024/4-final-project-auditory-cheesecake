@@ -17,7 +17,7 @@ const questions = [
   },
   {
     questionText: 'Monday Monday',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/mondayMonday.mp4', 
     spotifyURL: "https://open.spotify.com/track/3dXUhi35uNdJ1eYewv1XBK",
     youtubeURL: "https://www.youtube.com/watch?v=VsIjOKCxRSE",
@@ -25,7 +25,7 @@ const questions = [
   },
   {
     questionText: 'Symphony No. 3',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/symphonyNo3.mp4', 
     spotifyURL:"https://open.spotify.com/artist/0lluGWFB8hZ6HFktcH6kkr",
     youtubeURL:"https://www.youtube.com/watch?v=208UlU2DA9Y",
@@ -33,7 +33,7 @@ const questions = [
   },
   {
     questionText: 'Hell N Back',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/Bakar_-_Hell_N_Back_Official_Audio_ft._Summer_Walker.mp3', 
     spotifyURL:"https://open.spotify.com/track/0rVJ6v23RQozOIvr1YotJP",
     youtubeURL:"https://www.youtube.com/watch?v=BdrNvQ4YCng",
@@ -41,7 +41,7 @@ const questions = [
   },
   {
     questionText: 'Beautiful People',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/beautifulPeople.mp4', 
     spotifyURL:"https://open.spotify.com/track/2aIB1CdRRG7YLBu9hNw9nR",
     youtubeURL: "https://www.youtube.com/watch?v=Ypkv0HeUvTc",
@@ -49,7 +49,7 @@ const questions = [
   },
   {
     questionText: 'Deeper Well',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/Country_song_1.m4a', 
     spotifyURL: "https://open.spotify.com/artist/70kkdajctXSbqSMJbQO424",
     youtubeURL:"https://www.youtube.com/watch?v=TGkMYMxi-hw",
@@ -57,7 +57,7 @@ const questions = [
   },
   {
     questionText: 'Tucson Too Late',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/Country_Song_2.m4a', 
     spotifyURL: "https://open.spotify.com/track/2hNQDbZcN3vqRAuwiz7poI",
     youtubeURL: "https://www.youtube.com/watch?v=SLzw6nsj2ck",
@@ -65,7 +65,7 @@ const questions = [
   },
   {
     questionText: 'Love Story',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/Country_Song_3.m4a', 
     spotifyURL: "https://open.spotify.com/track/3CeCwYWvdfXbZLXFhBrbnf",
     youtubeURL: "https://www.youtube.com/watch?v=KrsqPE9SMxo",
@@ -73,7 +73,7 @@ const questions = [
   },
   {
     questionText: 'Cellophane',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/Emeryld_-_Cellophane_OFFICIAL_VERSION.mp3', 
     spotifyURL: "https://open.spotify.com/search/cellophane%20emer",
     youtubeURL: "https://www.youtube.com/watch?v=Q7EQWFgqo-8",
@@ -81,7 +81,7 @@ const questions = [
   },
   {
     questionText: 'Sweet Child O Mine',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/gunsnroses.mp3', 
     spotifyURL: "https://open.spotify.com/track/7snQQk1zcKl8gZ92AnueZW",
     youtubeURL: "https://www.youtube.com/watch?v=N9GqZlyCMdU",
@@ -89,7 +89,7 @@ const questions = [
   },
   {
     questionText: 'Live Your Life',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/liveYourLife.mp4', 
     spotifyURL: "https://open.spotify.com/track/3jlbL2OTD5YmIunYzgQTAN",
     youtubeURL: "https://www.youtube.com/watch?v=koVHN6eO4Xg",
@@ -97,7 +97,7 @@ const questions = [
   },
   {
     questionText: 'Miguel',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/Miguel_-_Caramelo_Duro_Audio_ft._Kali_Uchis.mp3', 
     spotifyURL: "https://open.spotify.com/track/3LcjZGk0GBlPRe5XhYVGgM",
     youtubeURL:"https://www.youtube.com/watch?v=o5jtRH2DK-8",
@@ -105,7 +105,7 @@ const questions = [
   },
   {
     questionText: 'Smells Like Teen Spirit',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/Nirvana.mp3', 
     spotifyURL: "https://open.spotify.com/track/5ghIJDpPoe3CfHMGu71E6T",
     youtubeURL: "https://www.youtube.com/watch?v=hTWKbfoikeg",
@@ -113,7 +113,7 @@ const questions = [
   },
   {
     questionText: 'Texas Tornado',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/texasTornado.mp4', 
     spotifyURL: "https://open.spotify.com/track/392COIitLMUIOwLDEq7Yh7",
     youtubeURL: "https://www.youtube.com/watch?v=-jV4zjY66pc",
