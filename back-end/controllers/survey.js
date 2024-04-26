@@ -21,7 +21,8 @@ const questions = [
     audio: '/mondayMonday.mp4', 
     spotifyURL: "https://open.spotify.com/track/3dXUhi35uNdJ1eYewv1XBK",
     youtubeURL: "https://www.youtube.com/watch?v=VsIjOKCxRSE",
-    appleMusicURL: "https://music.apple.com/us/album/monday-monday-single/1440795791?i=1440795944"
+    appleMusicURL: "https://music.apple.com/us/album/monday-monday-single/1440795791?i=1440795944",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1E4ukXsZwKnYn0"
   },
   {
     questionText: 'Symphony No. 3',
@@ -29,7 +30,8 @@ const questions = [
     audio: '/symphonyNo3.mp4', 
     spotifyURL:"https://open.spotify.com/artist/0lluGWFB8hZ6HFktcH6kkr",
     youtubeURL:"https://www.youtube.com/watch?v=208UlU2DA9Y",
-    appleMusicURL:"https://music.apple.com/us/music-video/r-schumann-symphony-no-3-in-e-flat-major-op-97-rheinische/1664991156"
+    appleMusicURL:"https://music.apple.com/us/music-video/r-schumann-symphony-no-3-in-e-flat-major-op-97-rheinische/1664991156",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1DWYkztttC1w38"
   },
   {
     questionText: 'Hell N Back',
@@ -37,7 +39,8 @@ const questions = [
     audio: '/Bakar_-_Hell_N_Back_Official_Audio_ft._Summer_Walker.mp3', 
     spotifyURL:"https://open.spotify.com/track/0rVJ6v23RQozOIvr1YotJP",
     youtubeURL:"https://www.youtube.com/watch?v=BdrNvQ4YCng",
-    appleMusicURL: "https://music.apple.com/us/album/hell-n-back-feat-summer-walker-bonus-track/1693877094?i=1693877595"
+    appleMusicURL: "https://music.apple.com/us/album/hell-n-back-feat-summer-walker-bonus-track/1693877094?i=1693877595",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1DZ06evO2b9j2g"
   },
   {
     questionText: 'Beautiful People',
@@ -45,7 +48,8 @@ const questions = [
     audio: '/beautifulPeople.mp4', 
     spotifyURL:"https://open.spotify.com/track/2aIB1CdRRG7YLBu9hNw9nR",
     youtubeURL: "https://www.youtube.com/watch?v=Ypkv0HeUvTc",
-    appleMusicURL: "https://music.apple.com/us/album/the-beautiful-people/1440746922?i=1440747194"
+    appleMusicURL: "https://music.apple.com/us/album/the-beautiful-people/1440746922?i=1440747194",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1DX1rVvRgjX59F"
   },
   {
     questionText: 'Deeper Well',
@@ -53,7 +57,8 @@ const questions = [
     audio: '/Country_song_1.m4a', 
     spotifyURL: "https://open.spotify.com/artist/70kkdajctXSbqSMJbQO424",
     youtubeURL:"https://www.youtube.com/watch?v=TGkMYMxi-hw",
-    appleMusicURL: "https://music.apple.com/us/album/deeper-well/1729242096"
+    appleMusicURL: "https://music.apple.com/us/album/deeper-well/1729242096",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1DZ06evO48Rn9u"
   },
   {
     questionText: 'Tucson Too Late',
@@ -61,7 +66,8 @@ const questions = [
     audio: '/Country_Song_2.m4a', 
     spotifyURL: "https://open.spotify.com/track/2hNQDbZcN3vqRAuwiz7poI",
     youtubeURL: "https://www.youtube.com/watch?v=SLzw6nsj2ck",
-    appleMusicURL: "https://music.apple.com/us/album/tucson-too-late/1663956805?i=1663956813"
+    appleMusicURL: "https://music.apple.com/us/album/tucson-too-late/1663956805?i=1663956813",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1DZ06evO4d4SIi"
   },
   {
     questionText: 'Love Story',
@@ -69,7 +75,8 @@ const questions = [
     audio: '/Country_Song_3.m4a', 
     spotifyURL: "https://open.spotify.com/track/3CeCwYWvdfXbZLXFhBrbnf",
     youtubeURL: "https://www.youtube.com/watch?v=KrsqPE9SMxo",
-    appleMusicURL: "https://music.apple.com/us/album/love-story-taylors-version/1552791073?i=1552791427"
+    appleMusicURL: "https://music.apple.com/us/album/love-story-taylors-version/1552791073?i=1552791427",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1DX5KpP2LN299J"
   },
   {
     questionText: 'Cellophane',
@@ -77,7 +84,8 @@ const questions = [
     audio: '/Emeryld_-_Cellophane_OFFICIAL_VERSION.mp3', 
     spotifyURL: "https://open.spotify.com/search/cellophane%20emer",
     youtubeURL: "https://www.youtube.com/watch?v=Q7EQWFgqo-8",
-    appleMusicURL: "https://music.apple.com/us/album/cellophane/1738285059?i=1738285064"
+    appleMusicURL: "https://music.apple.com/us/album/cellophane/1738285059?i=1738285064",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1E4CQIeZPNYGhZ"
   },
   {
     questionText: 'Sweet Child O Mine',
@@ -85,7 +93,8 @@ const questions = [
     audio: '/gunsnroses.mp3', 
     spotifyURL: "https://open.spotify.com/track/7snQQk1zcKl8gZ92AnueZW",
     youtubeURL: "https://www.youtube.com/watch?v=N9GqZlyCMdU",
-    appleMusicURL: "https://music.apple.com/us/album/sweet-child-o-mine/1377813284?i=1377813701"
+    appleMusicURL: "https://music.apple.com/us/album/sweet-child-o-mine/1377813284?i=1377813701",
+    recommendationURL: "https://open.spotify.com/album/3ZwjaVcnVo2TwhK8N8WWVs"
   },
   {
     questionText: 'Live Your Life',
@@ -93,15 +102,17 @@ const questions = [
     audio: '/liveYourLife.mp4', 
     spotifyURL: "https://open.spotify.com/track/3jlbL2OTD5YmIunYzgQTAN",
     youtubeURL: "https://www.youtube.com/watch?v=koVHN6eO4Xg",
-    appleMusicURL: "https://music.apple.com/us/album/live-your-life-feat-rihanna/1258961720?i=1258961894"
+    appleMusicURL: "https://music.apple.com/us/album/live-your-life-feat-rihanna/1258961720?i=1258961894",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1DZ06evO2PcoFy"
   },
   {
-    questionText: 'Miguel',
-    options: ['5', '4', '3', '2', '1'],
+    questionText: 'Caramelo Duro',
+    options: ['1', '2', '3', '4', '5'],
     audio: '/Miguel_-_Caramelo_Duro_Audio_ft._Kali_Uchis.mp3', 
     spotifyURL: "https://open.spotify.com/track/3LcjZGk0GBlPRe5XhYVGgM",
     youtubeURL:"https://www.youtube.com/watch?v=o5jtRH2DK-8",
-    appleMusicURL: "https://music.apple.com/us/album/caramelo-duro-feat-kali-uchis/1305418479?i=1305422749"
+    appleMusicURL: "https://music.apple.com/us/album/caramelo-duro-feat-kali-uchis/1305418479?i=1305422749",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1DZ06evO1N3Bn2"
   },
   {
     questionText: 'Smells Like Teen Spirit',
@@ -109,7 +120,8 @@ const questions = [
     audio: '/Nirvana.mp3', 
     spotifyURL: "https://open.spotify.com/track/5ghIJDpPoe3CfHMGu71E6T",
     youtubeURL: "https://www.youtube.com/watch?v=hTWKbfoikeg",
-    appleMusicURL: "https://music.apple.com/us/album/smells-like-teen-spirit/1440783617?i=1440783625"
+    appleMusicURL: "https://music.apple.com/us/album/smells-like-teen-spirit/1440783617?i=1440783625",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1DZ06evO3M0Fbi"
   },
   {
     questionText: 'Texas Tornado',
@@ -117,7 +129,8 @@ const questions = [
     audio: '/texasTornado.mp4', 
     spotifyURL: "https://open.spotify.com/track/392COIitLMUIOwLDEq7Yh7",
     youtubeURL: "https://www.youtube.com/watch?v=-jV4zjY66pc",
-    appleMusicURL: "https://music.apple.com/us/album/texas-tornado/258933197?i=258933622"
+    appleMusicURL: "https://music.apple.com/us/album/texas-tornado/258933197?i=258933622",
+    recommendationURL: "https://open.spotify.com/playlist/37i9dQZF1E4uuDP6V7220r"
   },
 ];
 

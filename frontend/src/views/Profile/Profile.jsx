@@ -136,7 +136,7 @@ const Profile = () => {
 Welcome to <strong>Auditory Cheesecake!</strong> These Terms and Conditions outline the rules and regulations for the use of our web-app.
 By accessing this app, we assume you accept these terms and conditions. Do not continue to use Auditory Cheesecake if you do not agree to take all of the terms and conditions stated on this page.</p>
 <p>
-<strong>Account Creation:</strong> Users must be at least 13 years old to create an account on Auditory Cheesecake. By creating an account, you declare you are over the age of 13. Each user must provide a valid email address and accurate information about themselves.
+<strong>Account Creation:</strong> Users must be at least 18 years old to create an account on Auditory Cheesecake. By creating an account, you declare you are over the age of 18. Each user must provide a valid email address and accurate information about themselves.
 </p><p><strong>Account Responsibilities:</strong> You are responsible for maintaining the confidentiality of your account and password, including but not limited to the restriction of access to your computer and/or account. You agree to accept responsibility for any and all activities or actions that occur under your account and/or password.
 </p><p><strong>User Content:</strong>
 Surveys and Responses: Users can participate in assesments about their music tastes. The responses to these surveys are saved to the user's profile and can be used by Auditory Cheesecake to personalize recommendations and improve service offerings.
