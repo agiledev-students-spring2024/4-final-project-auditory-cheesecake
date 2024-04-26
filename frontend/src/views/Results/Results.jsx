@@ -114,6 +114,7 @@ const Results = () => {
           spotifyUrl: questions[index + 4].spotifyURL,
           appleMusicUrl: questions[index + 4].appleMusicURL,
           youtubeUrl: questions[index + 4].youtubeURL,
+          recommendationUrl: questions[index + 4].recommendationURL
         }));
 
         const calculateAverage = (data) => data.reduce((sum, item) => sum + parseInt(item.answer, 10), 0) / data.length;
@@ -227,15 +228,32 @@ const Results = () => {
             <h1>Your Results:</h1>
             <p><strong>Your Average Rating: {averageRating}</strong></p>
             <div>
-              <strong>Your Top Picks:</strong>
-              {topPicks.map(pick => (
-                <p key={pick.question}>
-                  {pick.question}:
-                  <a href={pick.spotifyUrl}><img src="/spotify_icon.png" alt="Spotify icon" className="iconSmall"/></a>
-                  <a href={pick.appleMusicUrl}><img src="/Apple_Music_icon.png" alt="Apple Music icon" className="iconSmall"/></a>
-                  <a href={pick.youtubeUrl}><img src="/Youtube_logo.png" alt="YouTube icon" className="iconSmall"/></a>
-                </p>
-              ))}
+            <div>
+    <strong>Your Top Picks:</strong>
+    {topPicks.map(pick => (
+        <div key={pick.question}>
+            <p>{pick.question}:</p>
+            <div>
+            <a href={pick.spotifyUrl}><img src="/spotify_icon.png" alt="Spotify icon" className="iconSmall"/></a>
+            <a href={pick.appleMusicUrl}><img src="/Apple_Music_icon.png" alt="Apple Music icon" className="iconSmall"/></a>
+            <a href={pick.youtubeUrl}><img src="/Youtube_logo.png" alt="YouTube icon" className="iconSmall"/></a>
+            </div>
+        </div>
+    ))}
+    <br></br>
+    <strong>Check these playlists out as well:</strong>
+    {topPicks.map(pick => (
+        <div key={`rec-${pick.question}`}>
+            <a href={pick.recommendationUrl}>
+                Try Me!
+            </a>
+        </div>
+    ))}
+
+</div>
+
+
+
             </div>
             <div>
               <strong>Songs You Want to Avoid:</strong>
@@ -244,6 +262,8 @@ const Results = () => {
               ))}
 
             </div>
+            <a href={createMailtoLink()}><img src="/mail_icon.png" alt="Mail Icon" className="iconSmall"/></a>
+
           </div>
         )}
         <div className="survey-results">
@@ -264,9 +284,6 @@ const Results = () => {
             What do you think? 
 
           </p>
-          <a href={createMailtoLink()} className="email-share-button">
-            Share Results
-          </a>
 
         </div>
       </div>

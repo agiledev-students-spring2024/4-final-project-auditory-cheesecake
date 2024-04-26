@@ -107,7 +107,7 @@ const questions = [
   },
   {
     questionText: 'Caramelo Duro',
-    options: ['1', '2', '3', '4', '5'],
+    options: ['5', '4', '3', '2', '1'],
     audio: '/Miguel_-_Caramelo_Duro_Audio_ft._Kali_Uchis.mp3', 
     spotifyURL: "https://open.spotify.com/track/3LcjZGk0GBlPRe5XhYVGgM",
     youtubeURL:"https://www.youtube.com/watch?v=o5jtRH2DK-8",

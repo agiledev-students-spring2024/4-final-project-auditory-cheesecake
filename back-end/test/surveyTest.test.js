@@ -59,7 +59,7 @@ describe('Survey API', function () {
         { question: 'Cellophane', answer: '3' },
         { question: 'Sweet Child O Mine', answer: '3' },
         { question: 'Live Your Life', answer: '3' },
-        { question: 'Miguel', answer: '3' },
+        { question: 'Caramelo Duro', answer: '3' },
         { question: 'Smells Like Teen Spirit', answer: '3' },
         { question: 'Texas Tornado', answer: '3' },
       ]};
