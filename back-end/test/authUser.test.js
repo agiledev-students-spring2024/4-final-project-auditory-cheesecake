@@ -10,18 +10,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 const secretKey = process.env.JWT_SECRET_KEY;
 
-describe('POST /api/findUser', () => {
-  before(async () => {
-    await connectDB();
-    const session = new Session({ username: 'testUsername1231231', sessionId: '1234', expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
-    await session.save();
-  });
-  
-  after(async () => {
-    await Session.deleteOne({ username: 'testUsername1231231', sessionId: '1234' });
-    await mongoose.disconnect(); 
-  });
-  
+describe('POST /api/findUser', () => {  
   it('should return an error if the token is missing', (done) => {
     chai.request(server)
     .post('/api/findUser')
