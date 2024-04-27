@@ -4,7 +4,7 @@
   "description": "The back-end of your project will live in this directory.",
   "main": "index.js",
   "scripts": {
-    "test": "c8 mocha test/authUser.test.js",
+    "test": "c8 mocha",
     "start": "nodemon server.js"
   },
   "keywords": [],
