@@ -81,15 +81,15 @@ const Results = () => {
   const [worstPicks, setWorstPicks] = useState([]);
   const [averageRating, setAverageRating] = useState(null);
   const [bigFiveScores, setBigFiveScores] = useState({
-    Openness: 0, 
-    Conscientiousness: 0, 
-    Extraversion: 0, 
-    Agreeableness: 0, 
+    Openness: 0,
+    Conscientiousness: 0,
+    Extraversion: 0,
+    Agreeableness: 0,
     Neuroticism: 0
   });
 
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -163,12 +163,12 @@ const Results = () => {
 
   const createFacebookShareLink = () => {
     const description = `Check out my Auditory Cheesecake Test results! I scored:\n\n` +
-    `Openness: ${bigFiveScores.Openness}%\n` +
-    `Conscientiousness: ${bigFiveScores.Conscientiousness}%\n` +
-    `Extraversion: ${bigFiveScores.Extraversion}%\n` +
-    `Agreeableness: ${bigFiveScores.Agreeableness}%\n` +
-    `Neuroticism: ${bigFiveScores.Neuroticism}%\n\n` +
-    `Discover your own scores by taking the test!`;
+      `Openness: ${bigFiveScores.Openness}%\n` +
+      `Conscientiousness: ${bigFiveScores.Conscientiousness}%\n` +
+      `Extraversion: ${bigFiveScores.Extraversion}%\n` +
+      `Agreeableness: ${bigFiveScores.Agreeableness}%\n` +
+      `Neuroticism: ${bigFiveScores.Neuroticism}%\n\n` +
+      `Discover your own scores by taking the test!`;
 
     const url = encodeURIComponent(window.location.href);
     const quote = encodeURIComponent(description);
@@ -183,128 +183,145 @@ const Results = () => {
   return (
     <div className="results">
       <div className="results-wrapper">
-        <h1>Your Personality Traits Results</h1>
-        
+        <h1>Your Personality Trait Results</h1>
+
         <div className="results-description">
           <p>Each progress bar represents your score in one of the Big Five personality traits: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism. A higher score indicates a stronger presence of that trait in your personality. Keep reading below to learn more about your personality.</p>
         </div>
-        
-        <div className="all-traits">
-          <div className="individual-trait">
-            <h3 className="trait-title">Openness</h3>
-            <div className="ocean-img">
-              <img src="/Openness.png" alt="openness"/>
-            </div>
-            <ProgressCircle score={bigFiveScores.Openness} />
-            <div className="trait-desc">
+
+        {/* <div className="all-traits"> */}
+        <div className="survey-results">
+          <h3 className="trait-title">Openness</h3>
+          <div className="ocean-img">
+            <img src="/Openness.png" alt="openness" />
+          </div>
+          <ProgressCircle score={bigFiveScores.Openness} />
+          <div className="trait-desc">
             Openness (also referred to as openness to experience) emphasizes imagination and insight the most out of all five personality traits. People who are high in openness tend to have a broad range of interests. They are curious about the world and other people and are eager to learn new things and enjoy new experiences. People who are high in this personality trait also tend to be more adventurous and creative. Conversely, people low in this personality trait are often much more traditional and may struggle with abstract thinking.
-            </div>
-          </div>
-          <div className="individual-trait">
-            <h3 className="trait-title">Conscientiousness</h3>
-            <div className="ocean-img">
-              <img src="/Conscientiousness.png" alt="conscientiousness"/>
-            </div>
-            <ProgressCircle score={bigFiveScores.Conscientiousness} />
-            <div className="trait-desc">
-            Conscientiousness is one defined by high levels of thoughtfulness, good impulse control, and goal-directed behaviors. Highly conscientious people tend to be organized and mindful of details. They plan ahead, think about how their behavior affects others, and are mindful of deadlines. Someone scoring lower in this primary personality trait is less structured and less organized. They may procrastinate to get things done, sometimes missing deadlines completely.
-            </div>
-          </div>
-          <div className="individual-trait">
-            <h3 className="trait-title">Extraversion</h3>
-            <div className="ocean-img">
-              <img src="/Extraversion.png" alt="extraversion"/>
-            </div>
-            <ProgressCircle score={bigFiveScores.Extraversion} />
-            <div className="trait-desc">
-            Extraversion (or extroversion) is a personality trait characterized by excitability, sociability, talkativeness, assertiveness, and high amounts of emotional expressiveness. People high in extraversion are outgoing and tend to gain energy in social situations. Being around others helps them feel energized and excited. People who are low in this personality trait or introverted tend to be more reserved. They have less energy to expend in social settings and social events can feel draining. Introverts often require a period of solitude and quiet in order to "recharge."
-            </div>
-          </div>
-          <div className="individual-trait">
-            <h3 className="trait-title">Agreeableness</h3>
-            <div className="ocean-img">
-              <img src="/Agreeableness.png" alt="agreeableness"/>
-            </div>
-            <ProgressCircle score={bigFiveScores.Agreeableness} />
-            <div className="trait-desc">
-            This personality trait includes attributes such as trust, altruism, kindness, affection, and other prosocial behaviors. People who are high in agreeableness tend to be more cooperative while those low in this personality trait tend to be more competitive and sometimes even manipulative.
-            </div>
-          </div>
-          <div className="individual-trait">
-            <h3 className="trait-title">Neuroticism</h3>
-            <div className="ocean-img">
-              <img src="/Neuroticism.png" alt="neuroticism"/>
-            </div>
-            <ProgressCircle score={bigFiveScores.Neuroticism} />
-            <div className="trait-desc">
-            Neuroticism is a personality trait characterized by sadness, moodiness, and emotional instability. Individuals who are high in neuroticism tend to experience mood swings, anxiety, irritability, and sadness. Those low in this personality trait tend to be more stable and emotionally resilient.
-            </div>
           </div>
         </div>
+        <div className="survey-results">
+          <h3 className="trait-title">Conscientiousness</h3>
+          <div className="ocean-img">
+            <img src="/Conscientiousness.png" alt="conscientiousness" />
+          </div>
+          <ProgressCircle score={bigFiveScores.Conscientiousness} />
+          <div className="trait-desc">
+            Conscientiousness is one defined by high levels of thoughtfulness, good impulse control, and goal-directed behaviors. Highly conscientious people tend to be organized and mindful of details. They plan ahead, think about how their behavior affects others, and are mindful of deadlines. Someone scoring lower in this primary personality trait is less structured and less organized. They may procrastinate to get things done, sometimes missing deadlines completely.
+          </div>
+        </div>
+        <div className="survey-results">
+          <h3 className="trait-title">Extraversion</h3>
+          <div className="ocean-img">
+            <img src="/Extraversion.png" alt="extraversion" />
+          </div>
+          <ProgressCircle score={bigFiveScores.Extraversion} />
+          <div className="trait-desc">
+            Extraversion (or extroversion) is a personality trait characterized by excitability, sociability, talkativeness, assertiveness, and high amounts of emotional expressiveness. People high in extraversion are outgoing and tend to gain energy in social situations. Being around others helps them feel energized and excited. People who are low in this personality trait or introverted tend to be more reserved. They have less energy to expend in social settings and social events can feel draining. Introverts often require a period of solitude and quiet in order to "recharge."
+          </div>
+        </div>
+        <div className="survey-results">
+          <h3 className="trait-title">Agreeableness</h3>
+          <div className="ocean-img">
+            <img src="/Agreeableness.png" alt="agreeableness" />
+          </div>
+          <ProgressCircle score={bigFiveScores.Agreeableness} />
+          <div className="trait-desc">
+            This personality trait includes attributes such as trust, altruism, kindness, affection, and other prosocial behaviors. People who are high in agreeableness tend to be more cooperative while those low in this personality trait tend to be more competitive and sometimes even manipulative.
+          </div>
+        </div>
+        <div className="survey-results">
+          <h3 className="trait-title">Neuroticism</h3>
+          <div className="ocean-img">
+            <img src="/Neuroticism.png" alt="neuroticism" />
+          </div>
+          <ProgressCircle score={bigFiveScores.Neuroticism} />
+          <div className="trait-desc">
+            Neuroticism is a personality trait characterized by sadness, moodiness, and emotional instability. Individuals who are high in neuroticism tend to experience mood swings, anxiety, irritability, and sadness. Those low in this personality trait tend to be more stable and emotionally resilient.
+          </div>
+        </div>
+        {/* </div> */}
 
         {!loading && (
           <div className="survey-results">
-            <h1>Your Results:</h1>
+            <h1>Your Results</h1>
+            <br></br>
             <p><strong>Your Average Rating: {averageRating}</strong></p>
             <div>
-            <div>
-    <strong>Your Top Picks:</strong>
-    {topPicks.map(pick => (
-        <div key={pick.question}>
-            <p>{pick.question}:</p>
-            <div>
-            <a href={pick.spotifyUrl}><img src="/spotify_icon.png" alt="Spotify icon" className="iconSmall"/></a>
-            <a href={pick.appleMusicUrl}><img src="/Apple_Music_icon.png" alt="Apple Music icon" className="iconSmall"/></a>
-            <a href={pick.youtubeUrl}><img src="/Youtube_logo.png" alt="YouTube icon" className="iconSmall"/></a>
-            </div>
-        </div>
-    ))}
-    <br></br>
-    <strong>Check these playlists out as well:</strong>
-    {topPicks.map(pick => (
-        <div key={`rec-${pick.question}`}>
-            <a href={pick.recommendationUrl}>
-                Try Me!
-            </a>
-        </div>
-    ))}
+            <br></br>
+              <strong>Your Top Picks:</strong>
+              <br></br>
+              {topPicks.map(pick => (
+                <div key={pick.question}>
+                  <p>{pick.question}:</p>
+                  <div>
+                    <a href={pick.spotifyUrl} target="_blank" rel="noopener noreferrer"><img src="/spotify_icon.png" alt="Spotify icon" className="iconSmall" /></a>
+                    <a href={pick.appleMusicUrl} target="_blank" rel="noopener noreferrer"><img src="/Apple_Music_icon.png" alt="Apple Music icon" className="iconSmall" /></a>
+                    <a href={pick.youtubeUrl} target="_blank" rel="noopener noreferrer"><img src="/Youtube_logo.png" alt="YouTube icon" className="iconSmall" /></a>
+                  </div>
+                </div>
+              ))}
+              <br></br><br></br>
 
-</div>
-
-
-
-            </div>
-            <div>
               <strong>Songs You Want to Avoid:</strong>
+              <br></br><br></br>
+
               {worstPicks.map(pick => (
                 <p key={pick.question}>{pick.question}</p>
               ))}
-              <p>Share Results!</p>
+              <br></br>
             </div>
-            <a href={createMailtoLink()}><img src="/mail_icon.png" alt="Mail Icon" className="iconSmall"/></a>
-            <a href={createFacebookShareLink()} target="_blank" rel="noopener noreferrer"><img src="/facebook_icon.png" alt="Facebook" className="iconSmall"/></a>
-            <a href={createLinkedInShareLink()} target="_blank" rel="noopener noreferrer"><img src="/linkedin_icon.webp" alt="LinkedIn" className="iconSmall"/></a>
           </div>
         )}
-        <div className="survey-results">
-          <strong>Want to learn more about how music shapes personality?</strong>
-          <p>
-            Checkout this paper published by the New York University Integrative Psychology Review 
-            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:va6c2:016c82c3-36a9-40a2-a261-95559c2714c1?viewer%21megaVerb=group-discover"> here</a>
-      
-          </p>
-          <p>
-            In short, there has been a lot of research on how music can shape personality. This research dates back to ancient Greece. 
-            Plato and Aristotle believed music has the power to destroy a society. 
+
+{!loading && (
+          <div className="survey-results">
+            <h1>Share Results!</h1>
             <br></br>
+            <a href={createMailtoLink()}><img src="/mail_icon.png" alt="Mail Icon" className="iconLarge" /></a>
+            <a href={createFacebookShareLink()} target="_blank" rel="noopener noreferrer"><img src="/facebook_icon.png" alt="Facebook" className="iconLarge" /></a>
+            <a href={createLinkedInShareLink()} target="_blank" rel="noopener noreferrer"><img src="/linkedin_icon.webp" alt="LinkedIn" className="iconLarge" /></a>
+            <br></br><br></br><br></br>
+          </div>
+        )}
+
+        {!loading && (
+          <div className="survey-results">
+          <h1>Personalized Playlist Suggestions</h1>
+          <p><strong>Based on your specific personality results, <br /> we have curated 3 playlists just for you!</strong></p>
+          <div className="playlist-circles">
+            {topPicks.map((pick, index) => (
+              <div key={`rec-${pick.question}`} className="playlist-circle">
+                <a href={pick.recommendationUrl}target="_blank" rel="noopener noreferrer" className="playlist-link">
+                  {index + 1}
+                </a>
+              </div>
+            ))}
+          </div>
+          <br />
+        </div>
+        )}
+        <div className="survey-results">
+          <h3 className="trait-title">How Does it Work? </h3>
+          <p>
+            There has been a lot of research on how music can shape personality. This research dates back to ancient Greece.
+            Plato and Aristotle believed music has the power to destroy a society.
+            <br></br><br></br>
             They believed that it should be carefully controlled and monitored by the government.
             On the other hand, contemporary psychologist, Steven Pinker, calls music "auditory cheesecake"
-            <br></br>
+            <br></br><br></br>
             He believed that music is a byproduct of evolution and does not serve a biological purpose.
-            What do you think? 
+            <br></br>What do you think?
 
           </p>
-
+          <br></br>
+          <strong>Want to learn more about how<br></br> music shapes personality?</strong>
+          <br></br><br></br>
+          <p>
+            Check out this paper published by the New York University Integrative Psychology Review
+            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:va6c2:016c82c3-36a9-40a2-a261-95559c2714c1?viewer%21megaVerb=group-discover"> here</a>
+          </p>
+          <br></br>
         </div>
       </div>
     </div>
