@@ -114,6 +114,7 @@ const Results = () => {
           spotifyUrl: questions[index + 4].spotifyURL,
           appleMusicUrl: questions[index + 4].appleMusicURL,
           youtubeUrl: questions[index + 4].youtubeURL,
+          recommendationUrl: questions[index + 4].recommendationURL
         }));
 
         const calculateAverage = (data) => data.reduce((sum, item) => sum + parseInt(item.answer, 10), 0) / data.length;
@@ -159,6 +160,25 @@ const Results = () => {
 
     return `mailto:?subject=${subject}&body=${body}`;
   };
+
+  const createFacebookShareLink = () => {
+    const description = `Check out my Auditory Cheesecake Test results! I scored:\n\n` +
+    `Openness: ${bigFiveScores.Openness}%\n` +
+    `Conscientiousness: ${bigFiveScores.Conscientiousness}%\n` +
+    `Extraversion: ${bigFiveScores.Extraversion}%\n` +
+    `Agreeableness: ${bigFiveScores.Agreeableness}%\n` +
+    `Neuroticism: ${bigFiveScores.Neuroticism}%\n\n` +
+    `Discover your own scores by taking the test!`;
+
+    const url = encodeURIComponent(window.location.href);
+    const quote = encodeURIComponent(description);
+    return `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`;
+  };
+  const createLinkedInShareLink = () => {
+    const url = encodeURIComponent(window.location.href);
+    return `https://www.linkedin.com/shareArticle?mini=true&url=${url}`;
+  };
+
 
   return (
     <div className="results">
@@ -227,23 +247,43 @@ const Results = () => {
             <h1>Your Results:</h1>
             <p><strong>Your Average Rating: {averageRating}</strong></p>
             <div>
-              <strong>Your Top Picks:</strong>
-              {topPicks.map(pick => (
-                <p key={pick.question}>
-                  {pick.question}:
-                  <a href={pick.spotifyUrl}><img src="/spotify_icon.png" alt="Spotify icon" className="iconSmall"/></a>
-                  <a href={pick.appleMusicUrl}><img src="/Apple_Music_icon.png" alt="Apple Music icon" className="iconSmall"/></a>
-                  <a href={pick.youtubeUrl}><img src="/Youtube_logo.png" alt="YouTube icon" className="iconSmall"/></a>
-                </p>
-              ))}
+            <div>
+    <strong>Your Top Picks:</strong>
+    {topPicks.map(pick => (
+        <div key={pick.question}>
+            <p>{pick.question}:</p>
+            <div>
+            <a href={pick.spotifyUrl}><img src="/spotify_icon.png" alt="Spotify icon" className="iconSmall"/></a>
+            <a href={pick.appleMusicUrl}><img src="/Apple_Music_icon.png" alt="Apple Music icon" className="iconSmall"/></a>
+            <a href={pick.youtubeUrl}><img src="/Youtube_logo.png" alt="YouTube icon" className="iconSmall"/></a>
+            </div>
+        </div>
+    ))}
+    <br></br>
+    <strong>Check these playlists out as well:</strong>
+    {topPicks.map(pick => (
+        <div key={`rec-${pick.question}`}>
+            <a href={pick.recommendationUrl}>
+                Try Me!
+            </a>
+        </div>
+    ))}
+
+</div>
+
+
+
             </div>
             <div>
               <strong>Songs You Want to Avoid:</strong>
               {worstPicks.map(pick => (
                 <p key={pick.question}>{pick.question}</p>
               ))}
-
+              <p>Share Results!</p>
             </div>
+            <a href={createMailtoLink()}><img src="/mail_icon.png" alt="Mail Icon" className="iconSmall"/></a>
+            <a href={createFacebookShareLink()} target="_blank" rel="noopener noreferrer"><img src="/facebook_icon.png" alt="Facebook" className="iconSmall"/></a>
+            <a href={createLinkedInShareLink()} target="_blank" rel="noopener noreferrer"><img src="/linkedin_icon.webp" alt="LinkedIn" className="iconSmall"/></a>
           </div>
         )}
         <div className="survey-results">
@@ -264,9 +304,6 @@ const Results = () => {
             What do you think? 
 
           </p>
-          <a href={createMailtoLink()} className="email-share-button">
-            Share Results
-          </a>
 
         </div>
       </div>

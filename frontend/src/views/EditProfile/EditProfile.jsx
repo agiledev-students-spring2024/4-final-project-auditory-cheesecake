@@ -25,22 +25,24 @@ const EditProfile = () => {
         const user = JSON.parse (sessionStorage.getItem('user')); 
         if (user && user.id) {
             setuserID(user.id);
-            console.log('User ID:', user.id);
+            // console.log('User ID:', user.id);
         }
     }, []);
     const fetchUserData = useCallback(async () => {
         if (userID) {
             try {
+                setError(false);
                 const response = await axios.get(`http://localhost:1337/api/user/${userID}`);
                 const userData = response.data;
-                console.log('loaded userData: ', userData);
+                // console.log('loaded userData: ', userData);
                 setFirstName(userData.firstName);
                 setLastName(userData.lastName);
                 setUsername(userData.username);
                 setEmail(userData.email);
                 setPhoneNumber(formatPhoneNumber(userData.phoneNumber)); // Format and set phone number
             } catch (error) {
-                console.error('Failed to fetch user data:', error);
+                setError(true);
+                setMessage(error.message);
             }
         }
     }, [userID]);
@@ -156,7 +158,7 @@ const EditProfile = () => {
             setError(false);
             fetchUserData();  // Refresh user data after a successful update
         } catch (error) {
-            console.error('Error:', error);
+            // console.error('Error:', error);
             setError(true);
             setMessage(error.message);
         }

@@ -163,14 +163,14 @@ const findUser = async (req, res) => {
       return res.status(404).json({ message: 'Session not found or expired' });
     }
     if (session.username !== username) {
-      return res.status(404).json({ message: 'User session mismatch' });
+      return res.status(401).json({ message: 'User session mismatch' });
     }
 
     return res.status(200).json({ message: 'User found and validated', user: { username } });
   }
   catch (error) {
     console.error('Token invalid:', error);
-    return res.status(401).json({ message: 'Invalid token', error: error.message });
+    return res.status(400).json({ message: 'Invalid token', error: error.message });
   }
 };
 
