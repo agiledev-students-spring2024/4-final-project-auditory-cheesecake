@@ -34,3 +34,29 @@ jobs:
 
     - name: Logout from DockerHub
       run: docker logout
+
+
+  deploy:
+    needs: build-and-push  # This job runs after build-and-push completes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Installing SSH Key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: SSH and Deploy Docker Container
+        run: |
+          # SSH into the server and run Docker commands
+          ssh -o StrictHostKeyChecking=no root@134.209.47.131 << 'ENDSSH'
+          # Pull the latest version of your image
+          docker pull ${{ secrets.DOCKER_USERNAME }}/auditorycheesecake:latest
+          
+          # Stop the existing container
+          docker stop server || true
+          docker rm server || true
+
+          # Start a new container
+          docker run --name server -d -p 1337:1337 ${{ secrets.DOCKER_USERNAME }}/auditorycheesecake:latest
+          ENDSSH
+
