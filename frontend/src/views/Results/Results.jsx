@@ -161,6 +161,25 @@ const Results = () => {
     return `mailto:?subject=${subject}&body=${body}`;
   };
 
+  const createFacebookShareLink = () => {
+    const description = `Check out my Auditory Cheesecake Test results! I scored:\n\n` +
+    `Openness: ${bigFiveScores.Openness}%\n` +
+    `Conscientiousness: ${bigFiveScores.Conscientiousness}%\n` +
+    `Extraversion: ${bigFiveScores.Extraversion}%\n` +
+    `Agreeableness: ${bigFiveScores.Agreeableness}%\n` +
+    `Neuroticism: ${bigFiveScores.Neuroticism}%\n\n` +
+    `Discover your own scores by taking the test!`;
+
+    const url = encodeURIComponent(window.location.href);
+    const quote = encodeURIComponent(description);
+    return `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`;
+  };
+  const createLinkedInShareLink = () => {
+    const url = encodeURIComponent(window.location.href);
+    return `https://www.linkedin.com/shareArticle?mini=true&url=${url}`;
+  };
+
+
   return (
     <div className="results">
       <div className="results-wrapper">
@@ -260,10 +279,11 @@ const Results = () => {
               {worstPicks.map(pick => (
                 <p key={pick.question}>{pick.question}</p>
               ))}
-
+              <p>Share Results!</p>
             </div>
             <a href={createMailtoLink()}><img src="/mail_icon.png" alt="Mail Icon" className="iconSmall"/></a>
-
+            <a href={createFacebookShareLink()} target="_blank" rel="noopener noreferrer"><img src="/facebook_icon.png" alt="Facebook" className="iconSmall"/></a>
+            <a href={createLinkedInShareLink()} target="_blank" rel="noopener noreferrer"><img src="/linkedin_icon.webp" alt="LinkedIn" className="iconSmall"/></a>
           </div>
         )}
         <div className="survey-results">
