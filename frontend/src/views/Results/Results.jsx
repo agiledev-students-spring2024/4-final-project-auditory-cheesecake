@@ -255,9 +255,9 @@ const Results = () => {
                 <div key={pick.question}>
                   <p>{pick.question}:</p>
                   <div>
-                    <a href={pick.spotifyUrl}><img src="/spotify_icon.png" alt="Spotify icon" className="iconSmall" /></a>
-                    <a href={pick.appleMusicUrl}><img src="/Apple_Music_icon.png" alt="Apple Music icon" className="iconSmall" /></a>
-                    <a href={pick.youtubeUrl}><img src="/Youtube_logo.png" alt="YouTube icon" className="iconSmall" /></a>
+                    <a href={pick.spotifyUrl} target="_blank" rel="noopener noreferrer"><img src="/spotify_icon.png" alt="Spotify icon" className="iconSmall" /></a>
+                    <a href={pick.appleMusicUrl} target="_blank" rel="noopener noreferrer"><img src="/Apple_Music_icon.png" alt="Apple Music icon" className="iconSmall" /></a>
+                    <a href={pick.youtubeUrl} target="_blank" rel="noopener noreferrer"><img src="/Youtube_logo.png" alt="YouTube icon" className="iconSmall" /></a>
                   </div>
                 </div>
               ))}
@@ -292,7 +292,7 @@ const Results = () => {
           <div className="playlist-circles">
             {topPicks.map((pick, index) => (
               <div key={`rec-${pick.question}`} className="playlist-circle">
-                <a href={pick.recommendationUrl} className="playlist-link">
+                <a href={pick.recommendationUrl}target="_blank" rel="noopener noreferrer" className="playlist-link">
                   {index + 1}
                 </a>
               </div>
