@@ -9,7 +9,7 @@ const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword', 'results', '
 const mustCompleteQuiz = ['results'];
 
 const pingEndpoint = async (token) => {
-  const endpoint = 'http://localhost:1337/api/findUser';
+  const endpoint = 'http://134.209.47.131:1337/api/findUser';
   const body = {
     token: token,
   }

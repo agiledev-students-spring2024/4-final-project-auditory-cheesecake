@@ -15,7 +15,7 @@ const Profile = () => {
     if (userId) {
       const fetchUserData = async () => {
         try {
-          const response = await axios.get(`http://localhost:1337/api/user/${userId}`);
+          const response = await axios.get(`http://134.209.47.131:1337/api/user/${userId}`);
           setUser(response.data);
           console.log('User data: ', response.data);
         } catch (error) {
@@ -54,7 +54,7 @@ const Profile = () => {
       const base64String = reader.result;
   
       try {
-        const response = await axios.post(`http://localhost:1337/api/user/${user._id}/profilePicture`, {
+        const response = await axios.post(`http://134.209.47.131:1337/api/user/${user._id}/profilePicture`, {
           profilePicture: base64String,
         });
   

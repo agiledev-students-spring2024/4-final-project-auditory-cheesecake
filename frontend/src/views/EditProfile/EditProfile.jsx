@@ -32,7 +32,7 @@ const EditProfile = () => {
         if (userID) {
             try {
                 setError(false);
-                const response = await axios.get(`http://localhost:1337/api/user/${userID}`);
+                const response = await axios.get(`http://134.209.47.131:1337/api/user/${userID}`);
                 const userData = response.data;
                 // console.log('loaded userData: ', userData);
                 setFirstName(userData.firstName);
@@ -136,7 +136,7 @@ const EditProfile = () => {
         const cleanedPhoneNumber = cleanPhoneNumber(phoneNumber);
         //API call to the backend registration endpoint
         try {
-            const response = await fetch('http://localhost:1337/api/editUserProfile', {
+            const response = await fetch('http://134.209.47.131:1337/api/editUserProfile', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

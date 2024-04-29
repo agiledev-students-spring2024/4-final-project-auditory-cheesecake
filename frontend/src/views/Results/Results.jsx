@@ -96,8 +96,8 @@ const Results = () => {
         const user = JSON.parse(sessionStorage.getItem('user'));
         const userId = user.id;
         const [questionsRes, responsesRes] = await Promise.all([
-          axios.get('http://localhost:1337/api/questions'),
-          axios.get(`http://localhost:1337/api/survey/responses?userId=${userId}`)
+          axios.get('http://134.209.47.131:1337/api/questions'),
+          axios.get(`http://134.209.47.131:1337/api/survey/responses?userId=${userId}`)
         ]);
 
         const questions = questionsRes.data;
