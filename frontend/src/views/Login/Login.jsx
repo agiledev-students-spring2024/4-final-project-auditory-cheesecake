@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch('http://http://134.209.47.131:1337/api/login', {
+        const res = await fetch('http://134.209.47.131:1337/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
