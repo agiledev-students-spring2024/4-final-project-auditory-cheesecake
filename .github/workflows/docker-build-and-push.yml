@@ -59,6 +59,6 @@ jobs:
           docker rm server || true
 
           # Start a new container
-          docker run --name server -d -p 1337:1337 ${{ secrets.DOCKER_USERNAME }}/auditorycheesecake:latest
+          docker run --name server -d -p 1337:1337 --env-file /root/.env ${{ secrets.DOCKER_USERNAME }}/auditorycheesecake:latest
           ENDSSH
 
