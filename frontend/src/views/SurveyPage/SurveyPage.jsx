@@ -15,7 +15,7 @@ const SurveyPage = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('http://localhost:1337/api/questions');
+        const response = await axios.get('http://134.209.47.131:1337/api/questions');
         setQuestions(response.data);
       } catch (error) {
         console.error('Error fetching questions:', error);
@@ -28,7 +28,7 @@ const SurveyPage = () => {
 
   useEffect(() => {
     if (questions[currentQuestion]?.audio) {
-      const audioUrl = `http://localhost:1337${questions[currentQuestion].audio}`;
+      const audioUrl = `http://134.209.47.131:1337${questions[currentQuestion].audio}`;
       console.log("Attempting to play audio from:", audioUrl);
       audioRef.current.src = audioUrl;
       const playPromise = audioRef.current.play();
@@ -77,7 +77,7 @@ const SurveyPage = () => {
       console.log('User:', user);
       const userId = user.id;
       console.log('User ID:', userId);
-      const response = await axios.post('http://localhost:1337/api/responses', {
+      const response = await axios.post('http://134.209.47.131:1337/api/responses', {
         userId, // Include the userId
         responses: surveyResponses
       });

@@ -124,7 +124,7 @@ const Register = () => {
 
         const cleanedPhoneNumber = cleanPhoneNumber(inputs.phoneNumber);
         //API call to the backend registration endpoint
-        const res = await fetch('http://localhost:1337/api/register', {
+        const res = await fetch('http://134.209.47.131:1337/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

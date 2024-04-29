@@ -8,7 +8,7 @@ const Logout = () => {
     useEffect(() => {
         const logout = async () => {
             try {
-                const response = await fetch('http://localhost:1337/api/logout', {
+                const response = await fetch('http://134.209.47.131:1337/api/logout', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
