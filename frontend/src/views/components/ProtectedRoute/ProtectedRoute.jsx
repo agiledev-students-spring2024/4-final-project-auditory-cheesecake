@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import './ProtectedRoute.css';
 
 const mustBeLoggedOut = ['register', 'login',];
-const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword', 'results', 'survey', 'logout'];
+const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword', 'results', 'surveypage', 'logout'];
 const mustCompleteQuiz = ['results'];
 
 const pingEndpoint = async (token) => {
