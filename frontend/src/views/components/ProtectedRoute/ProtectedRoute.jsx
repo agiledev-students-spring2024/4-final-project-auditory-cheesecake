@@ -1,23 +1,18 @@
-// Sample Route Guard component, feel free to change later
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './ProtectedRoute.css';
 
-const mustBeLoggedOut = ['register', 'login',];
-const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword', 'results', 'surveypage', 'logout'];
+const mustBeLoggedOut = ['register', 'login'];
+const mustBeLoggedIn = ['profile', 'editprofile', 'changepassword', 'results', 'survey', 'surveypage', 'logout'];
 const mustCompleteQuiz = ['results'];
 
 const pingEndpoint = async (token) => {
   const endpoint = 'http://134.209.47.131:1337/api/findUser';
-  const body = {
-    token: token,
-  }
+  const body = { token };
   const response = await fetch(endpoint, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
   const data = await response.json();
@@ -25,56 +20,40 @@ const pingEndpoint = async (token) => {
   return response;
 };
 
-const checkAuth = async (children) => {
-  // sample function, just return true always for now
-  const desiredPage = children.type.name.toLowerCase(); 
+const checkAuth = async (desiredPage, authToken) => {
   console.log(desiredPage);
-  const authToken = sessionStorage.getItem('authToken');
-  // user must be logged out to access these pages
   if (mustBeLoggedOut.includes(desiredPage)) {
     if (!authToken) {
       return true;
     }
     const res = await pingEndpoint(authToken);
     console.log(res);
-    if (res.status === 200) {
-      return false;
-    }
-    return true;
-  }
-  // user must be logged in to access these pages
-  else if (mustBeLoggedIn.includes(desiredPage)) {
+    return res.status !== 200;
+  } else if (mustBeLoggedIn.includes(desiredPage)) {
     if (!authToken) {
       return false;
     }
     const res = await pingEndpoint(authToken);
-    if (res.status === 200) {
-      return true;
-    }
-    return false;
-  }
-  // user must have completed the quiz to access these pages
-  else if (mustCompleteQuiz.includes(desiredPage)) {
-    // placeholder
+    return res.status === 200;
+  } else if (mustCompleteQuiz.includes(desiredPage)) {
     return true;
   }
-  // user can access these pages regardless of authentication status
-  else {
-    return true;
-  }
+  return false;
 };
 
 const ProtectedRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const desiredPage = children.type.name.toLowerCase(); 
-
+  const location = useLocation();
+  const pathSegments = location.pathname.split('/').filter(Boolean);
+  const desiredPage = pathSegments[0].toLowerCase();  // Assuming the relevant part is the first segment
+  
   useEffect(() => {
     const authenticate = async () => {
+      const authToken = sessionStorage.getItem('authToken');
       try {
-        const authResult = await checkAuth(children);
+        const authResult = await checkAuth(desiredPage, authToken);
         setIsAuthenticated(authResult);
-        console.log('Auth Result:', authResult);
       } catch (error) {
         console.error('Authentication error:', error);
         setIsAuthenticated(false);
@@ -82,29 +61,21 @@ const ProtectedRoute = ({ children }) => {
         setIsLoading(false);
       }
     };
-
+    
     authenticate();
-  }, [children]);
-
-  // Placeholder loading screen
+  }, [children, desiredPage]);
+  
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
-  console.log('Final Authenticated State:', isAuthenticated);
+  
   if (isAuthenticated) {
     return children;
-  }
-  else {
-    if (mustBeLoggedOut.includes(desiredPage)) {
-      toast.warn('You must be logged out to access this page.');
-    }
-    else if (mustBeLoggedIn.includes(desiredPage)) {
-      toast.warn('You must be logged in to access this page.');
-    }
-    else {
-      toast.warn('You must complete the quiz to access this page.');
-    }
+  } else {
+    const warnMessage = mustBeLoggedOut.includes(desiredPage) ? 'You must be logged out to access this page.' :
+    mustBeLoggedIn.includes(desiredPage) ? 'You must be logged in to access this page.' :
+    'You must complete the quiz to access this page.';
+    toast.warn(warnMessage);
     return <Navigate to="/" />;
   }
 };
