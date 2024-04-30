@@ -1,11 +1,11 @@
 # Auditory Cheesecake
 
 ## Deployed App
-You may access our deployed app using the following link: http://134.209.47.131:1337
+You may access our deployed app using the following link: http://134.209.47.131
 
 ### Deployment Setups:
-- Seployed to a Docker container
-- Have a functioning Continuous Integration workflow, where an automation server
+- Deployed to a Docker container
+- Have a functioning Continuous Integration workflow, with an automation server
 - Have a Continuous Deployment setup
 
 ## Product Description
