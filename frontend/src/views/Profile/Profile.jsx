@@ -124,7 +124,7 @@ const Profile = () => {
           <a href="#terms" onClick={(e) => { e.preventDefault(); handleTermsToggle(); }}>Terms and Conditions</a>
           <br />
           <br />
-          <button className="delete-btn">Delete Account</button>
+          {/* <button className="delete-btn">Delete Account</button> */}
         </footer>
 
         {showTerms && (
