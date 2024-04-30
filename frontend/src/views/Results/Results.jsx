@@ -155,7 +155,8 @@ const Results = () => {
       `I scored:\n${scoresText}\n\n` +
       `My favorite songs are:\n${favoriteSongsText}\n\n` +
       `Songs I did not enjoy are:\n${worstSongsText}\n\n` +
-      `You should take the quiz as well!`
+      `You should take the quiz as well!` + 
+      `Here's the link: http://134.209.47.131/`
     );
 
     return `mailto:?subject=${subject}&body=${body}`;
@@ -177,6 +178,18 @@ const Results = () => {
   const createLinkedInShareLink = () => {
     const url = encodeURIComponent(window.location.href);
     return `https://www.linkedin.com/shareArticle?mini=true&url=${url}`;
+  };
+
+  const createTwitterShareLink = () => {
+    const tweetText = `Check out my Auditory Cheesecake Test results! I scored:\n` +
+      `Openness: ${bigFiveScores.Openness}%\n` +
+      `Conscientiousness: ${bigFiveScores.Conscientiousness}%\n` +
+      `Extraversion: ${bigFiveScores.Extraversion}%\n` +
+      `Agreeableness: ${bigFiveScores.Agreeableness}%\n` +
+      `Neuroticism: ${bigFiveScores.Neuroticism}%\n` +
+      `Find out your scores at http://134.209.47.131/`;
+    const encodedTweet = encodeURIComponent(tweetText);
+    return `https://twitter.com/intent/tweet?text=${encodedTweet}`;
   };
 
 
@@ -281,6 +294,8 @@ const Results = () => {
             <a href={createMailtoLink()}><img src="/mail_icon.png" alt="Mail Icon" className="iconLarge" /></a>
             <a href={createFacebookShareLink()} target="_blank" rel="noopener noreferrer"><img src="/facebook_icon.png" alt="Facebook" className="iconLarge" /></a>
             <a href={createLinkedInShareLink()} target="_blank" rel="noopener noreferrer"><img src="/linkedin_icon.webp" alt="LinkedIn" className="iconLarge" /></a>
+            <a href={createTwitterShareLink()} target="_blank" rel="noopener noreferrer"><img src="/X_icon.png" alt="Twitter" className="iconLarge" /></a>
+
             <br></br><br></br><br></br>
           </div>
         )}
